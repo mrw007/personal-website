@@ -33,12 +33,14 @@ export const Hero = () => {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.1 }}
-                    className="col-span-12 flex items-center gap-3 mb-12"
+                    className="col-span-12 mb-12"
                 >
-                    <span className="h-1.5 w-1.5 rounded-full bg-rust animate-pulse" />
-                    <span className="overline">
-                        Available · Q1 2026 · Remote / EU
-                    </span>
+                    <div className="glass inline-flex items-center gap-3 px-4 py-2 rounded-full">
+                        <span className="h-1.5 w-1.5 rounded-full bg-rust animate-pulse" />
+                        <span className="overline !text-bone-300">
+                            Available · Q1 2026 · Remote / EU
+                        </span>
+                    </div>
                 </motion.div>
 
                 {/* Main heading */}
@@ -118,7 +120,7 @@ export const Hero = () => {
                     transition={{ duration: 1, delay: 0.7 }}
                     className="hidden lg:flex col-span-12 lg:col-span-3 lg:col-start-10 lg:justify-self-end flex-col gap-4 self-end pb-4"
                 >
-                    <div className="border-l border-white/10 pl-4">
+                    <div className="border-l border-white/10 pl-4 glass p-5">
                         <div className="overline mb-2">Index</div>
                         <div className="font-mono text-xs text-bone-300 leading-relaxed">
                             01 · About

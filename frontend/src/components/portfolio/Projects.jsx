@@ -85,8 +85,8 @@ export const Projects = () => {
                                                 {p.year}
                                             </span>
                                         </div>
-                                        <div className="absolute bottom-5 right-5 h-10 w-10 rounded-full bg-rust flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <ArrowUpRight size={18} className="text-white" />
+                                        <div className="absolute bottom-5 right-5 h-12 w-12 rounded-full glass flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-500" style={{background:"linear-gradient(135deg, rgba(224,93,58,0.95) 0%, rgba(199,75,42,0.95) 100%)", borderColor:"rgba(255,255,255,0.25)"}}>
+                                            <ArrowUpRight size={20} className="text-white" />
                                         </div>
                                     </a>
                                 </div>

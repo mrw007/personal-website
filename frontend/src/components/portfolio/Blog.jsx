@@ -68,7 +68,7 @@ export const Blog = () => {
                                         className="w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 opacity-80 group-hover:opacity-100"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-ink-800 to-transparent" />
-                                    <span className="absolute top-4 left-4 font-mono text-[10px] uppercase tracking-[0.18em] text-bone-50 bg-ink-900/70 px-2 py-1 border border-white/10">
+                                    <span className="absolute top-4 left-4 glass font-mono text-[10px] uppercase tracking-[0.18em] text-bone-50 px-2.5 py-1">
                                         {p.category}
                                     </span>
                                 </div>

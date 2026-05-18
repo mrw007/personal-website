@@ -81,7 +81,7 @@ export const Contact = () => {
                                 target={c.href.startsWith("http") ? "_blank" : undefined}
                                 rel="noreferrer"
                                 data-testid={c.test}
-                                className="group flex items-center justify-between border border-white/10 hover:border-rust px-5 py-5 transition-colors"
+                                className="group glass glass-interactive flex items-center justify-between px-5 py-5"
                             >
                                 <div className="flex items-center gap-4">
                                     <c.icon
