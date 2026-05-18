@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "./components/portfolio/Header";
 import { Hero } from "./components/portfolio/Hero";
 import { About } from "./components/portfolio/About";
@@ -48,15 +48,32 @@ function useSpotlight() {
     }, []);
 }
 
+function useTheme() {
+    const [theme, setTheme] = useState(() => {
+        if (typeof window === "undefined") return "dark";
+        return localStorage.getItem("theme") || "dark";
+    });
+
+    useEffect(() => {
+        const root = document.documentElement;
+        if (theme === "light") root.classList.add("light");
+        else root.classList.remove("light");
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    return [theme, setTheme];
+}
+
 export default function App() {
     useSpotlight();
+    const [theme, setTheme] = useTheme();
     return (
         <div
             data-testid="app-root"
             className="relative z-10 text-bone-50 font-body min-h-screen"
         >
             <div className="noise-overlay" />
-            <Header />
+            <Header theme={theme} setTheme={setTheme} />
             <main>
                 <Hero />
                 <About />

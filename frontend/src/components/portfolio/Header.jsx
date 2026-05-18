@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
 
 const links = [
     { label: "About", href: "#about" },
@@ -10,7 +10,40 @@ const links = [
     { label: "Writing", href: "#writing" },
 ];
 
-export const Header = () => {
+const ThemeToggle = ({ theme, setTheme }) => {
+    const isLight = theme === "light";
+    return (
+        <button
+            onClick={() => setTheme(isLight ? "dark" : "light")}
+            data-testid="theme-toggle"
+            aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
+            className="relative h-9 w-9 rounded-full flex items-center justify-center border border-white/15 hover:border-rust transition-colors overflow-hidden"
+            style={{
+                background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)",
+            }}
+        >
+            <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                    key={theme}
+                    initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex items-center justify-center"
+                >
+                    {isLight ? (
+                        <Moon size={14} className="text-bone-300" />
+                    ) : (
+                        <Sun size={14} className="text-bone-300" />
+                    )}
+                </motion.span>
+            </AnimatePresence>
+        </button>
+    );
+};
+
+export const Header = ({ theme, setTheme }) => {
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -83,14 +116,21 @@ export const Header = () => {
                     />
                 </a>
 
-                <button
-                    className="md:hidden text-bone-50 p-2 ml-auto rounded-full hover:bg-white/5 transition-colors"
-                    onClick={() => setOpen(!open)}
-                    data-testid="mobile-menu-toggle"
-                    aria-label="Menu"
-                >
-                    {open ? <X size={18} /> : <Menu size={18} />}
-                </button>
+                <div className="hidden md:flex ml-1">
+                    <ThemeToggle theme={theme} setTheme={setTheme} />
+                </div>
+
+                <div className="md:hidden ml-auto flex items-center gap-1">
+                    <ThemeToggle theme={theme} setTheme={setTheme} />
+                    <button
+                        className="text-bone-50 p-2 rounded-full hover:bg-white/5 transition-colors"
+                        onClick={() => setOpen(!open)}
+                        data-testid="mobile-menu-toggle"
+                        aria-label="Menu"
+                    >
+                        {open ? <X size={18} /> : <Menu size={18} />}
+                    </button>
+                </div>
             </div>
 
             <AnimatePresence>

@@ -9,7 +9,7 @@ export const Hero = () => {
         <section
             id="top"
             data-testid="hero-section"
-            className="relative min-h-screen flex items-end pt-32 pb-16 overflow-hidden"
+            className="relative min-h-screen flex items-end pt-32 pb-40 md:pb-48 overflow-hidden"
         >
             {/* Texture background */}
             <div
@@ -110,33 +110,6 @@ export const Hero = () => {
                                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                             />
                         </a>
-                    </div>
-                </motion.div>
-
-                {/* Meta column */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.7 }}
-                    className="hidden lg:flex col-span-12 lg:col-span-3 lg:col-start-10 lg:justify-self-end flex-col gap-4 self-end pb-4"
-                >
-                    <div className="glass p-5" style={{ borderRadius: 20 }}>
-                        <div className="overline mb-2">Index</div>
-                        <div className="font-mono text-xs text-bone-300 leading-relaxed">
-                            01 · About
-                            <br />
-                            02 · Skills
-                            <br />
-                            03 · Toolkit
-                            <br />
-                            04 · Experience
-                            <br />
-                            05 · Projects
-                            <br />
-                            06 · Writing
-                            <br />
-                            07 · Contact
-                        </div>
                     </div>
                 </motion.div>
             </div>
