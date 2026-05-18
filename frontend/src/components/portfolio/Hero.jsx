@@ -148,7 +148,7 @@ export const Hero = () => {
                         </span>
                         <br />
                         <span className="italic font-medium tracking-[-0.02em] text-bone-300">
-                            Scale<span className="cursor-blink">_</span>
+                            Craft<span className="cursor-blink">_</span>
                         </span>
                     </h1>
                 </motion.div>
