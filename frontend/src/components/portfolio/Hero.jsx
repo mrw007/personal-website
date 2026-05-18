@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 
@@ -8,6 +9,36 @@ const PORTRAIT =
     "https://customer-assets.emergentagent.com/job_code-architect-44/artifacts/y9y0949k_1737141838807.jpeg";
 
 export const Hero = () => {
+    const portraitRef = useRef(null);
+    const textureRef = useRef(null);
+
+    useEffect(() => {
+        let raf = 0;
+        let tx = 0,
+            ty = 0;
+        const onMove = (e) => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            tx = (e.clientX - w / 2) / w; // -0.5 .. 0.5
+            ty = (e.clientY - h / 2) / h;
+            if (!raf) {
+                raf = requestAnimationFrame(apply);
+            }
+        };
+        const apply = () => {
+            raf = 0;
+            if (portraitRef.current)
+                portraitRef.current.style.transform = `translate3d(${tx * -22}px, ${ty * -16}px, 0)`;
+            if (textureRef.current)
+                textureRef.current.style.transform = `translate3d(${tx * 14}px, ${ty * 10}px, 0)`;
+        };
+        window.addEventListener("mousemove", onMove, { passive: true });
+        return () => {
+            window.removeEventListener("mousemove", onMove);
+            cancelAnimationFrame(raf);
+        };
+    }, []);
+
     return (
         <section
             id="top"
@@ -16,7 +47,8 @@ export const Hero = () => {
         >
             {/* Texture background */}
             <div
-                className="absolute inset-0 opacity-40 pointer-events-none"
+                ref={textureRef}
+                className="absolute inset-0 opacity-40 pointer-events-none will-change-transform"
                 style={{
                     backgroundImage: `url(${HERO_IMG})`,
                     backgroundSize: "cover",
@@ -25,6 +57,7 @@ export const Hero = () => {
                         "radial-gradient(ellipse at 70% 40%, black 0%, transparent 75%)",
                     WebkitMaskImage:
                         "radial-gradient(ellipse at 70% 40%, black 0%, transparent 75%)",
+                    transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                 }}
             />
             {/* Floating cutout portrait — duotone, blending with hero */}
@@ -36,27 +69,39 @@ export const Hero = () => {
                     delay: 0.4,
                     ease: [0.16, 1, 0.3, 1],
                 }}
-                className="hidden lg:block absolute z-10 right-0 xl:right-4 top-[8%] pointer-events-none select-none"
+                className="hidden lg:block absolute z-[5] right-[-2%] xl:right-0 top-[6%] pointer-events-none select-none"
                 data-testid="hero-portrait"
             >
-                <div className="relative">
-                    {/* Soft rust glow halo behind */}
-                    <div
-                        className="absolute inset-0 -z-10 blur-3xl opacity-60"
-                        style={{
-                            background:
-                                "radial-gradient(ellipse at 50% 55%, rgba(224,93,58,0.45) 0%, rgba(224,93,58,0.15) 35%, transparent 65%)",
-                            transform: "scale(1.1)",
-                        }}
-                    />
-                    <img
-                        src="/wahib-cutout.png"
-                        alt="Wahib Kerkeni — Senior Frontend Engineer"
-                        className="block h-[520px] xl:h-[640px] w-auto portrait-duotone"
-                        style={{
-                            filter: "url(#wk-duotone) drop-shadow(0 30px 60px rgba(0,0,0,0.55))",
-                        }}
-                    />
+                <div
+                    ref={portraitRef}
+                    className="will-change-transform"
+                    style={{
+                        transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+                    }}
+                >
+                    <div className="relative float-gentle">
+                        {/* Soft rust glow halo behind */}
+                        <div
+                            className="absolute inset-0 -z-10 blur-3xl opacity-60"
+                            style={{
+                                background:
+                                    "radial-gradient(ellipse at 50% 50%, rgba(224,93,58,0.50) 0%, rgba(224,93,58,0.18) 35%, transparent 65%)",
+                                transform: "scale(1.18)",
+                            }}
+                        />
+                        <img
+                            src="/wahib-cutout.png"
+                            alt="Wahib Kerkeni — Senior Frontend Engineer"
+                            className="block h-[560px] xl:h-[700px] w-auto portrait-duotone"
+                            style={{
+                                filter: "url(#wk-duotone) drop-shadow(0 30px 60px rgba(0,0,0,0.45))",
+                                WebkitMaskImage:
+                                    "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
+                                maskImage:
+                                    "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
+                            }}
+                        />
+                    </div>
                 </div>
             </motion.div>
 
@@ -65,13 +110,13 @@ export const Hero = () => {
 
             {/* Old polaroid removed — replaced by cutout above */}
 
-            <div className="relative max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-12 gap-6">
+            <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-12 gap-6">
                 {/* Status line */}
                 <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.1 }}
-                    className="col-span-12 mb-12"
+                    className="col-span-12 mb-14 md:mb-16"
                 >
                     <div className="glass inline-flex items-center gap-2.5 pl-1 pr-4 py-1 rounded-full">
                         <span className="relative h-6 w-6 rounded-full overflow-hidden ring-1 ring-white/20">
@@ -119,11 +164,11 @@ export const Hero = () => {
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="col-span-12 lg:col-span-7 mt-12 flex flex-col gap-8"
+                    className="col-span-12 lg:col-span-7 mt-16 md:mt-20 flex flex-col gap-10"
                 >
                     <p className="text-lg md:text-xl text-bone-300 font-light leading-relaxed max-w-2xl">
                         I'm{" "}
-                        <span className="text-bone-50 font-medium">
+                        <span className="text-bone-50 font-semibold">
                             Wahib Kerkeni
                         </span>{" "}
                         — a senior frontend engineer with 7+ years building

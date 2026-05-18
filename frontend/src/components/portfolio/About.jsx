@@ -12,7 +12,7 @@ export const About = () => {
         <section
             id="about"
             data-testid="about-section"
-            className="relative py-28 md:py-40"
+            className="relative py-32 md:py-48"
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12">
                 <SectionHeader

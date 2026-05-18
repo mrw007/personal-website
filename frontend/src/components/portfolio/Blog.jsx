@@ -39,7 +39,7 @@ export const Blog = () => {
         <section
             id="writing"
             data-testid="writing-section"
-            className="relative py-28 md:py-40 border-t border-white/5"
+            className="relative py-32 md:py-48 border-t border-white/5"
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12">
                 <SectionHeader
