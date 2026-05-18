@@ -118,14 +118,8 @@ export const Hero = () => {
                     transition={{ duration: 0.7, delay: 0.1 }}
                     className="col-span-12 mb-14 md:mb-16"
                 >
-                    <div className="glass inline-flex items-center gap-2.5 pl-1 pr-4 py-1 rounded-full">
-                        <span className="relative h-6 w-6 rounded-full overflow-hidden ring-1 ring-white/20">
-                            <img
-                                src={PORTRAIT}
-                                alt="Wahib Kerkeni"
-                                className="h-full w-full object-cover"
-                            />
-                        </span>
+                    <div className="glass inline-flex items-center gap-3 px-4 py-2 rounded-full">
+                        <span className="h-1.5 w-1.5 rounded-full bg-rust animate-pulse" />
                         <span className="overline !text-bone-300">
                             Available · Dublin · Stamp 1G
                         </span>
@@ -147,7 +141,7 @@ export const Hero = () => {
                         className="font-display text-[clamp(3rem,11vw,11rem)] font-black tracking-[-0.04em] leading-[0.86] text-bone-50"
                         data-testid="hero-heading"
                     >
-                        Angular.
+                        Frontend.
                         <br />
                         <span className="text-bone-50/90">
                             Architecture<span className="text-rust">.</span>
