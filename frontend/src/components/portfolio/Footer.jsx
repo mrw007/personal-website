@@ -9,23 +9,23 @@ export const Footer = () => {
             <div className="max-w-7xl mx-auto px-6 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
                     <div className="h-7 w-7 border border-white/20 flex items-center justify-center font-display font-black text-sm">
-                        M
+                        W
                     </div>
                     <div>
                         <div className="font-display font-bold text-bone-50">
-                            Mateo Vance
+                            Wahib Kerkeni
                         </div>
                         <div className="overline mt-0.5">
-                            Frontend · Architecture · Craft
+                            Angular · Architecture · Design Systems
                         </div>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-6 font-mono text-xs text-bone-500 tracking-wider">
-                    <span>© 2026 · Built in Berlin</span>
+                    <span>© 2026 · Based in Dublin</span>
                     <span className="hidden md:inline h-px w-6 bg-white/10" />
                     <span className="hidden md:inline">
-                        v2.06 · Updated Dec 2025
+                        EN · FR · AR
                     </span>
                 </div>
 

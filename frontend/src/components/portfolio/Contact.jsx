@@ -30,19 +30,19 @@ export const Contact = () => {
                 <Reveal delay={0.15} className="mt-16 grid grid-cols-12 gap-6">
                     <div className="col-span-12 lg:col-span-7">
                         <p className="text-lg md:text-xl text-bone-300 font-light leading-relaxed max-w-2xl">
-                            I'm currently taking on a select number of senior /
-                            staff engagements for Q1 2026 — full-time roles,
-                            advisory work, or focused design-system rebuilds.
-                            If the work below sounds like you, I'd love to hear
-                            from you.
+                            Based in Dublin with Stamp 1G — open to senior
+                            frontend, staff, or tech-lead engagements across
+                            Ireland and the EU. If you're rebuilding an Angular
+                            platform, modernizing a design system, or scaling a
+                            frontend team, I'd love to hear from you.
                         </p>
                         <a
-                            href="mailto:hello@mateovance.dev"
+                            href="mailto:mr.wahib@gmail.com"
                             data-testid="primary-email-cta"
                             className="mt-10 inline-flex items-center gap-3 group"
                         >
                             <span className="font-display text-2xl md:text-4xl font-bold text-bone-50 underline decoration-rust decoration-[2px] underline-offset-[6px] group-hover:text-rust transition-colors">
-                                hello@mateovance.dev
+                                mr.wahib@gmail.com
                             </span>
                             <ArrowUpRight
                                 size={28}
@@ -56,22 +56,22 @@ export const Contact = () => {
                             {
                                 icon: Mail,
                                 label: "Email",
-                                value: "hello@mateovance.dev",
-                                href: "mailto:hello@mateovance.dev",
+                                value: "mr.wahib@gmail.com",
+                                href: "mailto:mr.wahib@gmail.com",
                                 test: "contact-email",
                             },
                             {
                                 icon: Github,
                                 label: "GitHub",
-                                value: "github.com/mateovance",
-                                href: "https://github.com",
+                                value: "github.com/mrw007",
+                                href: "https://github.com/mrw007",
                                 test: "contact-github",
                             },
                             {
                                 icon: Linkedin,
                                 label: "LinkedIn",
-                                value: "in/mateovance",
-                                href: "https://linkedin.com",
+                                value: "in/wahib-kerkeni",
+                                href: "https://www.linkedin.com/in/wahib-kerkeni-a5a4a5a5/",
                                 test: "contact-linkedin",
                             },
                         ].map((c) => (

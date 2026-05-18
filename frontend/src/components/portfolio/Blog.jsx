@@ -6,19 +6,19 @@ const posts = [
         date: "Nov 2025",
         readTime: "8 min",
         category: "Architecture",
-        title: "Architecting Angular at the Edge of a Monorepo",
+        title: "Surviving an Angular 17 → 19 Migration Across 10 Apps",
         excerpt:
-            "Notes from rebuilding a 600k-line Angular app into a domain-driven Nx workspace — and the four rules that actually mattered.",
+            "What I learned standardizing standalone components, signals, and lazy loading across a JCDecaux-scale enterprise estate — and the four rules that actually shipped.",
         image:
             "https://images.unsplash.com/photo-1609915189900-455ffd52e50f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MjJ8MHwxfHNlYXJjaHwyfHxtaW5pbWFsaXN0JTIwd29ya3NwYWNlJTIwZGFyayUyMGNvZGluZ3xlbnwwfHx8fDE3NzkxMzkzNzJ8MA&ixlib=rb-4.1.0&q=85",
     },
     {
         date: "Oct 2025",
         readTime: "6 min",
-        category: "Performance",
-        title: "Micro-Frontends in 2026 — A Sober Take",
+        category: "Micro-Frontends",
+        title: "Single-SPA in 2026 — A Sober Take",
         excerpt:
-            "Module federation finally feels boring (in the good way). Here's the decision tree I use before recommending it to a team.",
+            "Mixing Angular and Vue.js inside one platform sounds clean on paper. Here's the decision tree I actually use before recommending it to a team.",
         image:
             "https://images.unsplash.com/photo-1546349851-64285be8e9fa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZSUyMGRhcmt8ZW58MHx8fHwxNzc5MTM5MzcyfDA&ixlib=rb-4.1.0&q=85",
     },
@@ -26,9 +26,9 @@ const posts = [
         date: "Sep 2025",
         readTime: "5 min",
         category: "Design Systems",
-        title: "Design Tokens That Survive a Rebrand",
+        title: "Selling a Design System to 8 Teams (Without a Mandate)",
         excerpt:
-            "Three patterns I've stolen from typographers — and one mistake I keep watching teams make with semantic naming.",
+            "Governance is a UX problem. Three patterns I've used to get adoption when you can't force the issue — and one mistake I keep watching teams make with semantic naming.",
         image:
             "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/aa5ab2f18951a044de8a9774f09fad6908db0fe46c55faa836d49a9f8bb8077e.png",
     },

@@ -4,36 +4,36 @@ import { ArrowUpRight } from "lucide-react";
 const projects = [
     {
         n: "01",
-        title: "Halcyon Design System",
-        client: "Northwind Finance · Internal",
+        title: "JCDecaux Design System",
+        client: "JCDecaux · Internal Platform",
         year: "2024",
         image:
             "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/aa5ab2f18951a044de8a9774f09fad6908db0fe46c55faa836d49a9f8bb8077e.png",
         summary:
-            "A token-driven design system spanning 240+ components across Angular and React Native, with a custom Figma plugin that keeps designers and code in sync.",
-        tags: ["Angular", "Design Tokens", "Storybook", "Figma API"],
+            "A reusable Angular design system adopted by 8 teams across 10+ mission-critical enterprise applications. 40+ shared components, standardized behavior, and a governance model that survived the Angular 17 → 19 and Material 2 → 3 migrations.",
+        tags: ["Angular 17–19", "Material 3", "Signals", "Standalone"],
     },
     {
         n: "02",
-        title: "Clinical Workspace v3",
-        client: "Atlas Health",
-        year: "2022",
+        title: "MYPC Self-Service Platform",
+        client: "SFR Business · 1,000+ users",
+        year: "2023",
         image:
             "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/79dcfa213f2cc10f8c3120673343759aee596ae66149c1f5d8ae98387c32f73d.png",
         summary:
-            "Offline-first SPA used by 30,000 clinicians. Re-architected the FHIR data layer, introduced optimistic mutations, and shipped a WCAG 2.2 AA pass on first audit.",
-        tags: ["Angular", "RxJS", "PWA", "FHIR"],
+            "Rebuilt access-right and incident-management workflows into a PWA-first experience. Cut time-to-resolution from 2 days to ~12 hours, lifted automated coverage from 60% to 70%, and ran the Angular 12 → 17 migration feature-by-feature beside live PHP web views.",
+        tags: ["Angular 12–17", "PWA", "RxJS", "WCAG 2.1"],
     },
     {
         n: "03",
-        title: "Atlas Metrics Console",
-        client: "Internal · Open Source",
-        year: "2023",
+        title: "Single-SPA Micro-Frontend Migration",
+        client: "SIFAST · Enterprise HR Suite",
+        year: "2021",
         image:
             "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/d596a4e914b2a21e5e8a5c43e2fffffd33acc6b989c552ec837df9a4cd88b70f.png",
         summary:
-            "Real-time observability console rendering 50k events/sec without dropping frames — built with virtual lists, WebGL charts and a custom scheduler.",
-        tags: ["React", "WebGL", "RxJS", "Performance"],
+            "Migrated a monolithic Angular platform to a Single-SPA micro-frontend architecture mixing Angular and Vue.js modules. Containerized with Docker and deployed on Kubernetes, unblocking parallel team workflows and release cadences.",
+        tags: ["Single-SPA", "Angular", "Vue.js", "Kubernetes"],
     },
 ];
 
@@ -48,7 +48,7 @@ export const Projects = () => {
                 <SectionHeader
                     index="05"
                     label="Selected Work"
-                    title="Three projects that shaped how I think about scale, speed, and the surface."
+                    title="Three engagements that shaped how I think about Angular at scale, design systems, and migration."
                 />
 
                 <div className="space-y-20 md:space-y-32">

@@ -3,40 +3,40 @@ import { ArrowUpRight } from "lucide-react";
 
 const roles = [
     {
-        period: "2023 — Now",
-        company: "Northwind Finance",
-        title: "Staff Frontend Engineer",
-        location: "Remote · Berlin",
+        period: "2024 — Now",
+        company: "JCDecaux",
+        title: "Senior Full-Stack Engineer (Angular / Java)",
+        location: "Paris, France",
         summary:
-            "Leading the design-system rewrite for a multi-product fintech suite. Cut median LCP by 41% across 6 surfaces. Built a token pipeline shared across Angular, React Native, and email.",
-        tags: ["Angular 18", "Signals", "Nx", "Storybook"],
+            "Architected and led adoption of a reusable design system across 8 teams — 40+ shared components, governance, and standardized behavior across 10+ enterprise apps. Drove the Angular 17 → 19 migration with standalone components, signals, and lazy loading.",
+        tags: ["Angular 17–19", "Design System", "Signals", "Java"],
     },
     {
-        period: "2020 — 2023",
-        company: "Atlas Health",
-        title: "Senior Frontend Engineer",
-        location: "Hybrid · Amsterdam",
+        period: "2022 — 2024",
+        company: "SFR Business",
+        title: "Tech Lead / Angular Developer",
+        location: "Paris, France",
         summary:
-            "Architected the clinical workspace SPA used by 30k clinicians. Owned offline-first state, FHIR data layer, and the accessibility audit that passed WCAG 2.2 AA on first attempt.",
-        tags: ["Angular", "RxJS", "NgRx", "PWA"],
+            "Led Angular development for MYPC — the self-service platform used by 1,000+ users. Cut time-to-resolution from 2 days to ~12 hours, lifted test coverage 60% → 70%, and ran the Angular 12 → 17 migration feature-by-feature while preserving PHP web views.",
+        tags: ["Angular 12–17", "PWA", "SonarQube", "WCAG 2.1"],
     },
     {
-        period: "2018 — 2020",
-        company: "Loom & Lumber",
-        title: "Frontend Engineer",
-        location: "Lisbon",
+        period: "2019 — 2022",
+        company: "SIFAST",
+        title: "Full-Stack Engineer (Angular / Java / Node)",
+        location: "Sfax, Tunisia",
         summary:
-            "Migrated a legacy Backbone storefront to React. Introduced the company's first design tokens and Storybook practice. Shipped checkout that lifted conversion by 12%.",
-        tags: ["React", "Redux", "Webpack"],
+            "Delivered 5+ enterprise HR and business modules in Angular 9–12 with NGXS/NGRX and OAuth2. Migrated the platform to a Single-SPA micro-frontend architecture mixing Angular and Vue.js, containerized with Docker and deployed on Kubernetes.",
+        tags: ["Angular", "Single-SPA", "NGXS", "Kubernetes"],
     },
     {
-        period: "2016 — 2018",
-        company: "Sparrow Studio",
-        title: "Frontend Developer",
-        location: "Lisbon",
+        period: "2019 — 2020",
+        company: "CHO Group · Cordon · Alea",
+        title: "Angular Developer · Contract Work",
+        location: "Remote · France / Tunisia",
         summary:
-            "Boutique studio work: agency sites, editorial pieces, motion-driven landing pages. The school that taught me typography, easing curves, and how to defend a kerning decision.",
-        tags: ["JS", "GSAP", "WebGL"],
+            "A run of client engagements early in my career — built partner & consumer traceability apps on IBM Trust Food blockchain (100+ batches, 5 languages), modernized a legacy Angular 5 health-and-safety platform, and shipped UI mockups adopted for a Django product.",
+        tags: ["Angular 5", "Blockchain", "i18n", "Adobe XD"],
     },
 ];
 
@@ -51,7 +51,7 @@ export const Experience = () => {
                 <SectionHeader
                     index="04"
                     label="Experience"
-                    title="Eight years across fintech, health-tech, commerce — and the boutique studio that started it all."
+                    title="Seven years across enterprise advertising, telecom, and the studio years that started it all."
                 />
 
                 <div className="space-y-3">

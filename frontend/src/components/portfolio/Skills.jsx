@@ -31,13 +31,14 @@ export const Skills = () => {
                         </div>
                         <div>
                             <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-bone-50 mb-3">
-                                Frontend Architecture
+                                Angular Architecture
                             </h3>
                             <p className="text-bone-300 font-light max-w-lg">
-                                Monorepo strategy with Nx, module federation,
-                                clean separation of feature / data / UI layers,
-                                resilient state with Signals & NgRx.
-                                Component contracts that survive redesigns.
+                                Angular 17 → 19 migrations with standalone
+                                components and signals. Clean separation of
+                                feature / data / UI. Resilient state with NGXS
+                                & NGRX. Component contracts that survive
+                                redesigns.
                             </p>
                         </div>
                     </Reveal>
@@ -52,8 +53,9 @@ export const Skills = () => {
                                 Design Systems
                             </h3>
                             <p className="text-sm text-bone-300 font-light mt-2">
-                                Token pipelines, headless primitives, semantic
-                                theming. Figma → code with zero drift.
+                                40+ shared components adopted across 8 teams.
+                                Angular Material 2 → 3, token pipelines,
+                                governance that scales.
                             </p>
                         </div>
                     </Reveal>
@@ -68,11 +70,11 @@ export const Skills = () => {
                                 Performance
                             </h3>
                             <p className="text-xs text-bone-300 font-light mt-1.5 leading-relaxed">
-                                Core Web Vitals,
+                                Lazy loading,
                                 <br />
-                                bundle budgets,
+                                code splitting,
                                 <br />
-                                CDN-aware code paths.
+                                AOT compilation.
                             </p>
                         </div>
                     </Reveal>
@@ -87,7 +89,7 @@ export const Skills = () => {
                                 Type Safety
                             </h3>
                             <p className="text-xs text-bone-300 font-light mt-1.5">
-                                Strict TS, branded types, zod at the edge.
+                                Strict TS, signals, RxJS streams.
                             </p>
                         </div>
                     </Reveal>
@@ -102,8 +104,8 @@ export const Skills = () => {
                                 Technical Leadership
                             </h3>
                             <p className="text-sm text-bone-300 font-light mt-2">
-                                ADRs, design reviews, hiring loops, and the kind
-                                of mentorship that compounds.
+                                Cross-team standards, mentoring juniors,
+                                writing the specs, defending the trade-offs.
                             </p>
                         </div>
                     </Reveal>
@@ -115,12 +117,12 @@ export const Skills = () => {
                         <Accessibility className="text-rust shrink-0" size={28} />
                         <div>
                             <h3 className="font-display text-xl font-bold text-bone-50 mb-1">
-                                Accessibility & Motion
+                                Accessibility & Quality
                             </h3>
                             <p className="text-sm text-bone-300 font-light">
-                                WCAG 2.2 AA as a default, keyboard-first focus
-                                management, prefers-reduced-motion respected
-                                everywhere.
+                                WCAG 2.1 compliance, ARIA & keyboard
+                                navigation, automated coverage lifted 60% → 70%
+                                with SonarQube, Karma & Jasmine.
                             </p>
                         </div>
                     </Reveal>

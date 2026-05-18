@@ -44,10 +44,10 @@ export const Header = () => {
                     className="flex items-center gap-2.5 group pr-2 md:pr-4 border-r border-white/10"
                 >
                     <div className="h-7 w-7 rounded-full bg-gradient-to-br from-white/20 to-white/5 border border-white/20 flex items-center justify-center font-display font-black text-sm group-hover:border-rust transition-colors">
-                        M
+                        W
                     </div>
                     <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone-300 hidden sm:inline">
-                        Mateo·Vance
+                        Wahib·Kerkeni
                     </span>
                 </a>
 

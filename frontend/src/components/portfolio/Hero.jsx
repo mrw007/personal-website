@@ -38,7 +38,7 @@ export const Hero = () => {
                     <div className="glass inline-flex items-center gap-3 px-4 py-2 rounded-full">
                         <span className="h-1.5 w-1.5 rounded-full bg-rust animate-pulse" />
                         <span className="overline !text-bone-300">
-                            Available · Q1 2026 · Remote / EU
+                            Available · Dublin · Stamp 1G
                         </span>
                     </div>
                 </motion.div>
@@ -58,14 +58,14 @@ export const Hero = () => {
                         className="font-display text-[clamp(3rem,11vw,11rem)] font-black tracking-[-0.04em] leading-[0.86] text-bone-50"
                         data-testid="hero-heading"
                     >
-                        Frontend.
+                        Angular.
                         <br />
                         <span className="text-bone-50/90">
                             Architecture<span className="text-rust">.</span>
                         </span>
                         <br />
                         <span className="italic font-medium tracking-[-0.02em] text-bone-300">
-                            Craft<span className="cursor-blink">_</span>
+                            Scale<span className="cursor-blink">_</span>
                         </span>
                     </h1>
                 </motion.div>
@@ -80,12 +80,12 @@ export const Hero = () => {
                     <p className="text-lg md:text-xl text-bone-300 font-light leading-relaxed max-w-2xl">
                         I'm{" "}
                         <span className="text-bone-50 font-medium">
-                            Mateo Vance
+                            Wahib Kerkeni
                         </span>{" "}
-                        — a senior frontend engineer building precise,
-                        performant interfaces for Angular & React. I lead design
-                        systems, ship resilient architecture, and obsess over
-                        the millisecond.
+                        — a senior frontend engineer with 7+ years building
+                        scalable Angular platforms, leading design-system
+                        adoption across teams, and modernizing enterprise apps
+                        at companies like JCDecaux and SFR.
                     </p>
                     <div className="flex flex-wrap gap-3">
                         <a
@@ -150,21 +150,21 @@ export const Hero = () => {
                                 key={i}
                                 className="flex gap-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone-300 px-6"
                             >
-                                <span>Angular 18+</span>
+                                <span>Angular 17 — 19</span>
                                 <span className="text-rust">◆</span>
                                 <span>TypeScript</span>
                                 <span className="text-rust">◆</span>
-                                <span>React 19</span>
+                                <span>Signals & RxJS</span>
                                 <span className="text-rust">◆</span>
                                 <span>Design Systems</span>
                                 <span className="text-rust">◆</span>
-                                <span>Performance Engineering</span>
+                                <span>Micro-Frontends · Single-SPA</span>
                                 <span className="text-rust">◆</span>
-                                <span>Micro-Frontends</span>
+                                <span>Angular Material 2 → 3</span>
                                 <span className="text-rust">◆</span>
-                                <span>RxJS · Signals</span>
+                                <span>Java · Spring Boot · Node</span>
                                 <span className="text-rust">◆</span>
-                                <span>Accessibility</span>
+                                <span>WCAG 2.1</span>
                                 <span className="text-rust">◆</span>
                             </div>
                         ))}
