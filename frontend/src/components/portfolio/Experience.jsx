@@ -54,17 +54,16 @@ export const Experience = () => {
                     title="Eight years across fintech, health-tech, commerce — and the boutique studio that started it all."
                 />
 
-                <div className="border-t border-white/5">
+                <div className="space-y-3">
                     {roles.map((r, i) => (
                         <Reveal
                             key={r.company}
                             delay={i * 0.05}
-                            className="group border-b border-white/5"
                         >
                             <a
                                 href="#contact"
                                 data-testid={`experience-${r.company.toLowerCase().replace(/\s+/g, "-")}`}
-                                className="grid grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 hover:bg-white/[0.015] transition-colors px-2"
+                                className="card-surface group grid grid-cols-12 gap-4 md:gap-8 py-7 md:py-8 px-5 md:px-8"
                             >
                                 <div className="col-span-12 md:col-span-2 font-mono text-xs text-bone-500 tracking-wider pt-2">
                                     {r.period}

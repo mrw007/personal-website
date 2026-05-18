@@ -53,11 +53,11 @@ export const About = () => {
                         delay={0.15}
                         className="col-span-12 lg:col-span-5"
                     >
-                        <div className="grid grid-cols-2 gap-px bg-white/5 border border-white/5">
+                        <div className="grid grid-cols-2 gap-4">
                             {facts.map((f) => (
                                 <div
                                     key={f.k}
-                                    className="bg-ink-800 p-6 md:p-8"
+                                    className="card-surface p-6 md:p-8"
                                     data-testid={`fact-${f.k.toLowerCase().replace(/\s+/g, "-")}`}
                                 >
                                     <div className="font-display font-black text-4xl md:text-5xl tracking-tight text-bone-50">
@@ -67,7 +67,7 @@ export const About = () => {
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-6 border border-white/5 bg-ink-800 p-6">
+                        <div className="mt-4 card-surface p-6">
                             <div className="overline mb-3">Currently</div>
                             <p className="font-mono text-xs text-bone-300 leading-relaxed">
                                 Leading the design-system rebuild for a B2B

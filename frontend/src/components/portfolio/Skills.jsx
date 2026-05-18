@@ -147,7 +147,7 @@ export const Skills = () => {
 
                 {/* Tool marquee */}
                 <Reveal delay={0.1} className="mt-10">
-                    <div className="border border-white/5 bg-ink-800 px-6 py-5">
+                    <div className="card-surface px-6 py-5">
                         <div className="overline mb-4">Stack · Tooling</div>
                         <div className="flex flex-wrap gap-2">
                             {tools.map((t) => (

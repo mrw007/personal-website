@@ -82,6 +82,7 @@ export const Contact = () => {
                                 rel="noreferrer"
                                 data-testid={c.test}
                                 className="group glass glass-interactive flex items-center justify-between px-5 py-5"
+                                style={{ borderRadius: 24 }}
                             >
                                 <div className="flex items-center gap-4">
                                     <c.icon

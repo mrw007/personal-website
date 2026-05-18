@@ -60,7 +60,7 @@ export const Blog = () => {
                                 data-testid={`blog-post-${i}`}
                                 className="group block card-surface h-full overflow-hidden"
                             >
-                                <div className="relative aspect-[5/3] overflow-hidden bg-ink-700">
+                                <div className="relative aspect-[5/3] overflow-hidden rounded-t-[24px] bg-white/[0.02]">
                                     <img
                                         src={p.image}
                                         alt={p.title}

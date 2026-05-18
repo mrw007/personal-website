@@ -12,7 +12,7 @@ export default function App() {
     return (
         <div
             data-testid="app-root"
-            className="bg-ink-900 text-bone-50 font-body min-h-screen relative"
+            className="relative z-10 text-bone-50 font-body min-h-screen"
         >
             <div className="noise-overlay" />
             <Header />

@@ -120,7 +120,7 @@ export const Hero = () => {
                     transition={{ duration: 1, delay: 0.7 }}
                     className="hidden lg:flex col-span-12 lg:col-span-3 lg:col-start-10 lg:justify-self-end flex-col gap-4 self-end pb-4"
                 >
-                    <div className="border-l border-white/10 pl-4 glass p-5">
+                    <div className="glass p-5" style={{ borderRadius: 20 }}>
                         <div className="overline mb-2">Index</div>
                         <div className="font-mono text-xs text-bone-300 leading-relaxed">
                             01 · About
@@ -139,32 +139,34 @@ export const Hero = () => {
                 </motion.div>
             </div>
 
-            {/* Bottom marquee */}
-            <div className="absolute bottom-0 left-0 right-0 border-t border-b border-white/5 py-4 overflow-hidden bg-ink-900/40 backdrop-blur-sm">
-                <div className="flex marquee-track gap-12 whitespace-nowrap">
-                    {[...Array(2)].map((_, i) => (
-                        <div
-                            key={i}
-                            className="flex gap-12 font-mono text-xs uppercase tracking-[0.22em] text-bone-500"
-                        >
-                            <span>Angular 18+</span>
-                            <span className="text-rust">◆</span>
-                            <span>TypeScript</span>
-                            <span className="text-rust">◆</span>
-                            <span>React 19</span>
-                            <span className="text-rust">◆</span>
-                            <span>Design Systems</span>
-                            <span className="text-rust">◆</span>
-                            <span>Performance Engineering</span>
-                            <span className="text-rust">◆</span>
-                            <span>Micro-Frontends</span>
-                            <span className="text-rust">◆</span>
-                            <span>RxJS · Signals</span>
-                            <span className="text-rust">◆</span>
-                            <span>Accessibility</span>
-                            <span className="text-rust">◆</span>
-                        </div>
-                    ))}
+            {/* Bottom marquee — floating glass bar */}
+            <div className="absolute bottom-6 left-4 right-4 md:left-12 md:right-12 z-10">
+                <div className="glass py-3 overflow-hidden" style={{ borderRadius: 9999 }}>
+                    <div className="flex marquee-track gap-12 whitespace-nowrap">
+                        {[...Array(2)].map((_, i) => (
+                            <div
+                                key={i}
+                                className="flex gap-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone-300 px-6"
+                            >
+                                <span>Angular 18+</span>
+                                <span className="text-rust">◆</span>
+                                <span>TypeScript</span>
+                                <span className="text-rust">◆</span>
+                                <span>React 19</span>
+                                <span className="text-rust">◆</span>
+                                <span>Design Systems</span>
+                                <span className="text-rust">◆</span>
+                                <span>Performance Engineering</span>
+                                <span className="text-rust">◆</span>
+                                <span>Micro-Frontends</span>
+                                <span className="text-rust">◆</span>
+                                <span>RxJS · Signals</span>
+                                <span className="text-rust">◆</span>
+                                <span>Accessibility</span>
+                                <span className="text-rust">◆</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

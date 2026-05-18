@@ -68,7 +68,7 @@ export const Projects = () => {
                                     <a
                                         href="#contact"
                                         data-testid={`project-${p.n}`}
-                                        className="group block relative overflow-hidden border border-white/5 bg-ink-800 aspect-[4/3]"
+                                        className="group block relative overflow-hidden card-surface aspect-[4/3]"
                                     >
                                         <img
                                             src={p.image}
