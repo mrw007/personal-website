@@ -27,66 +27,43 @@ export const Hero = () => {
                         "radial-gradient(ellipse at 70% 40%, black 0%, transparent 75%)",
                 }}
             />
+            {/* Floating cutout portrait — duotone, blending with hero */}
+            <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                    duration: 1.3,
+                    delay: 0.4,
+                    ease: [0.16, 1, 0.3, 1],
+                }}
+                className="hidden lg:block absolute z-10 right-0 xl:right-4 top-[8%] pointer-events-none select-none"
+                data-testid="hero-portrait"
+            >
+                <div className="relative">
+                    {/* Soft rust glow halo behind */}
+                    <div
+                        className="absolute inset-0 -z-10 blur-3xl opacity-60"
+                        style={{
+                            background:
+                                "radial-gradient(ellipse at 50% 55%, rgba(224,93,58,0.45) 0%, rgba(224,93,58,0.15) 35%, transparent 65%)",
+                            transform: "scale(1.1)",
+                        }}
+                    />
+                    <img
+                        src="/wahib-cutout.png"
+                        alt="Wahib Kerkeni — Senior Frontend Engineer"
+                        className="block h-[520px] xl:h-[640px] w-auto portrait-duotone"
+                        style={{
+                            filter: "url(#wk-duotone) drop-shadow(0 30px 60px rgba(0,0,0,0.55))",
+                        }}
+                    />
+                </div>
+            </motion.div>
+
             <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink-900 pointer-events-none" />
 
-            {/* Floating polaroid portrait — hidden on small screens */}
-            <motion.div
-                initial={{ opacity: 0, y: 40, rotate: -8, scale: 0.92 }}
-                animate={{ opacity: 1, y: 0, rotate: -4, scale: 1 }}
-                transition={{
-                    duration: 1.1,
-                    delay: 0.5,
-                    ease: [0.16, 1, 0.3, 1],
-                }}
-                whileHover={{
-                    rotate: 0,
-                    y: -6,
-                    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-                }}
-                className="hidden lg:block absolute z-20 right-12 xl:right-24 top-[18%] xl:top-[22%]"
-                data-testid="hero-portrait"
-            >
-                <div
-                    className="glass relative p-3 pb-12"
-                    style={{
-                        borderRadius: 24,
-                        boxShadow:
-                            "0 30px 80px -20px rgba(0,0,0,0.6), 0 10px 30px -10px rgba(224,93,58,0.25)",
-                    }}
-                >
-                    <div className="relative w-[240px] xl:w-[280px] aspect-[4/5] overflow-hidden rounded-[14px]">
-                        <img
-                            src={PORTRAIT}
-                            alt="Wahib Kerkeni"
-                            className="absolute inset-0 w-full h-full object-cover"
-                        />
-                        {/* Subtle warm grade overlay */}
-                        <div
-                            className="absolute inset-0 pointer-events-none mix-blend-soft-light"
-                            style={{
-                                background:
-                                    "linear-gradient(180deg, rgba(224,93,58,0.18) 0%, transparent 35%, transparent 70%, rgba(0,0,0,0.4) 100%)",
-                            }}
-                        />
-                        {/* Mono ID strip */}
-                        <div className="absolute top-3 left-3 right-3 flex items-start justify-between font-mono text-[9px] text-white/85 tracking-[0.2em] uppercase">
-                            <span>WK · 01</span>
-                            <span>// 2024</span>
-                        </div>
-                        {/* Crosshair corners */}
-                        <span className="absolute top-2 left-2 h-3 w-3 border-l border-t border-white/40" />
-                        <span className="absolute top-2 right-2 h-3 w-3 border-r border-t border-white/40" />
-                        <span className="absolute bottom-2 left-2 h-3 w-3 border-l border-b border-white/40" />
-                        <span className="absolute bottom-2 right-2 h-3 w-3 border-r border-b border-white/40" />
-                    </div>
-                    {/* Caption */}
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] tracking-[0.18em] uppercase text-bone-300">
-                        <span>Wahib · Dublin</span>
-                        <span className="text-rust">●</span>
-                    </div>
-                </div>
-            </motion.div>
+            {/* Old polaroid removed — replaced by cutout above */}
 
             <div className="relative max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-12 gap-6">
                 {/* Status line */}

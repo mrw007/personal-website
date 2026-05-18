@@ -72,6 +72,43 @@ export default function App() {
             data-testid="app-root"
             className="relative z-10 text-bone-50 font-body min-h-screen"
         >
+            {/* Global SVG duotone filter (rust + black) for portrait cutouts */}
+            <svg
+                width="0"
+                height="0"
+                style={{ position: "absolute" }}
+                aria-hidden="true"
+            >
+                <defs>
+                    <filter
+                        id="wk-duotone"
+                        colorInterpolationFilters="sRGB"
+                    >
+                        <feColorMatrix
+                            type="matrix"
+                            values="0.299 0.587 0.114 0 0
+                                    0.299 0.587 0.114 0 0
+                                    0.299 0.587 0.114 0 0
+                                    0 0 0 1 0"
+                        />
+                        <feComponentTransfer>
+                            <feFuncR
+                                type="table"
+                                tableValues="0.04 0.88 0.96"
+                            />
+                            <feFuncG
+                                type="table"
+                                tableValues="0.04 0.36 0.62"
+                            />
+                            <feFuncB
+                                type="table"
+                                tableValues="0.04 0.23 0.55"
+                            />
+                        </feComponentTransfer>
+                    </filter>
+                </defs>
+            </svg>
+
             <div className="noise-overlay" />
             <Header theme={theme} setTheme={setTheme} />
             <main>
