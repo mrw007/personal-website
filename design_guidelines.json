@@ -1,0 +1,146 @@
+{
+  "project_name": "Premium Personal Portfolio",
+  "domain": "Software Engineering Portfolio",
+  "theme": "Dark",
+  "archetype": "Archetype 4 (Swiss & High-Contrast) + Archetype 5 (Jewel & Luxury)",
+  "aesthetic_direction": "Industrial Minimalist & Editorial Tech. High-contrast typography, textural depth, and asymmetrical bento grids. It must look hand-crafted by a top design studio, avoiding the generic 'purple/teal AI slop'. Deep neutral blacks with a sharp Rust/Amber accent for warmth and tension.",
+  "color_palette": {
+    "background": {
+      "primary": "#050505",
+      "secondary": "#0A0A0A",
+      "tertiary": "#121212"
+    },
+    "text": {
+      "primary": "#FAFAFA",
+      "secondary": "#A3A3A3",
+      "tertiary": "#525252"
+    },
+    "accent": {
+      "primary": "#E05D3A",
+      "hover": "#C74B2A"
+    },
+    "border": {
+      "default": "rgba(255, 255, 255, 0.08)",
+      "hover": "rgba(255, 255, 255, 0.15)"
+    },
+    "surface": {
+      "glass": "rgba(10, 10, 10, 0.6)",
+      "glass_border": "rgba(255, 255, 255, 0.1)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Cabinet Grotesk",
+      "body": "Manrope",
+      "mono": "JetBrains Mono"
+    },
+    "rules": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-none",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight",
+      "h3": "text-xl sm:text-2xl font-bold tracking-tight",
+      "body": "text-base text-neutral-400 leading-relaxed font-light",
+      "overline": "text-xs font-mono uppercase tracking-[0.2em] text-neutral-500",
+      "button": "text-sm font-semibold tracking-wide"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Generous. Use p-8, p-12, p-16, py-24 for section padding.",
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "grid_system": "Use 'Bento Box' asymmetry for Skills and Projects. Mix col-span-4, col-span-8, and row-span-2 to create tension. Avoid perfect symmetry.",
+    "alignment": "Left-align most content. Center-align only for deliberate pauses (e.g., CTA at the bottom)."
+  },
+  "surfaces_and_components": {
+    "cards": "Flat solid surfaces (bg-[#0A0A0A]) with a 1px subtle border (border-white/5). No heavy drop shadows. Hover states should slightly lighten the border (border-white/15) and apply a subtle -translate-y-1.",
+    "header": "Crystal Glassmorphism. backdrop-blur-xl bg-black/60 with a bottom border-white/10. Sticky top.",
+    "buttons": {
+      "primary": "bg-[#E05D3A] text-white hover:bg-[#C74B2A] transition-colors rounded-none px-6 py-3",
+      "secondary": "bg-transparent border border-white/20 text-white hover:border-white/40 transition-colors rounded-none px-6 py-3"
+    },
+    "badges": "Border-collapse tech look. 1px solid border-white/10, font-mono text-xs text-neutral-400 px-3 py-1"
+  },
+  "motion_and_interactions": {
+    "hover": "Subtle border lightening and icon translates (group-hover:translate-x-1).",
+    "scroll": "Smooth scrolling via Lenis is MANDATORY. Use framer-motion for subtle viewport entry fades (opacity 0 to 1, y: 20 to 0).",
+    "texture": "Include a fixed, pointer-events-none noise overlay (opacity 2-4%) across the entire site for an editorial feel."
+  },
+  "page_structure_and_content": [
+    {
+      "section": "Header",
+      "content": "Logo (Monogram/Name), Nav Links (About, Skills, Projects, Blog), CTA (Let's Talk)."
+    },
+    {
+      "section": "Hero",
+      "content": "Massive typography. H1: 'Building Digital Precision.' or 'Frontend & Architecture.' Subtitle: 'Senior Software Engineer specializing in Angular, React, and scalable design systems.' Visual: Abstract texture background or subtle 3D generated element.",
+      "layout": "Grid-cols-12, text spans 8 cols."
+    },
+    {
+      "section": "About",
+      "content": "Concise summary. Focus on engineering depth, UI/UX bridge, and technical leadership."
+    },
+    {
+      "section": "Skills (Bento Grid)",
+      "content": "Grid showcasing Angular, TypeScript, React, System Architecture, Performance. Use tech-badge aesthetics.",
+      "layout": "Asymmetric bento grid (Tetris style)."
+    },
+    {
+      "section": "Experience",
+      "content": "Timeline or sleek rows (border-b) detailing past roles. High contrast dates (font-mono)."
+    },
+    {
+      "section": "Featured Projects",
+      "content": "2-3 massive case studies. Use generated images as cover art. Include tags for tech stack.",
+      "layout": "Staggered layout. Image on one side, text on the other. Alternate sides."
+    },
+    {
+      "section": "Blog / Articles (Teasers)",
+      "content": "3 static teaser cards for engineering articles (e.g., 'Architecting Angular for Scale', 'Micro-frontends in 2026')."
+    },
+    {
+      "section": "Contact & Footer",
+      "content": "Massive 'Let's Build Together' text. Email link, GitHub, LinkedIn. Footer with refined finish."
+    }
+  ],
+  "media_urls": {
+    "hero_texture": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/f51c889ef451d25942738638d76069454cbd708f35b10661438b112de66e2b82.png",
+      "description": "Abstract dark grainy texture. Use as a subtle absolute background in the Hero section, masked with a gradient to blend into black.",
+      "category": "hero"
+    },
+    "project_1": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/aa5ab2f18951a044de8a9774f09fad6908db0fe46c55faa836d49a9f8bb8077e.png",
+      "description": "3D geometric architectural shape. Use for Project 1 cover.",
+      "category": "project"
+    },
+    "project_2": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/79dcfa213f2cc10f8c3120673343759aee596ae66149c1f5d8ae98387c32f73d.png",
+      "description": "Minimalist UI mockup floating. Use for Project 2 cover.",
+      "category": "project"
+    },
+    "project_3": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/d596a4e914b2a21e5e8a5c43e2fffffd33acc6b989c552ec837df9a4cd88b70f.png",
+      "description": "Data visualization art. Use for Project 3 cover.",
+      "category": "project"
+    },
+    "blog_1": {
+      "url": "https://images.unsplash.com/photo-1609915189900-455ffd52e50f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MjJ8MHwxfHNlYXJjaHwyfHxtaW5pbWFsaXN0JTIwd29ya3NwYWNlJTIwZGFyayUyMGNvZGluZ3xlbnwwfHx8fDE3NzkxMzkzNzJ8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Dark minimalist workspace. Use for blog teaser thumbnail.",
+      "category": "blog"
+    },
+    "blog_2": {
+      "url": "https://images.unsplash.com/photo-1546349851-64285be8e9fa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZSUyMGRhcmt8ZW58MHx8fHwxNzc5MTM5MzcyfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract architecture lines. Use for blog teaser thumbnail.",
+      "category": "blog"
+    }
+  },
+  "instructions_to_main_agent": [
+    "DO NOT build a standard tech template. Execute the 'Industrial Minimalist' look.",
+    "Add the font imports (Cabinet Grotesk, Manrope, JetBrains Mono) to the index.css or via Google Fonts/Fontshare.",
+    "Ensure all buttons, links, and forms include appropriate `data-testid` attributes.",
+    "Implement smooth scrolling using Lenis (or similar) to make the experience feel premium.",
+    "Use framer-motion for scroll-triggered reveal animations on sections.",
+    "In the Hero section, use the 'hero_texture' image as an absolute background layer with a dark gradient mask (to fade out at the edges).",
+    "Implement a bento grid for the Skills section (e.g. mix 1x1, 2x1, 2x2 boxes) utilizing the borders and tech typography styling.",
+    "Strictly follow the color palette provided: deep off-black base, bright clean text, and the singular #E05D3A accent color. Avoid using purple or teal.",
+    "CRITICAL: Do not use placeholders for missing images. Only use the provided 'media_urls'."
+  ]
+}
