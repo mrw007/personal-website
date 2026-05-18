@@ -8,25 +8,6 @@ import {
     Accessibility,
 } from "lucide-react";
 
-const tools = [
-    "Angular 18",
-    "TypeScript",
-    "React 19",
-    "RxJS",
-    "Signals",
-    "NgRx",
-    "Vite",
-    "Nx",
-    "Storybook",
-    "Tailwind",
-    "Playwright",
-    "Vitest",
-    "Cypress",
-    "GraphQL",
-    "Node",
-    "Figma",
-];
-
 export const Skills = () => {
     return (
         <section
@@ -144,24 +125,6 @@ export const Skills = () => {
                         </div>
                     </Reveal>
                 </div>
-
-                {/* Tool marquee */}
-                <Reveal delay={0.1} className="mt-10">
-                    <div className="card-surface px-6 py-5">
-                        <div className="overline mb-4">Stack · Tooling</div>
-                        <div className="flex flex-wrap gap-2">
-                            {tools.map((t) => (
-                                <span
-                                    key={t}
-                                    className="tech-badge"
-                                    data-testid={`tech-${t.toLowerCase().replace(/[^a-z0-9]/gi, "-")}`}
-                                >
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </Reveal>
             </div>
         </section>
     );

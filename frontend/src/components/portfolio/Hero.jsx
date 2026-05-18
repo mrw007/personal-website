@@ -127,13 +127,15 @@ export const Hero = () => {
                             <br />
                             02 · Skills
                             <br />
-                            03 · Experience
+                            03 · Toolkit
                             <br />
-                            04 · Projects
+                            04 · Experience
                             <br />
-                            05 · Writing
+                            05 · Projects
                             <br />
-                            06 · Contact
+                            06 · Writing
+                            <br />
+                            07 · Contact
                         </div>
                     </div>
                 </motion.div>

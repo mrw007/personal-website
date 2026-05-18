@@ -49,7 +49,7 @@ export const Experience = () => {
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12">
                 <SectionHeader
-                    index="03"
+                    index="04"
                     label="Experience"
                     title="Eight years across fintech, health-tech, commerce — and the boutique studio that started it all."
                 />

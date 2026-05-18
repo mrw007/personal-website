@@ -46,7 +46,7 @@ export const Projects = () => {
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12">
                 <SectionHeader
-                    index="04"
+                    index="05"
                     label="Selected Work"
                     title="Three projects that shaped how I think about scale, speed, and the surface."
                 />
