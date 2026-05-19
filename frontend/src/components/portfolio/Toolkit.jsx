@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { SectionHeader, Reveal } from "./shared";
 
 const ICON = (slug, color, svg) => {
@@ -9,6 +10,13 @@ const ICON = (slug, color, svg) => {
   }
   const colorPart = color ? `/${color}` : "";
   return `https://cdn.simpleicons.org/${slug}${colorPart}`;
+};
+
+const getIconColor = (tool, isLightTheme) => {
+  if (tool.colorByTheme) {
+    return isLightTheme ? tool.colorByTheme.light : tool.colorByTheme.dark;
+  }
+  return tool.color;
 };
 
 const categories = [
@@ -90,7 +98,7 @@ const categories = [
     ],
   },
   {
-    label: "Quality & DevOps",
+    label: "Workflow & Delivery",
     accent: "Ship, test & deploy",
     tools: [
       { name: "Docker", slug: "docker" },
@@ -101,8 +109,26 @@ const categories = [
       { name: "ESLint", slug: "eslint" },
       { name: "Jasmine", slug: "jasmine" },
       { name: "Jest", slug: "jest" },
-      { name: "GitHub", slug: "github", color: "0FBF3E" },
+      {
+        name: "GitHub",
+        slug: "github",
+        colorByTheme: { light: "000000", dark: "FFFFFF" },
+      },
       { name: "Git", slug: "git" },
+      {
+        name: "Notion",
+        slug: "notion",
+        colorByTheme: { light: "000000", dark: "FFFFFF" },
+      },
+      { name: "Jira", slug: "jira" },
+      { name: "Perplexity", slug: "perplexity" },
+      {
+        name: "GitHub Copilot",
+        slug: "githubcopilot",
+        colorByTheme: { light: "000000", dark: "FFFFFF" },
+      },
+      { name: "Confluence", slug: "confluence" },
+      { name: "Storybook", slug: "storybook" },
     ],
   },
   {
@@ -174,12 +200,29 @@ const categories = [
   },
 ];
 
-export const Toolkit = () => {
+export const Toolkit = (props) => {
+  const { theme } = props;
   const [i, setI] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const cat = categories[i];
+  const isLightTheme = theme === "light";
 
   const go = (d) =>
     setI((p) => (p + d + categories.length) % categories.length);
+
+  useEffect(() => {
+    if (isPaused) {
+      return undefined;
+    }
+
+    const intervalId = setInterval(() => {
+      setI((p) => (p + 1) % categories.length);
+    }, 7000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [isPaused]);
 
   return (
     <section
@@ -216,6 +259,20 @@ export const Toolkit = () => {
                   <ChevronLeft size={16} className="text-bone-300" />
                 </button>
                 <button
+                  onClick={() => setIsPaused((prev) => !prev)}
+                  data-testid="toolkit-pause"
+                  aria-label={
+                    isPaused ? "Resume auto-scroll" : "Pause auto-scroll"
+                  }
+                  className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-rust transition-colors"
+                >
+                  {isPaused ? (
+                    <Play size={16} className="text-bone-300" />
+                  ) : (
+                    <Pause size={16} className="text-bone-300" />
+                  )}
+                </button>
+                <button
                   onClick={() => go(1)}
                   data-testid="toolkit-next"
                   aria-label="Next category"
@@ -227,9 +284,19 @@ export const Toolkit = () => {
             </div>
 
             {/* Animated category content */}
-            <div className="min-h-[360px] md:min-h-[420px] flex flex-col items-center justify-center text-center">
+            <motion.div
+              layout
+              transition={{
+                layout: {
+                  duration: 0.45,
+                  ease: [0.16, 1, 0.3, 1],
+                },
+              }}
+              className="min-h-[360px] md:min-h-[420px] flex flex-col items-center justify-center text-center"
+            >
               <AnimatePresence mode="wait">
                 <motion.div
+                  layout
                   key={cat.label}
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -249,7 +316,8 @@ export const Toolkit = () => {
 
                   <div className="grid grid-cols-4 gap-6 md:gap-10 max-w-3xl mx-auto">
                     {cat.tools.map((t, idx) => {
-                      const icon = ICON(t.slug, t.color, t.svg);
+                      const iconColor = getIconColor(t, isLightTheme);
+                      const icon = ICON(t.slug, iconColor, t.svg);
 
                       return (
                         <motion.div
@@ -294,7 +362,7 @@ export const Toolkit = () => {
                   </div>
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </motion.div>
 
             {/* Dot pagination */}
             <div className="flex items-center justify-center gap-2 mt-10">
@@ -317,4 +385,8 @@ export const Toolkit = () => {
       </div>
     </section>
   );
+};
+
+Toolkit.propTypes = {
+  theme: PropTypes.string.isRequired,
 };

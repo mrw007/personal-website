@@ -14,132 +14,120 @@ const SPOTLIGHT_BUFFER = 200;
 
 // Spotlight glow — track mouse and feed CSS vars to every .card-surface in view.
 function useSpotlight() {
-    useEffect(() => {
-        let ticking = false;
-        let lastX = 0;
-        let lastY = 0;
-        let rafId = 0;
+  useEffect(() => {
+    let ticking = false;
+    let lastX = 0;
+    let lastY = 0;
+    let rafId = 0;
 
-        const update = () => {
-            ticking = false;
-            const els = document.querySelectorAll(".card-surface");
-            for (let i = 0; i < els.length; i++) {
-                const el = els[i];
-                const r = el.getBoundingClientRect();
-                if (
-                    r.bottom < -SPOTLIGHT_BUFFER ||
-                    r.top > window.innerHeight + SPOTLIGHT_BUFFER ||
-                    r.right < 0 ||
-                    r.left > window.innerWidth
-                )
-                    continue;
-                el.style.setProperty("--mx", `${lastX - r.left}px`);
-                el.style.setProperty("--my", `${lastY - r.top}px`);
-            }
-        };
+    const update = () => {
+      ticking = false;
+      const els = document.querySelectorAll(".card-surface");
+      for (let i = 0; i < els.length; i++) {
+        const el = els[i];
+        const r = el.getBoundingClientRect();
+        if (
+          r.bottom < -SPOTLIGHT_BUFFER ||
+          r.top > window.innerHeight + SPOTLIGHT_BUFFER ||
+          r.right < 0 ||
+          r.left > window.innerWidth
+        )
+          continue;
+        el.style.setProperty("--mx", `${lastX - r.left}px`);
+        el.style.setProperty("--my", `${lastY - r.top}px`);
+      }
+    };
 
-        const onMove = (e) => {
-            lastX = e.clientX;
-            lastY = e.clientY;
-            if (!ticking) {
-                ticking = true;
-                rafId = requestAnimationFrame(update);
-            }
-        };
+    const onMove = (e) => {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      if (!ticking) {
+        ticking = true;
+        rafId = requestAnimationFrame(update);
+      }
+    };
 
-        window.addEventListener("mousemove", onMove, { passive: true });
-        return () => {
-            window.removeEventListener("mousemove", onMove);
-            cancelAnimationFrame(rafId);
-        };
-    }, []);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
 }
 
 function useTheme() {
-    const [theme, setTheme] = useState(() => {
-        if (typeof window === "undefined") return "dark";
-        return localStorage.getItem("theme") || "dark";
-    });
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "dark";
+    return localStorage.getItem("theme") || "dark";
+  });
 
-    // React 19.2: useEffectEvent extracts non-reactive logic from effects
-    const persistTheme = useEffectEvent((newTheme) => {
-        const root = document.documentElement;
-        if (newTheme === "light") {
-            root.classList.add("light");
-        } else {
-            root.classList.remove("light");
-        }
-        localStorage.setItem("theme", newTheme);
-    });
+  // React 19.2: useEffectEvent extracts non-reactive logic from effects
+  const persistTheme = useEffectEvent((newTheme) => {
+    const root = document.documentElement;
+    if (newTheme === "light") {
+      root.classList.add("light");
+    } else {
+      root.classList.remove("light");
+    }
+    localStorage.setItem("theme", newTheme);
+  });
 
-    useEffect(() => {
-        persistTheme(theme);
-    }, [theme, persistTheme]);
+  useEffect(() => {
+    persistTheme(theme);
+  }, [theme, persistTheme]);
 
-    return [theme, setTheme];
+  return [theme, setTheme];
 }
 
 const AppComponent = () => {
-    useSpotlight();
-    const [theme, setTheme] = useTheme();
-    return (
-        <div
-            data-testid="app-root"
-            className="relative z-10 text-bone-50 font-body min-h-screen"
-        >
-            {/* Global SVG duotone filter (rust + black) for portrait cutouts */}
-            <svg
-                width="0"
-                height="0"
-                style={{ position: "absolute" }}
-                aria-hidden="true"
-            >
-                <defs>
-                    <filter
-                        id="wk-duotone"
-                        colorInterpolationFilters="sRGB"
-                    >
-                        <feColorMatrix
-                            type="matrix"
-                            values="0.299 0.587 0.114 0 0
+  useSpotlight();
+  const [theme, setTheme] = useTheme();
+  return (
+    <div
+      data-testid="app-root"
+      className="relative z-10 text-bone-50 font-body min-h-screen"
+    >
+      {/* Global SVG duotone filter (rust + black) for portrait cutouts */}
+      <svg
+        width="0"
+        height="0"
+        style={{ position: "absolute" }}
+        aria-hidden="true"
+      >
+        <defs>
+          <filter id="wk-duotone" colorInterpolationFilters="sRGB">
+            <feColorMatrix
+              type="matrix"
+              values="0.299 0.587 0.114 0 0
                                     0.299 0.587 0.114 0 0
                                     0.299 0.587 0.114 0 0
                                     0 0 0 1 0"
-                        />
-                        <feComponentTransfer>
-                            <feFuncR
-                                type="table"
-                                tableValues="0.04 0.88 0.96"
-                            />
-                            <feFuncG
-                                type="table"
-                                tableValues="0.04 0.36 0.62"
-                            />
-                            <feFuncB
-                                type="table"
-                                tableValues="0.04 0.23 0.55"
-                            />
-                        </feComponentTransfer>
-                    </filter>
-                </defs>
-            </svg>
+            />
+            <feComponentTransfer>
+              <feFuncR type="table" tableValues="0.04 0.88 0.96" />
+              <feFuncG type="table" tableValues="0.04 0.36 0.62" />
+              <feFuncB type="table" tableValues="0.04 0.23 0.55" />
+            </feComponentTransfer>
+          </filter>
+        </defs>
+      </svg>
 
-            <div className="noise-overlay" />
-            <Header theme={theme} setTheme={setTheme} />
-            <main>
-                <Hero />
-                <TechStrip />
-                <About />
-                <Skills />
-                <Toolkit />
-                <Experience />
-                <Projects />
-                <Blog />
-                <Contact />
-            </main>
-            <Footer />
-        </div>
-    );
+      <div className="noise-overlay" />
+      <Header theme={theme} setTheme={setTheme} />
+      <main>
+        <Hero />
+        <TechStrip />
+        <About />
+        <Skills />
+        <Toolkit theme={theme} />
+        <Experience />
+        <Projects />
+        <Blog />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
 };
 
 const App = memo(AppComponent);
