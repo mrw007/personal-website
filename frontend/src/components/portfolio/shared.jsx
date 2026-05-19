@@ -17,8 +17,8 @@ export const SectionHeader = ({ index, label, title, kicker }) => {
         >
             <div className="flex items-center gap-4 mb-6">
                 <span className="overline text-rust">{index}</span>
-                <span className="h-px w-12 bg-white/10" />
-                <span className="overline">{label}</span>
+                <span className="h-px w-10 bg-white/30" />
+                <span className="overline text-bone-300">{label}</span>
             </div>
             <h2
                 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-0.03em] leading-[0.96] text-bone-50 max-w-4xl"

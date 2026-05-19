@@ -3,195 +3,318 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionHeader, Reveal } from "./shared";
 
-const ICON = (slug) => `https://cdn.simpleicons.org/${slug}`;
+const ICON = (slug, color, svg) => {
+  if (svg) {
+    return svg;
+  }
+  const colorPart = color ? `/${color}` : "";
+  return `https://cdn.simpleicons.org/${slug}${colorPart}`;
+};
 
 const categories = [
-    {
-        label: "Frontend",
-        accent: "Languages, frameworks & UI",
-        tools: [
-            { name: "Angular", slug: "angular" },
-            { name: "TypeScript", slug: "typescript" },
-            { name: "RxJS", slug: "reactivex" },
-            { name: "JavaScript", slug: "javascript" },
-            { name: "HTML5", slug: "html5" },
-            { name: "CSS3", slug: "css" },
-            { name: "Angular Material", slug: "materialdesign" },
-            { name: "Vue.js", slug: "vuedotjs" },
-        ],
-    },
-    {
-        label: "Architecture",
-        accent: "State, structure & scale",
-        tools: [
-            { name: "NGRX", slug: "ngrx" },
-            { name: "Signals", slug: "angular" },
-            { name: "Single-SPA", slug: "singlespa" },
-            { name: "Design Systems", slug: "storybook" },
-            { name: "OAuth2", slug: "auth0" },
-            { name: "GraphQL", slug: "graphql" },
-            { name: "Webpack", slug: "webpack" },
-            { name: "Standalone", slug: "angular" },
-        ],
-    },
-    {
-        label: "Backend & APIs",
-        accent: "Java, Node & data",
-        tools: [
-            { name: "Java", slug: "openjdk/ffffff" },
-            { name: "Spring Boot", slug: "spring" },
-            { name: "Node.js", slug: "nodedotjs" },
-            { name: "Express", slug: "express/ffffff" },
-            { name: "REST", slug: "postman" },
-            { name: "MongoDB", slug: "mongodb" },
-            { name: "PostgreSQL", slug: "postgresql" },
-            { name: "PHP", slug: "php" },
-        ],
-    },
-    {
-        label: "Quality & DevOps",
-        accent: "Ship, test & deploy",
-        tools: [
-            { name: "Docker", slug: "docker" },
-            { name: "Kubernetes", slug: "kubernetes" },
-            { name: "GitLab CI", slug: "gitlab" },
-            { name: "Jenkins", slug: "jenkins" },
-            { name: "SonarQube", slug: "sonarqube" },
-            { name: "ESLint", slug: "eslint" },
-            { name: "Karma", slug: "karma" },
-            { name: "GitHub", slug: "github/ffffff" },
-        ],
-    },
+  {
+    label: "Frontend",
+    accent: "Languages, frameworks & UI",
+    tools: [
+      { name: "Angular", slug: "angular", color: "E40035" },
+      { name: "TypeScript", slug: "typescript" },
+      { name: "RxJS", slug: "reactivex" },
+      { name: "JavaScript", slug: "javascript" },
+      { name: "HTML5", slug: "html5" },
+      { name: "CSS3", slug: "css" },
+      { name: "React", slug: "react" },
+      { name: "Angular Material", slug: "materialdesign" },
+      { name: "Sass", slug: "sass" },
+      { name: "Tailwind CSS", slug: "tailwindcss" },
+      { name: "Bootstrap", slug: "bootstrap" },
+      { name: "Vue.js", slug: "vuedotjs" },
+    ],
+  },
+  {
+    label: "Architecture",
+    accent: "State, structure & scale",
+    tools: [
+      { name: "NGRX", slug: "ngrx" },
+      { name: "Signals", slug: "angular", color: "007ACC" },
+      { name: "Single-SPA", slug: "slint", color: "EA699F" },
+      { name: "Design Systems", slug: "storybook" },
+      { name: "OAuth2", slug: "auth0" },
+      { name: "GraphQL", slug: "graphql" },
+      { name: "Webpack", slug: "webpack" },
+      { name: "Standalone", slug: "angular", color: "e86868" },
+      { name: "Redux", slug: "redux" },
+      { name: "Vite", slug: "vite" },
+    ],
+  },
+  {
+    label: "Backend & APIs",
+    accent: "Java, Node & data",
+    tools: [
+      {
+        name: "Java",
+        slug: "coffeescript",
+        svg: (
+          <svg viewBox="0 0 128 128">
+            <path
+              fill="#0074BD"
+              d="M47.617 98.12s-4.767 2.774 3.397 3.71c9.892 1.13 14.947.968 25.845-1.092 0 0 2.871 1.795 6.873 3.351-24.439 10.47-55.308-.607-36.115-5.969zm-2.988-13.665s-5.348 3.959 2.823 4.805c10.567 1.091 18.91 1.18 33.354-1.6 0 0 1.993 2.025 5.132 3.131-29.542 8.64-62.446.68-41.309-6.336z"
+            ></path>
+            <path
+              fill="#EA2D2E"
+              d="M69.802 61.271c6.025 6.935-1.58 13.17-1.58 13.17s15.289-7.891 8.269-17.777c-6.559-9.215-11.587-13.792 15.635-29.58 0 .001-42.731 10.67-22.324 34.187z"
+            ></path>
+            <path
+              fill="#0074BD"
+              d="M102.123 108.229s3.529 2.91-3.888 5.159c-14.102 4.272-58.706 5.56-71.094.171-4.451-1.938 3.899-4.625 6.526-5.192 2.739-.593 4.303-.485 4.303-.485-4.953-3.487-32.013 6.85-13.743 9.815 49.821 8.076 90.817-3.637 77.896-9.468zM49.912 70.294s-22.686 5.389-8.033 7.348c6.188.828 18.518.638 30.011-.326 9.39-.789 18.813-2.474 18.813-2.474s-3.308 1.419-5.704 3.053c-23.042 6.061-67.544 3.238-54.731-2.958 10.832-5.239 19.644-4.643 19.644-4.643zm40.697 22.747c23.421-12.167 12.591-23.86 5.032-22.285-1.848.385-2.677.72-2.677.72s.688-1.079 2-1.543c14.953-5.255 26.451 15.503-4.823 23.725 0-.002.359-.327.468-.617z"
+            ></path>
+            <path
+              fill="#EA2D2E"
+              d="M76.491 1.587S89.459 14.563 64.188 34.51c-20.266 16.006-4.621 25.13-.007 35.559-11.831-10.673-20.509-20.07-14.688-28.815C58.041 28.42 81.722 22.195 76.491 1.587z"
+            ></path>
+            <path
+              fill="#0074BD"
+              d="M52.214 126.021c22.476 1.437 57-.8 57.817-11.436 0 0-1.571 4.032-18.577 7.231-19.186 3.612-42.854 3.191-56.887.874 0 .001 2.875 2.381 17.647 3.331z"
+            ></path>
+          </svg>
+        ),
+      },
+      { name: "Spring Boot", slug: "spring" },
+      { name: "Node.js", slug: "nodedotjs" },
+      { name: "Express.js", slug: "expressdotcom", color: "58A616" },
+      { name: "Nest.js", slug: "nestjs" },
+      { name: "REST", slug: "postman" },
+      { name: "Swagger", slug: "swagger" },
+      { name: "MongoDB", slug: "mongodb" },
+      { name: "PostgreSQL", slug: "postgresql" },
+      { name: "PHP", slug: "php" },
+    ],
+  },
+  {
+    label: "Quality & DevOps",
+    accent: "Ship, test & deploy",
+    tools: [
+      { name: "Docker", slug: "docker" },
+      { name: "Kubernetes", slug: "kubernetes" },
+      { name: "GitLab CI", slug: "gitlab" },
+      { name: "Jenkins", slug: "jenkins" },
+      { name: "SonarQube", slug: "sonarqubeforide" },
+      { name: "ESLint", slug: "eslint" },
+      { name: "Jasmine", slug: "jasmine" },
+      { name: "Jest", slug: "jest" },
+      { name: "GitHub", slug: "github", color: "0FBF3E" },
+      { name: "Git", slug: "git" },
+    ],
+  },
+  {
+    label: "Design & Prototyping",
+    accent: "Visual design & user experience",
+    tools: [
+      { name: "Figma", slug: "figma" },
+      {
+        name: "Adobe XD",
+        slug: "adobexd",
+        svg: (
+          <svg viewBox="0 0 128 128">
+            <path
+              fill="#470137"
+              d="M22.667 1.6h82.666C117.867 1.6 128 11.733 128 24.267v79.466c0 12.534-10.133 22.667-22.667 22.667H22.667C10.133 126.4 0 116.267 0 103.733V24.267C0 11.733 10.133 1.6 22.667 1.6Z"
+            ></path>
+            <path
+              fill="#ff61f6"
+              d="m67.307 34.4-16 26.4 17.066 28c.107.213.16.427.107.64s-.267.053-.587.107H55.68c-.853 0-1.44-.054-1.813-.587-1.12-2.24-2.294-4.427-3.414-6.667-1.12-2.186-2.346-4.426-3.626-6.72-1.28-2.293-2.56-4.586-3.84-6.933h-.107c-1.12 2.293-2.347 4.587-3.573 6.88a899.142 899.142 0 0 0-3.627 6.827c-1.227 2.24-2.453 4.533-3.68 6.72-.213.533-.64.586-1.227.586H19.04c-.213 0-.373.107-.373-.16a.74.74 0 0 1 .106-.586l16.587-27.2-16.16-27.36c-.16-.214-.213-.427-.107-.534.107-.16.32-.213.534-.213h12.106c.267 0 .534.053.747.107.213.106.373.266.533.48 1.014 2.293 2.187 4.586 3.414 6.88 1.28 2.293 2.506 4.533 3.84 6.773 1.28 2.24 2.453 4.48 3.573 6.773h.107c1.12-2.346 2.293-4.64 3.466-6.88 1.174-2.24 2.4-4.48 3.627-6.72 1.227-2.24 2.4-4.533 3.573-6.72.054-.213.16-.426.32-.533.214-.107.427-.16.694-.107H66.88a.491.491 0 0 1 .587.374c.053.053-.054.266-.16.373Zm24.64 56.267c-3.947.053-7.894-.747-11.467-2.4-3.36-1.547-6.133-4.107-8.053-7.254-1.974-3.253-2.934-7.306-2.934-12.16-.053-3.946.96-7.84 2.934-11.253 2.026-3.467 4.96-6.347 8.48-8.267 3.733-2.08 8.213-3.093 13.493-3.093.267 0 .64 0 1.12.053.48.054 1.013.054 1.653.107V29.547c0-.374.16-.587.534-.587h10.826c.267-.053.48.16.534.373v50.88c0 .96.053 2.027.106 3.2.107 1.12.16 2.187.214 3.094 0 .373-.16.693-.534.853a40.73 40.73 0 0 1-8.693 2.56c-2.72.48-5.44.747-8.213.747zM97.173 80V56.533c-.48-.106-.96-.213-1.44-.266a19.216 19.216 0 0 0-1.76-.107c-2.08 0-4.16.427-6.026 1.387a11.956 11.956 0 0 0-4.534 3.946c-1.173 1.707-1.76 4-1.76 6.774a14.863 14.863 0 0 0 .907 5.493c.533 1.44 1.333 2.72 2.4 3.787a9.214 9.214 0 0 0 3.627 2.133c1.44.48 2.933.693 4.426.693.8 0 1.547-.053 2.24-.106.694.053 1.28-.054 1.92-.267z"
+            ></path>
+          </svg>
+        ),
+      },
+      {
+        name: "Photoshop",
+        slug: "photoshop",
+        svg: (
+          <svg viewBox="0 0 128 128">
+            <path
+              fill="#001e36"
+              d="M22.667 1.6h82.666C117.867 1.6 128 11.733 128 24.267v79.466c0 12.534-10.133 22.667-22.667 22.667H22.667C10.133 126.4 0 116.267 0 103.733V24.267C0 11.733 10.133 1.6 22.667 1.6Z"
+            ></path>
+            <path
+              fill="#31a8ff"
+              d="M45.867 33.333c-1.6 0-3.2 0-4.853.054-1.654.053-3.201.053-4.641.107-1.44.053-2.773.053-4.053.106-1.227.053-2.08.053-2.987.053-.373 0-.533.213-.533.587v54.88c0 .48.213.694.64.694h10.347c.373-.054.64-.374.586-.747v-17.12c1.013 0 1.76 0 2.294.053.533.053 1.386.053 2.666.053 4.374 0 8.374-.48 12-1.813 3.467-1.28 6.454-3.52 8.587-6.507 2.133-2.986 3.2-6.773 3.2-11.36 0-2.4-.426-4.693-1.226-6.933A16.98 16.98 0 0 0 64 39.36a19.049 19.049 0 0 0-7.147-4.374c-2.987-1.12-6.613-1.653-10.986-1.653Zm1.19 10.505c1.9.036 3.75.368 5.476 1.068 1.547.587 2.827 1.654 3.734 3.04a8.779 8.779 0 0 1 1.227 4.748c0 2.346-.534 4.16-1.654 5.493-1.174 1.333-2.667 2.347-4.373 2.827-1.974.64-4.054.959-6.134.959h-2.827c-.64 0-1.332-.053-2.079-.106v-17.92c.373-.054 1.12-.107 2.187-.053 1.013-.054 2.239-.054 3.626-.054.273-.007.546-.008.817-.002zm44.73 2.723c-3.787 0-6.934.586-9.44 1.866-2.293 1.067-4.267 2.773-5.6 4.906-1.173 1.974-1.814 4.16-1.814 6.454a11.447 11.447 0 0 0 1.227 5.44 13.809 13.809 0 0 0 4.054 4.533 32.629 32.629 0 0 0 7.573 3.84c2.613 1.013 4.373 1.813 5.227 2.506.853.694 1.28 1.387 1.28 2.134 0 .96-.587 1.867-1.44 2.24-.96.48-2.4.747-4.427.747-2.133 0-4.267-.267-6.294-.8a22.834 22.834 0 0 1-6.613-2.613c-.16-.107-.32-.16-.48-.053-.16.106-.213.319-.213.479v9.28c-.053.427.213.8.587 1.013a21.49 21.49 0 0 0 5.44 1.707c2.4.48 4.799.693 7.252.693 3.84 0 7.041-.586 9.654-1.706 2.4-.96 4.48-2.613 5.973-4.747a12.41 12.41 0 0 0 2.08-7.093 11.512 11.512 0 0 0-1.226-5.493c-1.014-1.814-2.454-3.307-4.214-4.427a38.625 38.625 0 0 0-8.213-3.894 48.784 48.784 0 0 1-3.787-1.76c-.693-.373-1.333-.853-1.813-1.44-.32-.427-.533-.906-.533-1.386 0-.48.16-1.013.426-1.44.374-.533.96-.907 1.653-1.067 1.014-.266 2.134-.427 3.2-.374 2.027 0 4 .267 5.974.694 1.814.373 3.52.96 5.12 1.814.213.106.48.106.96 0a.656.656 0 0 0 .267-.534v-8.693c0-.214-.054-.427-.107-.64-.107-.213-.32-.427-.533-.48A18.762 18.762 0 0 0 98.4 47.04a45.98 45.98 0 0 0-6.613-.48z"
+            ></path>
+          </svg>
+        ),
+      },
+      {
+        name: "Illustrator",
+        slug: "adobeillustrator",
+        svg: (
+          <svg viewBox="0 0 128 128">
+            <path
+              fill="#300"
+              d="M22.7 1.6h82.7c12.5 0 22.7 10.1 22.7 22.7v79.5c0 12.5-10.1 22.7-22.7 22.7H22.7C10.1 126.4 0 116.3 0 103.7V24.3C0 11.7 10.1 1.6 22.7 1.6"
+            ></path>
+            <path
+              fill="#ff9a00"
+              d="M61.9 76.3H42l-4 12.5c-.1.5-.5.8-1 .7H27c-.6 0-.7-.3-.6-1l17.2-49.4c.2-.5.3-1.1.5-1.8.2-1.1.3-2.3.3-3.5-.1-.3.2-.5.4-.6h13.8c.4 0 .6.2.7.4l19.5 54.9c.2.6 0 .9-.5.9H67.1c-.4.1-.7-.2-.9-.6zM45.1 65.4h13.5c-.3-1.1-.7-2.5-1.2-3.8-.5-1.4-1-3-1.4-4.6-.5-1.7-1-3.3-1.5-4.9-.5-1.7-1-3.2-1.4-4.7-.4-1.5-.8-2.9-1.2-4.2h-.1c-.5 2.3-1.1 4.6-1.8 6.9-.8 2.6-1.6 5.2-2.5 7.9-.8 2.7-1.6 5.2-2.4 7.4m45.6-22.7c-1.8.1-3.5-.6-4.7-1.9-1.2-1.3-1.9-3.1-1.8-4.9-.1-1.8.6-3.5 1.9-4.7 1.3-1.2 3-1.9 4.7-1.9 2.1 0 3.7.6 4.9 1.9 1.2 1.3 1.8 3 1.8 4.7.1 1.8-.6 3.6-1.9 4.9-1.3 1.3-3.1 2-4.9 1.9m-6 46.3V47.9c0-.5.2-.7.7-.7H96c.5 0 .7.3.7.7V89c0 .6-.2.9-.7.9H85.5c-.5-.1-.8-.4-.8-.9"
+            ></path>
+          </svg>
+        ),
+      },
+      {
+        name: "Canva",
+        slug: "canva",
+        svg: (
+          <svg viewBox="0 0 128 128">
+            <g fill="#00c4cc">
+              <path d="M59.39.152c-.484.051-1.995.23-3.328.387-5.374.613-11.468 2.227-16.816 4.48C19.891 13.106 5.324 30.849 1.305 51.2.359 56.04.129 58.418.129 64c0 7.195.715 12.16 2.61 18.434 6.195 20.53 22.323 36.632 42.906 42.851 6.195 1.871 11.187 2.586 18.355 2.586 7.195 0 12.16-.715 18.434-2.61 20.53-6.195 36.632-22.323 42.851-42.906 1.871-6.195 2.586-11.187 2.586-18.355 0-3.047-.152-6.527-.332-7.809-2.074-14.796-8.168-27.238-18.328-37.402C99.07 8.703 86.68 2.586 72.19.512c-1.996-.282-11.238-.54-12.8-.36zm-20.863 40.32c1.36.41 1.996.794 2.918 1.715 1.793 1.82 2.203 2.817 2.203 5.555 0 2.051-.078 2.434-.691 3.508-1.18 1.996-3.918 3.84-5.812 3.89-1.333.028-1.278-.562.18-2.097 1.945-2.023 2.226-2.79 2.226-5.813-.024-2.917-.383-3.914-1.739-4.734-1.128-.691-2.355-.64-4.148.203-4.66 2.23-9.703 9.653-11.672 17.258-2.613 10.137 2.02 18.25 9.649 16.867 2.226-.41 6.425-2.558 8.246-4.25 1.508-1.379 1.508-1.406 1.66-3.12.336-3.587 2.867-7.169 6.25-8.833 1.558-.77 1.945-.844 4.043-.844 1.996 0 2.457.102 3.43.637 3.097 1.77 2.457 5.89-.895 5.89-1.945 0-2.945-1-1.535-1.534 1.383-.512.867-2.434-.742-2.868-1.895-.488-4.047.793-5.403 3.25-1.64 2.97-1.715 6.504-.156 8.114 1.512 1.613 3.406.336 4.867-3.329.766-1.867 1.867-2.867 3.149-2.867 1.125 0 1.332.692.843 2.793-.718 3.25-.23 4.094 1.793 3.098.664-.309 1.766-1.023 2.43-1.535l1.254-1 .848-4.43c.922-4.965 1.277-5.633 3.172-5.988 1.82-.336 2.23.562 1.562 3.402l-.36 1.59 1.333-1.36c3.148-3.226 7.015-4.812 8.347-3.48.715.715.637 1.613-.386 4.785-.485 1.512-1.153 3.895-1.457 5.25-.461 2.047-.489 2.535-.23 2.868.82.972 3.327-.028 5.554-2.204l1.305-1.277.156-2.844c.152-3.277.457-4.453 1.328-5.504.82-.972 2.305-1.687 3.098-1.484.793.207.793.973.078 3.227-1 3.097-.895 10.238.129 10.238.41 0 2.507-2.2 3.84-4.043l.996-1.36-.793-.816c-1.383-1.46-1.715-2.406-1.715-4.789 0-1.738.129-2.379.562-3.227.719-1.328 1.844-2.3 3.176-2.687 1.406-.434 3.148.281 3.863 1.562.719 1.305.54 4.223-.383 6.223l-.664 1.457h.895c1.23 0 1.715-.305 3.918-2.379 1.152-1.101 2.484-2.05 3.48-2.511 3.918-1.84 8.528-.895 9.293 1.921.64 2.254-.765 3.84-3.226 3.66-1.766-.128-2.098-.59-1.074-1.456 1.843-1.54 0-3.508-2.637-2.793-1.434.386-3.047 1.996-3.89 3.867-1.692 3.738-.794 8.14 1.636 8.14.973 0 2.691-1.921 3.355-3.789.793-2.152 2.457-3.507 3.711-3.02.692.255.743.946.309 3.122-.488 2.383-.563 4.61-.18 5.633.153.382.614 1.101 1.051 1.586.816.921.844 1.254.152 1.691-.332.23-.77.129-1.843-.46-1.485-.77-2.766-2.153-3.227-3.458l-.281-.766-1.024.766c-.59.41-1.511.871-2.047 1.023-2.125.563-4.738-.894-5.964-3.351-.489-.95-.641-3.738-.282-4.813.204-.59.204-.59-.617-.18-.433.231-1.355.485-2.07.563-1.18.13-1.36.258-2.535 1.742-1.664 2.07-4.61 4.864-5.813 5.454-2.558 1.277-3.402.918-4.07-1.72l-.461-1.765-1.102.973c-1.406 1.23-4.222 2.715-5.836 3.074-1.535.332-3.175-.156-3.84-1.18-.995-1.535-.663-4.785.922-9.164 1.176-3.25.333-3.3-2.636-.203-2.203 2.328-3.149 3.992-3.762 6.578-.64 2.688-1.41 3.66-3.148 4.07-1.051.231-1.54-.41-1.332-1.816l.152-1.129-.973.668c-1.383.946-3.125 1.817-4.328 2.149-1.203.332-2.789-.024-3.172-.692-.691-1.175-.691-1.175-1.765-.332-2.332 1.895-5.66 1.356-7.348-1.152l-.54-.793-1.687 1.562c-4.867 4.454-10.957 6.45-15.464 5.067-5.735-1.738-8.907-6.656-8.856-13.746.024-7.117 3.172-14.617 8.473-20.172 2.996-3.125 5.812-4.969 8.68-5.66 2.07-.512 3.328-.485 5.296.129zm0 0"></path>
+              <path d="M90.418 58.676c-.563.562-.356 2.816.36 4.25.359.742.742 1.332.87 1.332.102 0 .332-.59.512-1.309.64-2.66-.512-5.504-1.742-4.273zm0 0"></path>
+            </g>
+          </svg>
+        ),
+      },
+    ],
+  },
 ];
 
 export const Toolkit = () => {
-    const [i, setI] = useState(0);
-    const cat = categories[i];
+  const [i, setI] = useState(0);
+  const cat = categories[i];
 
-    const go = (d) =>
-        setI((p) => (p + d + categories.length) % categories.length);
+  const go = (d) =>
+    setI((p) => (p + d + categories.length) % categories.length);
 
-    return (
-        <section
-            id="toolkit"
-            data-testid="toolkit-section"
-            className="relative py-20 md:py-32 border-t border-white/5"
-        >
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
-                <SectionHeader
-                    index="03"
-                    label="Toolkit"
-                    title="Every shipped project was built with a tight, intentional set of tools."
-                />
+  return (
+    <section
+      id="toolkit"
+      data-testid="toolkit-section"
+      className="relative py-20 md:py-32 border-t border-white/5"
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <SectionHeader
+          index="03"
+          label="Toolkit"
+          title="Every shipped project was built with a tight, intentional set of tools."
+        />
 
-                <Reveal>
-                    <div
-                        className="card-surface relative px-6 sm:px-10 md:px-16 py-12 md:py-16"
-                        data-testid="toolkit-card"
-                    >
-                        {/* Top meta row */}
-                        <div className="flex items-center justify-between mb-10">
-                            <div className="font-mono text-xs tracking-[0.18em] text-rust">
-                                {String(i + 1).padStart(2, "0")} / {String(categories.length).padStart(2, "0")}
-                            </div>
-                            <div className="hidden sm:block overline">
-                                {cat.accent}
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <button
-                                    onClick={() => go(-1)}
-                                    data-testid="toolkit-prev"
-                                    aria-label="Previous category"
-                                    className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-rust transition-colors"
-                                >
-                                    <ChevronLeft size={16} className="text-bone-300" />
-                                </button>
-                                <button
-                                    onClick={() => go(1)}
-                                    data-testid="toolkit-next"
-                                    aria-label="Next category"
-                                    className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-rust transition-colors"
-                                >
-                                    <ChevronRight size={16} className="text-bone-300" />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Animated category content */}
-                        <div className="min-h-[360px] md:min-h-[420px] flex flex-col items-center justify-center text-center">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={cat.label}
-                                    initial={{ opacity: 0, y: 18 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{
-                                        duration: 0.45,
-                                        ease: [0.16, 1, 0.3, 1],
-                                    }}
-                                    className="w-full"
-                                >
-                                    <h3
-                                        className="font-display text-4xl md:text-6xl font-black tracking-[-0.03em] text-bone-50 mb-10"
-                                        data-testid="toolkit-category-title"
-                                    >
-                                        {cat.label}
-                                    </h3>
-
-                                    <div className="grid grid-cols-4 gap-6 md:gap-10 max-w-3xl mx-auto">
-                                        {cat.tools.map((t, idx) => (
-                                            <motion.div
-                                                key={t.name}
-                                                initial={{ opacity: 0, y: 12 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{
-                                                    duration: 0.4,
-                                                    delay: 0.08 + idx * 0.04,
-                                                    ease: [0.16, 1, 0.3, 1],
-                                                }}
-                                                className="group flex flex-col items-center gap-2.5"
-                                                data-testid={`toolkit-icon-${t.slug.split("/")[0]}`}
-                                            >
-                                                <div className="h-14 w-14 md:h-16 md:w-16 rounded-2xl glass flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-105">
-                                                    <img
-                                                        src={ICON(t.slug)}
-                                                        alt={t.name}
-                                                        loading="lazy"
-                                                        className="h-7 w-7 md:h-8 md:w-8 object-contain"
-                                                        onError={(e) => {
-                                                            e.currentTarget.style.opacity = "0.4";
-                                                        }}
-                                                    />
-                                                </div>
-                                                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-bone-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    {t.name}
-                                                </span>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
-
-                        {/* Dot pagination */}
-                        <div className="flex items-center justify-center gap-2 mt-10">
-                            {categories.map((c, idx) => (
-                                <button
-                                    key={c.label}
-                                    onClick={() => setI(idx)}
-                                    data-testid={`toolkit-dot-${idx}`}
-                                    aria-label={`Go to ${c.label}`}
-                                    className={`h-1.5 rounded-full transition-all duration-400 ${
-                                        idx === i
-                                            ? "w-8 bg-rust"
-                                            : "w-1.5 bg-white/15 hover:bg-white/30"
-                                    }`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </Reveal>
+        <Reveal>
+          <div
+            className="card-surface relative px-6 sm:px-10 md:px-16 py-12 md:py-16"
+            data-testid="toolkit-card"
+          >
+            {/* Top meta row */}
+            <div className="flex items-center justify-between mb-10">
+              <div className="font-mono text-xs tracking-[0.18em] text-rust">
+                {String(i + 1).padStart(2, "0")} /{" "}
+                {String(categories.length).padStart(2, "0")}
+              </div>
+              <div className="hidden sm:block overline">{cat.accent}</div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => go(-1)}
+                  data-testid="toolkit-prev"
+                  aria-label="Previous category"
+                  className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-rust transition-colors"
+                >
+                  <ChevronLeft size={16} className="text-bone-300" />
+                </button>
+                <button
+                  onClick={() => go(1)}
+                  data-testid="toolkit-next"
+                  aria-label="Next category"
+                  className="h-10 w-10 rounded-full glass flex items-center justify-center hover:border-rust transition-colors"
+                >
+                  <ChevronRight size={16} className="text-bone-300" />
+                </button>
+              </div>
             </div>
-        </section>
-    );
+
+            {/* Animated category content */}
+            <div className="min-h-[360px] md:min-h-[420px] flex flex-col items-center justify-center text-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={cat.label}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{
+                    duration: 0.45,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="w-full"
+                >
+                  <h3
+                    className="font-display text-4xl md:text-6xl font-black tracking-[-0.03em] text-bone-50 mb-10"
+                    data-testid="toolkit-category-title"
+                  >
+                    {cat.label}
+                  </h3>
+
+                  <div className="grid grid-cols-4 gap-6 md:gap-10 max-w-3xl mx-auto">
+                    {cat.tools.map((t, idx) => {
+                      const icon = ICON(t.slug, t.color, t.svg);
+
+                      return (
+                        <motion.div
+                          key={t.name}
+                          initial={{ opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            duration: 0.4,
+                            delay: 0.08 + idx * 0.04,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className="group flex flex-col items-center gap-2.5"
+                          data-testid={`toolkit-icon-${t.slug.split("/")[0]}`}
+                        >
+                          <div className="h-8 w-8 md:h-10 md:w-10 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-105">
+                            {typeof icon === "string" ? (
+                              <img
+                                src={icon}
+                                alt={t.name}
+                                loading="lazy"
+                                className="h-10 w-10 md:h-15 md:w-15 object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.style.opacity = "0.4";
+                                }}
+                              />
+                            ) : (
+                              <span
+                                className="h-10 w-10 md:h-15 md:w-15 [&>svg]:h-full [&>svg]:w-full"
+                                role="img"
+                                aria-label={t.name}
+                              >
+                                {icon}
+                              </span>
+                            )}
+                          </div>
+                          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-bone-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                            {t.name}
+                          </span>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Dot pagination */}
+            <div className="flex items-center justify-center gap-2 mt-10">
+              {categories.map((c, idx) => (
+                <button
+                  key={c.label}
+                  onClick={() => setI(idx)}
+                  data-testid={`toolkit-dot-${idx}`}
+                  aria-label={`Go to ${c.label}`}
+                  className={`h-1.5 rounded-full transition-all duration-400 ${
+                    idx === i
+                      ? "w-8 bg-rust"
+                      : "w-1.5 bg-white/15 hover:bg-white/30"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
 };
