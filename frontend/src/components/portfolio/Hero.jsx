@@ -72,7 +72,7 @@ export const Hero = () => {
                             delay: 0.4,
                             ease: [0.16, 1, 0.3, 1],
                         }}
-                        className="absolute right-2 xl:right-0 top-[10%] xl:top-[8%] select-none"
+                        className="absolute right-2 xl:right-0 top-[14%] xl:top-[12%] select-none"
                         data-testid="hero-portrait"
                     >
                         <div
@@ -141,10 +141,10 @@ export const Hero = () => {
                         delay: 0.2,
                         ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="col-span-12 lg:col-span-10"
+                    className="col-span-12 lg:col-span-7"
                 >
                     <h1
-                        className="font-display text-[clamp(3rem,11vw,11rem)] font-black tracking-[-0.04em] leading-[0.86] text-bone-50"
+                        className="font-display text-[clamp(2.75rem,9vw,5.75rem)] font-black tracking-[-0.04em] leading-[0.9] text-bone-50"
                         data-testid="hero-heading"
                     >
                         Frontend.
