@@ -5,11 +5,11 @@ const roles = [
     {
         period: "2024 — Now",
         company: "JCDecaux",
-        title: "Senior Full-Stack Engineer (Angular / Java)",
+        title: "Senior Frontend / Full-Stack Engineer",
         location: "Paris, France",
         summary:
-            "Architected and led adoption of a reusable design system across 8 teams — 40+ shared components, governance, and standardized behavior across 10+ enterprise apps. Drove the Angular 17 → 19 migration with standalone components, signals, and lazy loading.",
-        tags: ["Angular 17–19", "Design System", "Signals", "Java"],
+            "Co-designed and built a shared Angular design system adopted by 8 product teams and used across 10+ internal applications — standardizing UX & behavior and reducing duplicated UI work. Led Angular 17 → 19 and Angular Material 2 → 3 upgrades in production, keeping features shipping while enforcing performance and accessibility standards.",
+        tags: ["Angular 17–19", "Design System", "Material 2 → 3", "Java"],
     },
     {
         period: "2022 — 2024",

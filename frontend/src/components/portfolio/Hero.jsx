@@ -118,10 +118,10 @@ export const Hero = () => {
                     transition={{ duration: 0.7, delay: 0.1 }}
                     className="col-span-12 mb-14 md:mb-16"
                 >
-                    <div className="glass inline-flex items-center gap-3 px-4 py-2 rounded-full">
-                        <span className="h-1.5 w-1.5 rounded-full bg-rust animate-pulse" />
-                        <span className="overline !text-bone-300">
-                            Available · Dublin · Stamp 1G
+                    <div className="glass inline-flex items-center gap-3 px-4 py-2 rounded-full max-w-full">
+                        <span className="h-1.5 w-1.5 rounded-full bg-rust animate-pulse shrink-0" />
+                        <span className="overline !text-bone-300 whitespace-nowrap overflow-hidden text-ellipsis">
+                            Based in Dublin (Stamp 1G) · Open to Senior / Staff / Tech Lead — IE &amp; EU
                         </span>
                     </div>
                 </motion.div>
@@ -137,6 +137,12 @@ export const Hero = () => {
                     }}
                     className="col-span-12 lg:col-span-10"
                 >
+                    <div className="flex items-center gap-3 mb-6">
+                        <span className="h-px w-10 bg-rust" />
+                        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone-300">
+                            Wahib Kerkeni — Senior Frontend Engineer (Angular)
+                        </span>
+                    </div>
                     <h1
                         className="font-display text-[clamp(3rem,11vw,11rem)] font-black tracking-[-0.04em] leading-[0.86] text-bone-50"
                         data-testid="hero-heading"
@@ -161,14 +167,21 @@ export const Hero = () => {
                     className="col-span-12 lg:col-span-7 mt-16 md:mt-20 flex flex-col gap-10"
                 >
                     <p className="text-lg md:text-xl text-bone-300 font-light leading-relaxed max-w-2xl">
-                        I'm{" "}
+                        I build and modernize large{" "}
                         <span className="text-bone-50 font-semibold">
-                            Wahib Kerkeni
+                            Angular platforms
                         </span>{" "}
-                        — a senior frontend engineer with 7+ years building
-                        scalable Angular platforms, leading design-system
-                        adoption across teams, and modernizing enterprise apps
-                        at companies like JCDecaux and SFR.
+                        and the design systems that keep them consistent across
+                        teams. Over 7+ years, I've led migrations and
+                        design-system adoption at{" "}
+                        <span className="text-bone-50 font-semibold">
+                            JCDecaux
+                        </span>{" "}
+                        and{" "}
+                        <span className="text-bone-50 font-semibold">
+                            SFR Business
+                        </span>
+                        , supporting 8 teams and 10+ enterprise applications.
                     </p>
                     <div className="flex flex-wrap gap-3">
                         <a
@@ -206,19 +219,19 @@ export const Hero = () => {
                                 key={i}
                                 className="flex gap-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone-300 px-6"
                             >
-                                <span>Angular 17 — 19</span>
+                                <span>Angular 17–19</span>
                                 <span className="text-rust">◆</span>
                                 <span>TypeScript</span>
                                 <span className="text-rust">◆</span>
-                                <span>Signals & RxJS</span>
+                                <span>Signals &amp; RxJS</span>
                                 <span className="text-rust">◆</span>
                                 <span>Design Systems</span>
                                 <span className="text-rust">◆</span>
-                                <span>Micro-Frontends · Single-SPA</span>
+                                <span>Micro-frontends · Single-SPA</span>
                                 <span className="text-rust">◆</span>
                                 <span>Angular Material 2 → 3</span>
                                 <span className="text-rust">◆</span>
-                                <span>Java · Spring Boot · Node</span>
+                                <span>Java / Spring Boot</span>
                                 <span className="text-rust">◆</span>
                                 <span>WCAG 2.1</span>
                                 <span className="text-rust">◆</span>

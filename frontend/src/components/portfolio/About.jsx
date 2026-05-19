@@ -1,8 +1,8 @@
 import { SectionHeader, Reveal } from "./shared";
 
 const facts = [
-    { k: "Years", v: "7+" },
-    { k: "Teams supported", v: "8" },
+    { k: "Angular years", v: "7+" },
+    { k: "Teams on one DS", v: "8" },
     { k: "Apps modernized", v: "10+" },
     { k: "DS components", v: "40+" },
 ];
@@ -18,7 +18,7 @@ export const About = () => {
                 <SectionHeader
                     index="01"
                     label="About"
-                    title="I build Angular platforms that hold up under scale — and lead the teams that keep shipping them."
+                    title="Angular platforms that hold up under scale — and the teams that ship them."
                 />
 
                 <div className="grid grid-cols-12 gap-6 md:gap-10">
@@ -27,27 +27,36 @@ export const About = () => {
                         className="col-span-12 lg:col-span-7 space-y-6 text-bone-300 font-light text-lg leading-relaxed"
                     >
                         <p>
-                            For 7+ years I've been the engineer product teams pull
-                            in when the frontend gets serious — large Angular
-                            applications, design systems shared across teams,
-                            and the messy migrations between major framework
-                            versions.
+                            I'm a senior frontend engineer focused on Angular
+                            platforms that have to hold up under scale — and on
+                            the teams that ship them. My work usually sits
+                            where design systems, migrations, and
+                            "don't-break-production" constraints all meet.
                         </p>
                         <p>
-                            At JCDecaux I architected a design system adopted
-                            by 8 teams and drove the Angular 17 → 19 migration
-                            across 10+ mission-critical platforms. At SFR
-                            Business I led a small team rebuilding the MYPC
-                            self-service experience used by 1,000+ enterprise
-                            users — reducing time-to-resolution from 2 days to
-                            12 hours.
+                            At{" "}
+                            <span className="text-bone-50 font-medium">
+                                JCDecaux
+                            </span>
+                            , I co-designed and built a shared design system
+                            now used by 8 teams and 10+ mission-critical
+                            internal apps, while leading Angular migrations
+                            from 17 to 19 without blocking feature work. At{" "}
+                            <span className="text-bone-50 font-medium">
+                                SFR Business
+                            </span>
+                            , I rebuilt the MYPC self-service platform as a PWA
+                            for 1,000+ enterprise users, cutting
+                            time-to-resolution from ~2 days to ~12 hours and
+                            lifting test coverage from 60% to 70%.
                         </p>
                         <p>
-                            I care about the boring parts: change detection,
-                            bundle budgets, AOT, a11y trees. And the unboring
-                            ones: standalone components, signals-first state,
-                            and a design language designers and engineers
-                            actually agree on.
+                            I care about the boring parts: performance budgets,
+                            accessibility, predictable builds, and codebases
+                            that stay understandable a year later. And I enjoy
+                            the unboring ones: standalone components,
+                            signals-first state, and a design language
+                            designers and engineers can actually agree on.
                         </p>
                     </Reveal>
 
