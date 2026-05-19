@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Header } from "./components/portfolio/Header";
-import { Hero } from "./components/portfolio/Hero";
+import { Hero, TechStrip } from "./components/portfolio/Hero";
 import { About } from "./components/portfolio/About";
 import { Skills } from "./components/portfolio/Skills";
 import { Toolkit } from "./components/portfolio/Toolkit";
@@ -113,6 +113,7 @@ export default function App() {
             <Header theme={theme} setTheme={setTheme} />
             <main>
                 <Hero />
+                <TechStrip />
                 <About />
                 <Skills />
                 <Toolkit />

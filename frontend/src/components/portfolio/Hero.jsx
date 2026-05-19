@@ -43,7 +43,7 @@ export const Hero = () => {
         <section
             id="top"
             data-testid="hero-section"
-            className="relative min-h-screen flex items-end pt-32 pb-40 md:pb-48 overflow-hidden"
+            className="relative min-h-[calc(100vh-60px)] flex items-end pt-32 pb-16 md:pb-20 overflow-hidden"
         >
             {/* Texture background */}
             <div
@@ -69,7 +69,7 @@ export const Hero = () => {
                     delay: 0.4,
                     ease: [0.16, 1, 0.3, 1],
                 }}
-                className="hidden lg:block absolute z-[5] right-[-2%] xl:right-0 top-[6%] pointer-events-none select-none"
+                className="hidden lg:block absolute z-[5] right-[-1%] xl:right-2 top-[8%] xl:top-[10%] pointer-events-none select-none"
                 data-testid="hero-portrait"
             >
                 <div
@@ -92,7 +92,7 @@ export const Hero = () => {
                         <img
                             src="/wahib-cutout.png"
                             alt="Wahib Kerkeni — Senior Frontend Engineer"
-                            className="block h-[560px] xl:h-[700px] w-auto portrait-duotone"
+                            className="block h-[460px] xl:h-[560px] 2xl:h-[600px] w-auto portrait-duotone"
                             style={{
                                 filter: "url(#wk-duotone) drop-shadow(0 30px 60px rgba(0,0,0,0.45))",
                                 WebkitMaskImage:
@@ -203,29 +203,41 @@ export const Hero = () => {
                     </div>
                 </motion.div>
             </div>
-
-            {/* Bottom tech list — flat static row */}
-            <div className="absolute bottom-8 left-0 right-0 z-10">
-                <div className="max-w-7xl mx-auto px-6 md:px-12">
-                    <div className="flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-bone-300">
-                        <span>Angular 17–19</span>
-                        <span className="text-rust">◆</span>
-                        <span>TypeScript</span>
-                        <span className="text-rust">◆</span>
-                        <span>Signals &amp; RxJS</span>
-                        <span className="text-rust">◆</span>
-                        <span>Design Systems</span>
-                        <span className="text-rust">◆</span>
-                        <span>Micro-frontends · Single-SPA</span>
-                        <span className="text-rust">◆</span>
-                        <span>Angular Material 2 → 3</span>
-                        <span className="text-rust">◆</span>
-                        <span>Java / Spring Boot</span>
-                        <span className="text-rust">◆</span>
-                        <span>WCAG 2.1</span>
-                    </div>
-                </div>
-            </div>
         </section>
     );
 };
+
+export const TechStrip = () => (
+    <div
+        className="relative z-10 py-5 overflow-hidden border-y border-white/5"
+        data-testid="tech-strip"
+        aria-label="Tech stack"
+    >
+        <div className="flex marquee-track gap-5 whitespace-nowrap will-change-transform">
+            {[...Array(2)].map((_, copy) => (
+                <div
+                    key={copy}
+                    aria-hidden={copy === 1}
+                    className="flex shrink-0 items-center gap-5 pr-5 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-bone-300"
+                >
+                    <span>Angular 17–19</span>
+                    <span className="text-rust">◆</span>
+                    <span>TypeScript</span>
+                    <span className="text-rust">◆</span>
+                    <span>Signals &amp; RxJS</span>
+                    <span className="text-rust">◆</span>
+                    <span>Design Systems</span>
+                    <span className="text-rust">◆</span>
+                    <span>Micro-frontends · Single-SPA</span>
+                    <span className="text-rust">◆</span>
+                    <span>Angular Material 2 → 3</span>
+                    <span className="text-rust">◆</span>
+                    <span>Java / Spring Boot</span>
+                    <span className="text-rust">◆</span>
+                    <span>WCAG 2.1</span>
+                    <span className="text-rust">◆</span>
+                </div>
+            ))}
+        </div>
+    </div>
+);
