@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
 
-const links = [
+// Extract constants to prevent recreations
+const NAVIGATION_LINKS = [
     { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
     { label: "Work", href: "#work" },
@@ -10,7 +11,30 @@ const links = [
     { label: "Writing", href: "#writing" },
 ];
 
-const ThemeToggle = ({ theme, setTheme }) => {
+const SCROLL_THRESHOLD = 24;
+const HEADER_PADDING = "0.45rem 0.55rem 0.45rem 1.1rem";
+const HEADER_BORDER_RADIUS = 9999;
+
+const THEME_TOGGLE_VARIANTS = {
+    initial: { opacity: 0, rotate: -90, scale: 0.6 },
+    animate: { opacity: 1, rotate: 0, scale: 1 },
+    exit: { opacity: 0, rotate: 90, scale: 0.6 },
+};
+
+const THEME_TOGGLE_TRANSITION = { duration: 0.3, ease: [0.16, 1, 0.3, 1] };
+
+const BUTTON_STYLE = {
+    background: "linear-gradient(135deg, rgba(224,93,58,0.95) 0%, rgba(199,75,42,0.95) 100%)",
+    border: "1px solid rgba(255,255,255,0.22)",
+    boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.35), 0 4px 16px -4px rgba(224,93,58,0.5)",
+};
+
+const THEME_TOGGLE_BUTTON_STYLE = {
+    background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)",
+};
+
+// Memoize ThemeToggle to prevent unnecessary re-renders
+const ThemeToggle = memo(({ theme, setTheme }) => {
     const isLight = theme === "light";
     return (
         <button
@@ -18,18 +42,15 @@ const ThemeToggle = ({ theme, setTheme }) => {
             data-testid="theme-toggle"
             aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
             className="relative h-9 w-9 rounded-full flex items-center justify-center border border-white/15 hover:border-rust transition-colors overflow-hidden"
-            style={{
-                background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)",
-            }}
+            style={THEME_TOGGLE_BUTTON_STYLE}
         >
             <AnimatePresence mode="wait" initial={false}>
                 <motion.span
                     key={theme}
-                    initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
-                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                    exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    initial={THEME_TOGGLE_VARIANTS.initial}
+                    animate={THEME_TOGGLE_VARIANTS.animate}
+                    exit={THEME_TOGGLE_VARIANTS.exit}
+                    transition={THEME_TOGGLE_TRANSITION}
                     className="flex items-center justify-center"
                 >
                     {isLight ? (
@@ -41,17 +62,42 @@ const ThemeToggle = ({ theme, setTheme }) => {
             </AnimatePresence>
         </button>
     );
-};
+});
 
-export const Header = ({ theme, setTheme }) => {
+ThemeToggle.displayName = "ThemeToggle";
+
+const HeaderComponent = ({ theme, setTheme }) => {
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 24);
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
+        let rafId = 0;
+        let lastScrollY = 0;
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            // Only trigger state update if threshold crosses
+            if ((lastScrollY <= SCROLL_THRESHOLD && currentScrollY > SCROLL_THRESHOLD) ||
+                (lastScrollY > SCROLL_THRESHOLD && currentScrollY <= SCROLL_THRESHOLD)) {
+                setScrolled(currentScrollY > SCROLL_THRESHOLD);
+            }
+            lastScrollY = currentScrollY;
+        };
+
+        // RAF throttle the scroll check
+        const throttledScroll = () => {
+            if (!rafId) {
+                rafId = requestAnimationFrame(handleScroll);
+            }
+        };
+
+        window.addEventListener("scroll", throttledScroll, { passive: true });
+        handleScroll(); // Call once on mount
+
+        return () => {
+            window.removeEventListener("scroll", throttledScroll);
+            cancelAnimationFrame(rafId);
+        };
     }, []);
 
     return (
@@ -67,8 +113,8 @@ export const Header = ({ theme, setTheme }) => {
                     scrolled ? "shadow-2xl" : ""
                 }`}
                 style={{
-                    borderRadius: 9999,
-                    padding: "0.45rem 0.55rem 0.45rem 1.1rem",
+                    borderRadius: HEADER_BORDER_RADIUS,
+                    padding: HEADER_PADDING,
                 }}
             >
                 <a
@@ -85,7 +131,7 @@ export const Header = ({ theme, setTheme }) => {
                 </a>
 
                 <nav className="hidden md:flex items-center gap-1">
-                    {links.map((l) => (
+                    {NAVIGATION_LINKS.map((l) => (
                         <a
                             key={l.href}
                             href={l.href}
@@ -101,13 +147,7 @@ export const Header = ({ theme, setTheme }) => {
                     href="#contact"
                     data-testid="header-cta"
                     className="hidden md:inline-flex items-center gap-1.5 group font-mono text-[10px] uppercase tracking-[0.18em] text-white px-4 py-2 rounded-full transition-all ml-1"
-                    style={{
-                        background:
-                            "linear-gradient(135deg, rgba(224,93,58,0.95) 0%, rgba(199,75,42,0.95) 100%)",
-                        border: "1px solid rgba(255,255,255,0.22)",
-                        boxShadow:
-                            "inset 0 1px 0 0 rgba(255,255,255,0.35), 0 4px 16px -4px rgba(224,93,58,0.5)",
-                    }}
+                    style={BUTTON_STYLE}
                 >
                     Let's Talk
                     <ArrowUpRight
@@ -147,7 +187,7 @@ export const Header = ({ theme, setTheme }) => {
                             style={{ borderRadius: 24 }}
                         >
                             <div className="flex flex-col gap-1 p-2">
-                                {links.map((l) => (
+                                {NAVIGATION_LINKS.map((l) => (
                                     <a
                                         key={l.href}
                                         href={l.href}
@@ -174,3 +214,8 @@ export const Header = ({ theme, setTheme }) => {
         </motion.header>
     );
 };
+
+const Header = memo(HeaderComponent);
+Header.displayName = "Header";
+
+export { Header };

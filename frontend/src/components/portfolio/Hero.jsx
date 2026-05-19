@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, memo } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 
@@ -8,7 +8,7 @@ const HERO_IMG =
 const PORTRAIT =
     "https://customer-assets.emergentagent.com/job_code-architect-44/artifacts/y9y0949k_1737141838807.jpeg";
 
-export const Hero = () => {
+export const Hero = memo(() => {
     const portraitRef = useRef(null);
     const textureRef = useRef(null);
 
@@ -96,6 +96,8 @@ export const Hero = () => {
                                 <img
                                     src="/wahib-cutout.png"
                                     alt="Wahib Kerkeni — Senior Frontend Engineer"
+                                    loading="lazy"
+                                    decoding="async"
                                     className="block h-[420px] xl:h-[500px] 2xl:h-[540px] w-auto portrait-duotone"
                                     style={{
                                         filter: "url(#wk-duotone) drop-shadow(0 30px 60px rgba(0,0,0,0.45))",
@@ -211,7 +213,9 @@ export const Hero = () => {
             </div>
         </section>
     );
-};
+});
+
+Hero.displayName = "Hero";;
 
 export const TechStrip = () => (
     <div

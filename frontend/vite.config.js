@@ -11,6 +11,7 @@ export default defineConfig({
   plugins: [
     react({
       jsxRuntime: 'automatic',
+      fastRefresh: true,
     }),
     ...(enableHealthCheck ? [viteHealthPlugin()] : []),
   ],
@@ -22,9 +23,40 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   build: {
     outDir: 'build',
     sourcemap: false,
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        // Manual chunk splitting for better caching
+        manualChunks: {
+          'radix-ui': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-alert-dialog',
+          ],
+          'motion': ['framer-motion'],
+          'charts': ['recharts'],
+          'forms': ['react-hook-form', '@hookform/resolvers'],
+        },
+      },
+    },
+  },
+  // Optimize dependencies for faster dev startup
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'framer-motion',
+      '@radix-ui/react-dialog',
+      'lucide-react',
+    ],
   },
 })

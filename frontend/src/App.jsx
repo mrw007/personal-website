@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useEffectEvent, memo } from "react";
 import { Header } from "./components/portfolio/Header";
 import { Hero, TechStrip } from "./components/portfolio/Hero";
 import { About } from "./components/portfolio/About";
@@ -10,21 +10,25 @@ import { Blog } from "./components/portfolio/Blog";
 import { Contact } from "./components/portfolio/Contact";
 import { Footer } from "./components/portfolio/Footer";
 
+const SPOTLIGHT_BUFFER = 200;
+
 // Spotlight glow — track mouse and feed CSS vars to every .card-surface in view.
 function useSpotlight() {
     useEffect(() => {
         let ticking = false;
         let lastX = 0;
         let lastY = 0;
+        let rafId = 0;
 
         const update = () => {
             ticking = false;
             const els = document.querySelectorAll(".card-surface");
-            for (const el of els) {
+            for (let i = 0; i < els.length; i++) {
+                const el = els[i];
                 const r = el.getBoundingClientRect();
                 if (
-                    r.bottom < -200 ||
-                    r.top > window.innerHeight + 200 ||
+                    r.bottom < -SPOTLIGHT_BUFFER ||
+                    r.top > window.innerHeight + SPOTLIGHT_BUFFER ||
                     r.right < 0 ||
                     r.left > window.innerWidth
                 )
@@ -39,12 +43,15 @@ function useSpotlight() {
             lastY = e.clientY;
             if (!ticking) {
                 ticking = true;
-                requestAnimationFrame(update);
+                rafId = requestAnimationFrame(update);
             }
         };
 
         window.addEventListener("mousemove", onMove, { passive: true });
-        return () => window.removeEventListener("mousemove", onMove);
+        return () => {
+            window.removeEventListener("mousemove", onMove);
+            cancelAnimationFrame(rafId);
+        };
     }, []);
 }
 
@@ -54,17 +61,25 @@ function useTheme() {
         return localStorage.getItem("theme") || "dark";
     });
 
-    useEffect(() => {
+    // React 19.2: useEffectEvent extracts non-reactive logic from effects
+    const persistTheme = useEffectEvent((newTheme) => {
         const root = document.documentElement;
-        if (theme === "light") root.classList.add("light");
-        else root.classList.remove("light");
-        localStorage.setItem("theme", theme);
-    }, [theme]);
+        if (newTheme === "light") {
+            root.classList.add("light");
+        } else {
+            root.classList.remove("light");
+        }
+        localStorage.setItem("theme", newTheme);
+    });
+
+    useEffect(() => {
+        persistTheme(theme);
+    }, [theme, persistTheme]);
 
     return [theme, setTheme];
 }
 
-export default function App() {
+const AppComponent = () => {
     useSpotlight();
     const [theme, setTheme] = useTheme();
     return (
@@ -125,4 +140,9 @@ export default function App() {
             <Footer />
         </div>
     );
-}
+};
+
+const App = memo(AppComponent);
+App.displayName = "App";
+
+export default App;
