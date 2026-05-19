@@ -60,50 +60,56 @@ export const Hero = () => {
                     transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                 }}
             />
-            {/* Floating cutout portrait — duotone, blending with hero */}
-            <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                    duration: 1.3,
-                    delay: 0.4,
-                    ease: [0.16, 1, 0.3, 1],
-                }}
-                className="hidden lg:block absolute z-[5] right-[-1%] xl:right-2 top-[8%] xl:top-[10%] pointer-events-none select-none"
-                data-testid="hero-portrait"
-            >
-                <div
-                    ref={portraitRef}
-                    className="will-change-transform"
-                    style={{
-                        transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
-                    }}
-                >
-                    <div className="relative float-gentle">
-                        {/* Soft rust glow halo behind */}
+            {/* Floating cutout portrait — anchored to the centered content
+                container (max-w-7xl) so it sits next to the text on wide screens */}
+            <div className="hidden lg:block absolute inset-0 z-[5] pointer-events-none">
+                <div className="relative max-w-7xl mx-auto h-full px-6 md:px-12">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{
+                            duration: 1.3,
+                            delay: 0.4,
+                            ease: [0.16, 1, 0.3, 1],
+                        }}
+                        className="absolute right-2 xl:right-0 top-[10%] xl:top-[8%] select-none"
+                        data-testid="hero-portrait"
+                    >
                         <div
-                            className="absolute inset-0 -z-10 blur-3xl opacity-60"
+                            ref={portraitRef}
+                            className="will-change-transform"
                             style={{
-                                background:
-                                    "radial-gradient(ellipse at 50% 50%, rgba(224,93,58,0.50) 0%, rgba(224,93,58,0.18) 35%, transparent 65%)",
-                                transform: "scale(1.18)",
+                                transition:
+                                    "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
                             }}
-                        />
-                        <img
-                            src="/wahib-cutout.png"
-                            alt="Wahib Kerkeni — Senior Frontend Engineer"
-                            className="block h-[460px] xl:h-[560px] 2xl:h-[600px] w-auto portrait-duotone"
-                            style={{
-                                filter: "url(#wk-duotone) drop-shadow(0 30px 60px rgba(0,0,0,0.45))",
-                                WebkitMaskImage:
-                                    "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
-                                maskImage:
-                                    "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
-                            }}
-                        />
-                    </div>
+                        >
+                            <div className="relative float-gentle">
+                                {/* Soft rust glow halo behind */}
+                                <div
+                                    className="absolute inset-0 -z-10 blur-3xl opacity-60"
+                                    style={{
+                                        background:
+                                            "radial-gradient(ellipse at 50% 50%, rgba(224,93,58,0.50) 0%, rgba(224,93,58,0.18) 35%, transparent 65%)",
+                                        transform: "scale(1.18)",
+                                    }}
+                                />
+                                <img
+                                    src="/wahib-cutout.png"
+                                    alt="Wahib Kerkeni — Senior Frontend Engineer"
+                                    className="block h-[420px] xl:h-[500px] 2xl:h-[540px] w-auto portrait-duotone"
+                                    style={{
+                                        filter: "url(#wk-duotone) drop-shadow(0 30px 60px rgba(0,0,0,0.45))",
+                                        WebkitMaskImage:
+                                            "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
+                                        maskImage:
+                                            "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
                 </div>
-            </motion.div>
+            </div>
 
             <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink-900 pointer-events-none" />
@@ -212,13 +218,19 @@ export const TechStrip = () => (
         className="relative z-10 py-5 overflow-hidden border-y border-white/5"
         data-testid="tech-strip"
         aria-label="Tech stack"
+        style={{
+            WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            maskImage:
+                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+        }}
     >
-        <div className="flex marquee-track gap-5 whitespace-nowrap will-change-transform">
+        <div className="flex marquee-track gap-10 whitespace-nowrap will-change-transform">
             {[...Array(2)].map((_, copy) => (
                 <div
                     key={copy}
                     aria-hidden={copy === 1}
-                    className="flex shrink-0 items-center gap-5 pr-5 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-bone-300"
+                    className="flex shrink-0 items-center gap-10 pr-10 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-bone-300"
                 >
                     <span>Angular 17–19</span>
                     <span className="text-rust">◆</span>
