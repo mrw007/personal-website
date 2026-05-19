@@ -118,10 +118,10 @@ export const Hero = () => {
                     transition={{ duration: 0.7, delay: 0.1 }}
                     className="col-span-12 mb-14 md:mb-16"
                 >
-                    <div className="glass inline-flex items-center gap-3 px-4 py-2 rounded-full max-w-full">
+                    <div className="flex items-center gap-3">
                         <span className="h-1.5 w-1.5 rounded-full bg-rust animate-pulse shrink-0" />
-                        <span className="overline !text-bone-300 whitespace-nowrap overflow-hidden text-ellipsis">
-                            Based in Dublin (Stamp 1G) · Open to Senior / Staff / Tech Lead — IE &amp; EU
+                        <span className="font-mono text-xs md:text-sm text-bone-300 tracking-wide">
+                            Based in Dublin (Stamp 1G) · Open to Senior Frontend / Tech Lead roles in Ireland
                         </span>
                     </div>
                 </motion.div>
@@ -137,12 +137,6 @@ export const Hero = () => {
                     }}
                     className="col-span-12 lg:col-span-10"
                 >
-                    <div className="flex items-center gap-3 mb-6">
-                        <span className="h-px w-10 bg-rust" />
-                        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone-300">
-                            Wahib Kerkeni — Senior Frontend Engineer (Angular)
-                        </span>
-                    </div>
                     <h1
                         className="font-display text-[clamp(3rem,11vw,11rem)] font-black tracking-[-0.04em] leading-[0.86] text-bone-50"
                         data-testid="hero-heading"
@@ -210,33 +204,25 @@ export const Hero = () => {
                 </motion.div>
             </div>
 
-            {/* Bottom marquee — floating glass bar */}
-            <div className="absolute bottom-6 left-4 right-4 md:left-12 md:right-12 z-10">
-                <div className="glass py-3 overflow-hidden" style={{ borderRadius: 9999 }}>
-                    <div className="flex marquee-track gap-12 whitespace-nowrap">
-                        {[...Array(2)].map((_, i) => (
-                            <div
-                                key={i}
-                                className="flex gap-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone-300 px-6"
-                            >
-                                <span>Angular 17–19</span>
-                                <span className="text-rust">◆</span>
-                                <span>TypeScript</span>
-                                <span className="text-rust">◆</span>
-                                <span>Signals &amp; RxJS</span>
-                                <span className="text-rust">◆</span>
-                                <span>Design Systems</span>
-                                <span className="text-rust">◆</span>
-                                <span>Micro-frontends · Single-SPA</span>
-                                <span className="text-rust">◆</span>
-                                <span>Angular Material 2 → 3</span>
-                                <span className="text-rust">◆</span>
-                                <span>Java / Spring Boot</span>
-                                <span className="text-rust">◆</span>
-                                <span>WCAG 2.1</span>
-                                <span className="text-rust">◆</span>
-                            </div>
-                        ))}
+            {/* Bottom tech list — flat static row */}
+            <div className="absolute bottom-8 left-0 right-0 z-10">
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
+                    <div className="flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-bone-300">
+                        <span>Angular 17–19</span>
+                        <span className="text-rust">◆</span>
+                        <span>TypeScript</span>
+                        <span className="text-rust">◆</span>
+                        <span>Signals &amp; RxJS</span>
+                        <span className="text-rust">◆</span>
+                        <span>Design Systems</span>
+                        <span className="text-rust">◆</span>
+                        <span>Micro-frontends · Single-SPA</span>
+                        <span className="text-rust">◆</span>
+                        <span>Angular Material 2 → 3</span>
+                        <span className="text-rust">◆</span>
+                        <span>Java / Spring Boot</span>
+                        <span className="text-rust">◆</span>
+                        <span>WCAG 2.1</span>
                     </div>
                 </div>
             </div>
