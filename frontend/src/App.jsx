@@ -108,6 +108,8 @@ const AppComponent = () => {
               <feFuncG type="table" tableValues="0.04 0.36 0.62" />
               <feFuncB type="table" tableValues="0.04 0.23 0.55" />
             </feComponentTransfer>
+            {/* Re-apply source alpha to prevent transparent pixels from gaining colour */}
+            <feComposite in2="SourceGraphic" operator="in" />
           </filter>
         </defs>
       </svg>

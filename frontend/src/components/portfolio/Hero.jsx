@@ -43,7 +43,7 @@ export const Hero = memo(() => {
         <section
             id="top"
             data-testid="hero-section"
-            className="relative min-h-[calc(100vh-60px)] flex items-end pt-32 pb-16 md:pb-20 overflow-hidden"
+            className="relative min-h-[calc(100vh-60px)] flex items-center pt-24 pb-16 overflow-hidden"
         >
             {/* Texture background */}
             <div
@@ -100,7 +100,6 @@ export const Hero = memo(() => {
                                     decoding="async"
                                     className="block h-[420px] xl:h-[500px] 2xl:h-[540px] w-auto portrait-duotone"
                                     style={{
-                                        filter: "url(#wk-duotone) drop-shadow(0 30px 60px rgba(0,0,0,0.45))",
                                         WebkitMaskImage:
                                             "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
                                         maskImage:
