@@ -846,6 +846,11 @@ html.light .from-ink-800 {
   --tw-gradient-from: rgba(255, 255, 255, 0.7) var(--tw-gradient-from-position);
 }
 
+/* Writing article image shadow — soften in light mode only */
+html.light #writing [data-testid^="blog-post-"] img {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
 /* Selection on light */
 html.light *::selection {
   background: var(--accent);
