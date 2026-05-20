@@ -3,34 +3,36 @@ import { ArrowUpRight, Building2, Briefcase, Landmark } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import React from "react";
 
+const withBaseUrl = (path) => `${import.meta.env.BASE_URL || "/"}${path.replace(/^\//, "")}`;
+
 const companyIcons = {
   JCDecaux: {
-    src: "/assets/companies/jcdecaux.jpeg",
+    src: withBaseUrl("/assets/companies/jcdecaux.jpeg"),
     alt: "JCDecaux logo",
     fallback: <Landmark className="text-bone-500" size={20} />,
   },
   "SFR Business": {
-    src: "/assets/companies/SFR.png",
+    src: withBaseUrl("/assets/companies/SFR.png"),
     alt: "SFR logo",
     fallback: <Briefcase className="text-bone-500" size={20} />,
   },
   SIFAST: {
-    src: "/assets/companies/sifast.jpg",
+    src: withBaseUrl("/assets/companies/sifast.jpg"),
     alt: "SIFAST logo",
     fallback: <Building2 className="text-bone-500" size={20} />,
   },
   "CHO Group": {
-    src: "/assets/companies/cho.png",
+    src: withBaseUrl("/assets/companies/cho.png"),
     alt: "CHO Group logo",
     fallback: <Building2 className="text-bone-500" size={20} />,
   },
   "Alea-Prévention": {
-    src: "/assets/companies/alea.jpg",
+    src: withBaseUrl("/assets/companies/alea.jpg"),
     alt: "Alea-Prévention logo",
     fallback: <Building2 className="text-bone-500" size={20} />,
   },
   "Cordon Electronics": {
-    src: "/assets/companies/cordon.jpg",
+    src: withBaseUrl("/assets/companies/cordon.jpg"),
     alt: "Cordon Electronics logo",
     fallback: <Building2 className="text-bone-500" size={20} />,
   },
