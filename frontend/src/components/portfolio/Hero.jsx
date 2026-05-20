@@ -2,11 +2,13 @@ import { useEffect, useRef, memo } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownRight, FileDown } from "lucide-react";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const HERO_IMG =
-  "/assets/emergent/hero-texture.png";
+  `${BASE_URL}assets/emergent/hero-texture.png`;
 
 const PORTRAIT =
-  "/wahib-cutout.png";
+  `${BASE_URL}wahib-cutout.png`;
 
 export const Hero = memo(() => {
   const portraitRef = useRef(null);
@@ -190,7 +192,7 @@ export const Hero = memo(() => {
               />
             </a>
             <a
-              href="/Wahib_KerkenI_Senior_Angular_Engineer.pdf"
+              href={`${BASE_URL}Wahib_KerkenI_Senior_Angular_Engineer.pdf`}
               download="Wahib_KerkenI_Senior_Angular_Engineer.pdf"
               className="btn-secondary group"
               data-testid="hero-cta-cv"

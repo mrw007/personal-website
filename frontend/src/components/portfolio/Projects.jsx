@@ -1,6 +1,8 @@
 import { SectionHeader, Reveal } from "./shared";
 import { ArrowUpRight } from "lucide-react";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const projects = [
     {
         n: "01",
@@ -8,7 +10,7 @@ const projects = [
         client: "JCDecaux · Internal Platform",
         year: "2024",
         image:
-            "/assets/emergent/project-jcdecaux.png",
+            `${BASE_URL}assets/emergent/project-jcdecaux.png`,
         summary:
             "A reusable Angular design system adopted by 8 teams across 10+ mission-critical enterprise applications. 40+ shared components, standardized behavior, and a governance model that survived the Angular 17 → 19 and Material 2 → 3 migrations.",
         tags: ["Angular 17–19", "Material 3", "Signals", "Standalone"],
@@ -19,7 +21,7 @@ const projects = [
         client: "SFR Business · 1,000+ users",
         year: "2023",
         image:
-            "/assets/emergent/project-mypc.png",
+            `${BASE_URL}assets/emergent/project-mypc.png`,
         summary:
             "Rebuilt access-right and incident-management workflows into a PWA-first experience. Cut time-to-resolution from 2 days to ~12 hours, lifted automated coverage from 60% to 70%, and ran the Angular 12 → 17 migration feature-by-feature beside live PHP web views.",
         tags: ["Angular 12–17", "PWA", "RxJS", "WCAG 2.1"],
@@ -30,7 +32,7 @@ const projects = [
         client: "SIFAST · Enterprise HR Suite",
         year: "2021",
         image:
-            "/assets/emergent/project-single-spa.png",
+            `${BASE_URL}assets/emergent/project-single-spa.png`,
         summary:
             "Migrated a monolithic Angular platform to a Single-SPA micro-frontend architecture mixing Angular and Vue.js modules. Containerized with Docker and deployed on Kubernetes, unblocking parallel team workflows and release cadences.",
         tags: ["Single-SPA", "Angular", "Vue.js", "Kubernetes"],

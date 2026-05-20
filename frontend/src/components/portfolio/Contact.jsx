@@ -13,6 +13,8 @@ const BehanceIcon = ({ size = 18, className = "" }) => (
     </svg>
 );
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 export const Contact = () => {
     return (
         <section
@@ -63,7 +65,7 @@ export const Contact = () => {
                         </a>
                         <div className="mt-6">
                             <a
-                                href="/Wahib_KerkenI_Senior_Angular_Engineer.pdf"
+                                href={`${BASE_URL}Wahib_KerkenI_Senior_Angular_Engineer.pdf`}
                                 download="Wahib_KerkenI_Senior_Angular_Engineer.pdf"
                                 data-testid="contact-cv"
                                 className="btn-primary"
