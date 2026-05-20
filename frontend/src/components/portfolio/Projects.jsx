@@ -8,7 +8,7 @@ const projects = [
         client: "JCDecaux · Internal Platform",
         year: "2024",
         image:
-            "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/aa5ab2f18951a044de8a9774f09fad6908db0fe46c55faa836d49a9f8bb8077e.png",
+            "/assets/emergent/project-jcdecaux.png",
         summary:
             "A reusable Angular design system adopted by 8 teams across 10+ mission-critical enterprise applications. 40+ shared components, standardized behavior, and a governance model that survived the Angular 17 → 19 and Material 2 → 3 migrations.",
         tags: ["Angular 17–19", "Material 3", "Signals", "Standalone"],
@@ -19,7 +19,7 @@ const projects = [
         client: "SFR Business · 1,000+ users",
         year: "2023",
         image:
-            "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/79dcfa213f2cc10f8c3120673343759aee596ae66149c1f5d8ae98387c32f73d.png",
+            "/assets/emergent/project-mypc.png",
         summary:
             "Rebuilt access-right and incident-management workflows into a PWA-first experience. Cut time-to-resolution from 2 days to ~12 hours, lifted automated coverage from 60% to 70%, and ran the Angular 12 → 17 migration feature-by-feature beside live PHP web views.",
         tags: ["Angular 12–17", "PWA", "RxJS", "WCAG 2.1"],
@@ -30,7 +30,7 @@ const projects = [
         client: "SIFAST · Enterprise HR Suite",
         year: "2021",
         image:
-            "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/d596a4e914b2a21e5e8a5c43e2fffffd33acc6b989c552ec837df9a4cd88b70f.png",
+            "/assets/emergent/project-single-spa.png",
         summary:
             "Migrated a monolithic Angular platform to a Single-SPA micro-frontend architecture mixing Angular and Vue.js modules. Containerized with Docker and deployed on Kubernetes, unblocking parallel team workflows and release cadences.",
         tags: ["Single-SPA", "Angular", "Vue.js", "Kubernetes"],

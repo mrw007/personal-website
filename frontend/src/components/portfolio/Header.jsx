@@ -109,7 +109,7 @@ const HeaderComponent = ({ theme, setTheme }) => {
             data-testid="site-header"
         >
             <div
-                className={`pointer-events-auto glass flex items-center gap-2 md:gap-3 transition-all duration-500 ${
+                className={`pointer-events-auto glass glass-header flex items-center gap-2 md:gap-3 transition-all duration-500 ${
                     scrolled ? "shadow-2xl" : ""
                 }`}
                 style={{

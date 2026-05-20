@@ -30,7 +30,7 @@ const posts = [
         excerpt:
             "Governance is a UX problem. Three patterns I've used to get adoption when you can't force the issue — and one mistake I keep watching teams make with semantic naming.",
         image:
-            "https://static.prod-images.emergentagent.com/jobs/03446581-6b5e-450b-89be-4d149bdb3c41/images/aa5ab2f18951a044de8a9774f09fad6908db0fe46c55faa836d49a9f8bb8077e.png",
+            "/assets/emergent/blog-design-systems.png",
     },
 ];
 

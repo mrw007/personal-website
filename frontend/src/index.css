@@ -157,23 +157,21 @@ body::before {
       rgba(255, 255, 255, 0.06) 55%,
       rgba(255, 255, 255, 0.1) 100%
     ),
-    /* Tint base — macOS dark menu bar level opacity, keeps glass
-           legible over large high-contrast text scrolling behind */
-    rgba(10, 10, 10, 0.55);
-  /* brightness(0.80) dims the blurred backdrop so light page sections
-       don’t bleed through — content remains visible but clearly muted */
-  backdrop-filter: blur(44px) saturate(200%) brightness(0.8);
-  -webkit-backdrop-filter: blur(44px) saturate(200%) brightness(0.8);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+    /* Tint base — keep it translucent and airy rather than heavy */
+    rgba(10, 10, 10, 0.4);
+  /* Higher blur and saturation give the frosted, premium look */
+  backdrop-filter: blur(52px) saturate(220%) brightness(0.86);
+  -webkit-backdrop-filter: blur(52px) saturate(220%) brightness(0.86);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
         /* Primary specular — the brightest Apple signature */
-    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.38),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.3),
     /* Bottom inner shadow — creates material thickness */ inset 0 -1px 0 0
-      rgba(0, 0, 0, 0.22),
-    /* Left inner edge catch */ inset 1px 0 0 0 rgba(255, 255, 255, 0.1),
-    /* Hairline outer ring — adds definition */ 0 0 0 0.5px rgba(0, 0, 0, 0.18),
-    /* Close contact shadow */ 0 2px 6px rgba(0, 0, 0, 0.22),
-    /* Diffuse ambient depth */ 0 14px 44px -8px rgba(0, 0, 0, 0.55);
+      rgba(0, 0, 0, 0.16),
+    /* Left inner edge catch */ inset 1px 0 0 0 rgba(255, 255, 255, 0.08),
+    /* Hairline outer ring — adds definition */ 0 0 0 0.5px rgba(0, 0, 0, 0.12),
+    /* Close contact shadow */ 0 2px 6px rgba(0, 0, 0, 0.18),
+    /* Diffuse ambient depth */ 0 16px 48px -14px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   isolation: isolate;
 }
@@ -237,17 +235,21 @@ body::before {
 
 /* Glass header — enhanced */
 .glass-header {
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 10, 0.55) 0%,
-    rgba(5, 5, 5, 0.7) 100%
-  );
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.03) 46%,
+      rgba(255, 255, 255, 0.06) 100%
+    ),
+    rgba(10, 10, 10, 0.28);
+  backdrop-filter: blur(56px) saturate(220%) brightness(0.88);
+  -webkit-backdrop-filter: blur(56px) saturate(220%) brightness(0.88);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
-    0 1px 30px -5px rgba(0, 0, 0, 0.5);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.34),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.14),
+    0 1px 24px -6px rgba(0, 0, 0, 0.38);
 }
 
 .card-surface {
