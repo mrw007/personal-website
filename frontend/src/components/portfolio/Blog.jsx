@@ -225,7 +225,7 @@ export const Blog = () => {
                     )}
 
                     {!isLoading && !hasError && (
-                        <div className="overflow-hidden -mx-2 md:-mx-3">
+                        <div className="overflow-hidden -mx-2 md:-mx-3 pb-14 -mb-14">
                             <div
                                 className="flex transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                                 style={{ transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)` }}
