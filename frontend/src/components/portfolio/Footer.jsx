@@ -16,7 +16,7 @@ export const Footer = () => {
                             Wahib Kerkeni
                         </div>
                         <div className="overline mt-0.5">
-                            Angular · Architecture · Design Systems
+                            Frontend · Architecture · Design Systems
                         </div>
                     </div>
                 </div>

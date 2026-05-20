@@ -1,3 +1,46 @@
+/* Enhanced Experience Timeline Styles */
+.experience-fiber-line {
+    /* All main styles are inline for theme switching */
+}
+.experience-fiber-dot {
+    /* All main styles are inline for theme switching */
+}
+@media (max-width: 767px) {
+    .experience-fiber-line,
+    .experience-fiber-dot {
+        display: none !important;
+    }
+}
+/* Timeline for Experience section */
+.experience-timeline-line {
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e05d3a;
+    border-radius: 1px;
+    z-index: 0;
+}
+.experience-timeline-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e05d3a;
+    margin-top: 8px;
+    z-index: 1;
+    box-shadow: 0 0 0 2px #fff2;
+}
+@media (max-width: 767px) {
+    .experience-timeline-line,
+    .experience-timeline-dot {
+        display: none !important;
+    }
+    .experience-card-mobile {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+}
 .App-logo {
     height: 40vmin;
     pointer-events: none;
@@ -30,5 +73,60 @@
     }
     to {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes experience-line-draw {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes experience-card-in {
+    from {
+        opacity: 0;
+        transform: translateX(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes experience-dot-pop {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@supports (animation-timeline: view()) {
+    .experience-js-fallback .experience-line-fallback {
+        transform-origin: top;
+        animation: experience-line-draw 1.2s ease-out both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 35%;
+    }
+
+    .experience-js-fallback .experience-card-fallback {
+        opacity: 0;
+        transform: translateX(24px);
+        animation: experience-card-in 0.5s ease-out both;
+        animation-delay: calc(var(--card-index, 0) * 200ms);
+        animation-timeline: view();
+        animation-range: entry 15% cover 45%;
+    }
+
+    .experience-js-fallback .experience-dot-fallback {
+        transform: scale(0.5);
+        animation: experience-dot-pop 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        animation-delay: calc(var(--card-index, 0) * 200ms);
+        animation-timeline: view();
+        animation-range: entry 15% cover 45%;
     }
 }
