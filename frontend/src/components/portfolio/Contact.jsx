@@ -65,10 +65,11 @@ export const Contact = () => {
         <Reveal delay={0.15} className="mt-16 grid grid-cols-12 gap-6">
           <div className="col-span-12 lg:col-span-7">
             <p className="text-lg md:text-xl text-bone-300 font-light leading-relaxed max-w-2xl text-justify">
-              Based in Dublin with Stamp 1G — open to senior frontend, staff, or
-              tech-lead engagements across Ireland and the EU. If you're
-              rebuilding an Angular platform, modernizing a design system, or
-              scaling a frontend team, I'd love to hear from you.
+              Seven years in, and I'm still excited about the work — building
+              systems that last, not just shipping features. I'm based in Dublin
+              and looking for a senior frontend or tech-lead role where there's
+              real architecture to think about. If you're rebuilding an Angular
+              platform or scaling a team, I'd love to hear about it.
             </p>
             <a
               href="mailto:mr.wahib@gmail.com"
