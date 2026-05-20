@@ -123,7 +123,7 @@ const AppComponent = () => {
         <Skills />
         <Toolkit theme={theme} />
         <Experience />
-        <Projects />
+        {/* <Projects /> */}
         <Blog />
         <Contact />
       </main>

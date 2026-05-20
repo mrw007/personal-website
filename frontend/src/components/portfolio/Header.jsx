@@ -7,7 +7,7 @@ const NAVIGATION_LINKS = [
     { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
     { label: "Work", href: "#work" },
-    { label: "Projects", href: "#projects" },
+    // { label: "Projects", href: "#projects" },
     { label: "Writing", href: "#writing" },
 ];
 

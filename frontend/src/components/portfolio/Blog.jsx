@@ -160,7 +160,7 @@ export const Blog = () => {
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12">
                 <SectionHeader
-                    index="06"
+                    index="05"
                     label="Writing"
                     title="Field notes on frontend architecture, performance, and the craft of shipping."
                 />
