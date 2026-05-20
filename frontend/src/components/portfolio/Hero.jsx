@@ -1,6 +1,6 @@
 import { useEffect, useRef, memo } from "react";
 import { motion } from "framer-motion";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowDownRight, FileDown } from "lucide-react";
 
 const HERO_IMG =
   "/assets/emergent/hero-texture.png";
@@ -179,23 +179,24 @@ export const Hero = memo(() => {
           </p>
           <div className="flex flex-wrap gap-3">
             <a
-              href="#projects"
+              href="#work"
               className="btn-primary group"
               data-testid="hero-cta-projects"
             >
-              View Projects
+              Learn about my work
               <ArrowDownRight
                 size={16}
                 className="group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform"
               />
             </a>
             <a
-              href="#contact"
+              href="/Wahib_KerkenI_Senior_Angular_Engineer.pdf"
+              download="Wahib_KerkenI_Senior_Angular_Engineer.pdf"
               className="btn-secondary group"
-              data-testid="hero-cta-contact"
+              data-testid="hero-cta-cv"
             >
-              Contact Me
-              <ArrowUpRight
+              Download CV
+              <FileDown
                 size={16}
                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
