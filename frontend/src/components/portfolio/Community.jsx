@@ -12,7 +12,7 @@ const communityIcons = {
   },
   "ISIMS Google Club": {
     src: "/assets/companies/igsc.jpg", 
-    alt: "GDG Sfax logo",
+    alt: "ISIMS Google Club logo",
     fallback: <Users className="text-bone-500" size={20} />,
   },
 };
