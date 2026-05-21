@@ -1,128 +1,54 @@
 import { SectionHeader } from "./shared";
-import { ArrowUpRight, Building2, Briefcase, Landmark } from "lucide-react";
+import PropTypes from "prop-types";
+import { ArrowUpRight, Users } from "lucide-react";
+
 import React from "react";
 
-const withBaseUrl = (path) =>
-  `${import.meta.env.BASE_URL || "/"}${path.replace(/^\//, "")}`;
-
-const companyIcons = {
-  JCDecaux: {
-    src: withBaseUrl("/assets/companies/jcdecaux.jpeg"),
-    alt: "JCDecaux logo",
-    fallback: <Landmark className="text-bone-500" size={20} />,
+const communityIcons = {
+  "GDG Sfax (Google Developer Group)": {
+    src: "/assets/companies/gdg.jpg", 
+    alt: "GDG Sfax logo",
+    fallback: <Users className="text-bone-500" size={20} />,
   },
-  "SFR Business": {
-    src: withBaseUrl("/assets/companies/SFR.png"),
-    alt: "SFR logo",
-    fallback: <Briefcase className="text-bone-500" size={20} />,
-  },
-  SIFAST: {
-    src: withBaseUrl("/assets/companies/sifast.jpg"),
-    alt: "SIFAST logo",
-    fallback: <Building2 className="text-bone-500" size={20} />,
-  },
-  "CHO Group": {
-    src: withBaseUrl("/assets/companies/cho.png"),
-    alt: "CHO Group logo",
-    fallback: <Building2 className="text-bone-500" size={20} />,
-  },
-  "Alea-Prévention": {
-    src: withBaseUrl("/assets/companies/alea.jpg"),
-    alt: "Alea-Prévention logo",
-    fallback: <Building2 className="text-bone-500" size={20} />,
-  },
-  "Cordon Electronics": {
-    src: withBaseUrl("/assets/companies/cordon.jpg"),
-    alt: "Cordon Electronics logo",
-    fallback: <Building2 className="text-bone-500" size={20} />,
+  "ISIMS Google Club": {
+    src: "/assets/companies/igsc.jpg", 
+    alt: "GDG Sfax logo",
+    fallback: <Users className="text-bone-500" size={20} />,
   },
 };
 
-const roles = [
+const communityRoles = [
   {
-    period: "2024 — Now",
-    company: "JCDecaux",
-    title: "Senior Frontend / Full-Stack Engineer",
-    location: "Paris, France",
-    summary:
-      "My current focus: building systems that scale and stick. At JCDecaux, I co-designed a shared Angular design system that now runs across 8 product teams and 10+ internal applications — cutting duplicated UI work by standardizing component behavior across the board. I've been running production upgrades from Angular 17 to 19 and Angular Material 2 to 3, tackling the tricky parts like change detection optimization and chart redesigns, all while keeping features shipping and hitting performance budgets.",
-    tags: [
-      "angular 17–19",
-      "design system",
-      "material 2 → 3",
-      "typescript",
-      "signals",
-      "java",
-      "performance",
-    ],
-  },
-  {
-    period: "2022 — 2024",
-    company: "SFR Business",
-    title: "Tech Lead / Angular Developer",
-    location: "Paris, France",
-    summary:
-      "My first taste of leading a frontend team came here. The MYPC platform served 1,000+ employees handling access rights and incident management — and the experience was slow and manual. We rebuilt it as a self-service PWA, cutting resolution time from 2 days down to about 12 hours. I ran the Angular 12 to 17 migration in slices so PHP-powered web views stayed alive throughout, and pushed test coverage from 60% to 70% with CI/CD and SonarQube in the loop. Along the way, I brought a couple of interns and junior devs up to speed through code reviews and pairing — some of the most rewarding parts of that role.",
-    tags: [
-      "angular 12–17",
-      "pwa",
-      "material 2 → 3",
-      "sonarqube",
-      "wcag 2.1",
-      "tech lead",
-      "karma",
-      "ngrx",
-    ],
-  },
-  {
-    period: "2019 — 2022",
-    company: "SIFAST",
-    title: "Full-Stack Engineer",
+    period: "2016 — 2019",
+    company: "GDG Sfax (Google Developer Group)",
+    title: "Co-Organizer",
     location: "Sfax, Tunisia",
     summary:
-      "This is where I went full-stack and learned to think in architectures, not just components. I delivered 5 enterprise HR and business modules in Angular 9–12, managing state with NGXS/NGRX and securing everything through OAuth2. The bigger story is what came after — I migrated the whole platform to a Single-SPA micro-frontend architecture, stitching Angular, react and Vue.js together so different teams could own their pieces independently. We containerized with Docker and deployed on Kubernetes — which meant every release was consistent, no matter the environment.",
+      "Co-organized meetups and workshops for a growing local developer community, helping shape sessions around web, mobile, and emerging technologies. Worked on event coordination, speaker communication, and community-building — experience that strengthened my leadership, mentoring, and technical communication beyond delivery work.",
     tags: [
-      "angular",
-      "single-spa",
-      "ngrx",
-      "react",
-      "vue.js",
-      "kubernetes",
-      "spring boot",
-      "oauth2",
-      "micro-frontends",
+      "community leadership",
+      "mentoring",
+      "event organization",
+      "technical communication",
     ],
   },
   {
-    period: "2019 — 2020",
-    company: "CHO Group",
-    title: "Angular Developer",
-    location: "Remote · Tunisia",
+    period: "2016 — 2019",
+    company: "ISIMS Google Club",
+    title: "Community Organizer",
+    location: "Sfax, Tunisia",
     summary:
-      "While at SIFAST, I took on this contract building consumer and partner traceability apps on IBM Trust Food's blockchain — tracking 100+ olive product batches across 5 languages. Mobile-first, multilingual, and a rare look at Angular in a supply chain context.",
-    tags: ["angular", "blockchain", "i18n", "rest apis"],
-  },
-  {
-    period: "2020",
-    company: "Alea-Prévention",
-    title: "Angular Developer",
-    location: "Remote · France",
-    summary:
-      "A short contract I took on while still at SIFAST — I picked up a legacy Angular 5 health-and-safety platform, resolved production issues, and delivered new compliance features. Not flashy, but it sharpened my ability to jump into an existing codebase and make it mine fast.",
-    tags: ["angular 5", "health and safety"],
-  },
-  {
-    period: "2019",
-    company: "Cordon Electronics",
-    title: " UI/UX Design Engineer",
-    location: "Remote · France",
-    summary:
-      "Another contract during the SIFAST years — this time I stepped into design. I built responsive web, tablet, and mobile mockups in Adobe XD for an e-commerce platform, defining user flows and interface patterns that ended up being adopted as templates for a Django product.",
-    tags: ["ui/ux design", "adobe xd", "responsive design"],
+      "While I was still a student at ISIMS, I helped organize the university's Google Student Club — one of the first Google-affiliated communities at the institute. We ran coding workshops, talks on Android and web development, and open sessions for students to explore Google's developer ecosystem. It was my first real experience organizing something from scratch, and it paired nicely with running the local GDG chapter at the same time.",
+    tags: [
+      "community leadership",
+      "event organization",
+      "student community",
+      "technical communication",
+    ],
   },
 ];
 
-export const Experience = () => {
+const TimelineSection = ({ section }) => {
   const [dotTops, setDotTops] = React.useState([]);
   const [lastCardBottom, setLastCardBottom] = React.useState(0);
   const [hasAnimated, setHasAnimated] = React.useState(false);
@@ -168,37 +94,6 @@ export const Experience = () => {
     setLastCardBottom(measuredLastBottom);
   }, []);
 
-  // Keep timeline colors in sync with the app's class-based theme toggle.
-  React.useEffect(() => {
-    const root = document.documentElement;
-    const applyThemeVars = () => {
-      const isLight = root.classList.contains("light");
-      root.style.setProperty(
-        "--timeline-color",
-        isLight ? "#E85D2B" : "#E05D3A",
-      );
-      root.style.setProperty(
-        "--timeline-glow",
-        isLight ? "rgba(232,93,43,0.25)" : "rgba(224,93,58,0.4)",
-      );
-      root.style.setProperty(
-        "--experience-left-glow",
-        isLight ? "rgba(232, 93, 43, 0.03)" : "rgba(232, 93, 43, 0.06)",
-      );
-      root.style.setProperty(
-        "--timeline-dot-bg",
-        isLight ? "#ffffff" : "#181818",
-      );
-    };
-
-    applyThemeVars();
-
-    const observer = new MutationObserver(applyThemeVars);
-    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
-
-    return () => observer.disconnect();
-  }, []);
-
   React.useEffect(() => {
     measureDots();
     const onResize = () => measureDots();
@@ -236,9 +131,11 @@ export const Experience = () => {
   return (
     <section
       ref={sectionRef}
-      id="work"
-      data-testid="experience-section"
-      className={`relative overflow-hidden py-32 md:py-48 border-t border-white/5 ${useCssFallback ? "experience-js-fallback" : ""}`}
+      id={section.id}
+      data-testid={section.testId}
+      className={`relative overflow-hidden py-32 md:py-48 border-t border-white/5 ${
+        useCssFallback ? "experience-js-fallback" : ""
+      }`}
     >
       <div
         aria-hidden="true"
@@ -250,23 +147,21 @@ export const Experience = () => {
       />
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <SectionHeader
-          index="04"
-          label="Experience"
-          title="Seven years across enterprise advertising, telecom, and the studio years that started it all."
+          index={section.header.index}
+          label={section.header.label}
+          title={section.header.title}
         />
         <div
           ref={timelineContainerRef}
           className="relative"
           style={{ minHeight: 400 }}
         >
-          {/* Timeline vertical line (desktop only) using absolute positioning */}
-          {dotTops.length === roles.length && (
+          {dotTops.length === section.items.length && (
             <div
               className="hidden md:block absolute left-0 top-0 w-14"
               style={{ height: "100%", pointerEvents: "none" }}
               aria-hidden="true"
             >
-              {/* Vertical line from center of first dot to bottom of last card, with fade at bottom */}
               {(() => {
                 const lineScale =
                   useCssFallback || hasAnimated ? "scaleY(1)" : "scaleY(0)";
@@ -298,14 +193,13 @@ export const Experience = () => {
                   />
                 );
               })()}
-              {/* Dots only (no horizontal connectors) */}
               {dotTops.map((top, i) => {
                 const dotScale =
                   useCssFallback || hasAnimated ? "scale(1)" : "scale(0.5)";
 
                 return (
                   <div
-                    key={`${roles[i]?.company || "role"}-dot`}
+                    key={`${section.items[i]?.company || "item"}-dot`}
                     className="experience-dot-fallback"
                     style={{
                       "--card-index": i,
@@ -324,7 +218,9 @@ export const Experience = () => {
                       transform: dotScale,
                       transition: useCssFallback
                         ? "none"
-                        : `transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${i * 200}ms`,
+                        : `transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${
+                            i * 200
+                          }ms`,
                     }}
                   >
                     <div
@@ -340,9 +236,10 @@ export const Experience = () => {
               })}
             </div>
           )}
+
           <div className="space-y-12 md:space-y-16">
-            {roles.map((r, i) => {
-              const icon = companyIcons[r.company];
+            {section.items.map((item, i) => {
+              const icon = section.iconMap[item.company];
               const cardOpacity = useCssFallback || hasAnimated ? 1 : 0;
               const cardTranslateX =
                 useCssFallback || hasAnimated
@@ -350,16 +247,20 @@ export const Experience = () => {
                   : "translateX(24px)";
 
               return (
-                <div key={r.company} className="relative flex">
-                  {/* Empty gutter for timeline overlay */}
+                <div
+                  key={`${item.company}-${item.period}-${item.title}`}
+                  className="relative flex"
+                >
                   <div
                     className="hidden md:flex flex-col items-center"
                     style={{ width: "56px", zIndex: 2 }}
                     aria-hidden="true"
-                  ></div>
+                  />
                   <div
                     ref={(el) => (cardRefs.current[i] = el)}
-                    data-testid={`experience-${r.company.toLowerCase().replace(/\s+/g, "-")}`}
+                    data-testid={`${section.id}-${item.company
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}`}
                     className="card-surface group experience-card-fallback grid grid-cols-12 gap-4 md:gap-8 py-7 md:py-8 px-5 md:px-8 md:ml-2 md:pl-8 w-full"
                     style={{
                       "--card-index": i,
@@ -369,16 +270,17 @@ export const Experience = () => {
                       transform: cardTranslateX,
                       transition: useCssFallback
                         ? "none"
-                        : `opacity 0.5s ease-out ${i * 200}ms, transform 0.5s ease-out ${i * 200}ms`,
+                        : `opacity 0.5s ease-out ${i * 200}ms, transform 0.5s ease-out ${
+                            i * 200
+                          }ms`,
                     }}
                   >
                     <div className="col-span-12 md:col-span-2 font-mono text-xs text-bone-500 tracking-wider pt-2">
-                      {r.period}
+                      {item.period}
                     </div>
                     <div className="col-span-12 md:col-span-8">
                       <div className="flex items-center gap-3 flex-wrap">
                         <h3 className="font-display text-2xl md:text-3xl font-bold text-bone-50 tracking-tight flex items-center gap-2">
-                          {/* Company icon/avatar */}
                           <span
                             className="inline-flex items-center justify-center"
                             style={{ width: 20, height: 20 }}
@@ -386,7 +288,7 @@ export const Experience = () => {
                             {icon?.src ? (
                               <img
                                 src={icon.src}
-                                alt={icon.alt || r.company}
+                                alt={icon.alt || item.company}
                                 className="h-5 w-5 rounded bg-white/10 object-contain"
                                 style={{
                                   borderRadius: 6,
@@ -403,28 +305,30 @@ export const Experience = () => {
                               )
                             )}
                           </span>
-                          {r.title}
+                          {item.title}
                         </h3>
                         <span className="text-bone-500">/</span>
                         <span className="font-display text-xl text-bone-300">
-                          {r.company}
+                          {item.company}
                         </span>
                       </div>
                       <p className="mt-3 text-bone-300 font-light leading-relaxed max-w-2xl text-justify">
-                        {r.summary}
+                        {item.summary}
                       </p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {r.tags.map((t) => (
-                          <span key={t} className="tech-badge">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
+                      {item.tags?.length ? (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {item.tags.map((tag) => (
+                            <span key={tag} className="tech-badge">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
                     </div>
                     <div className="col-span-12 md:col-span-2 flex items-start md:justify-end pt-1">
                       <div className="flex items-center gap-3">
                         <span className="font-mono text-xs text-bone-500">
-                          {r.location}
+                          {item.location}
                         </span>
                         {/* <ArrowUpRight
                           className="text-bone-500 group-hover:text-rust group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
@@ -441,4 +345,76 @@ export const Experience = () => {
       </div>
     </section>
   );
+};
+
+export const Community = () => {
+  React.useEffect(() => {
+    const root = document.documentElement;
+    const applyThemeVars = () => {
+      const isLight = root.classList.contains("light");
+      root.style.setProperty(
+        "--timeline-color",
+        isLight ? "#E85D2B" : "#E05D3A",
+      );
+      root.style.setProperty(
+        "--timeline-glow",
+        isLight ? "rgba(232,93,43,0.25)" : "rgba(224,93,58,0.4)",
+      );
+      root.style.setProperty(
+        "--experience-left-glow",
+        isLight ? "rgba(232, 93, 43, 0.03)" : "rgba(232, 93, 43, 0.06)",
+      );
+      root.style.setProperty(
+        "--timeline-dot-bg",
+        isLight ? "#ffffff" : "#181818",
+      );
+    };
+
+    applyThemeVars();
+
+    const observer = new MutationObserver(applyThemeVars);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <TimelineSection
+      section={{
+        id: "community",
+        testId: "community-section",
+        header: {
+          index: "06",
+          label: "Leadership & Community",
+          title:
+            "Community leadership that strengthened how I mentor, communicate, and lead beyond product delivery.",
+        },
+        items: communityRoles,
+        iconMap: communityIcons,
+      }}
+    />
+  );
+};
+
+TimelineSection.propTypes = {
+  section: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    testId: PropTypes.string.isRequired,
+    header: PropTypes.shape({
+      index: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        period: PropTypes.string.isRequired,
+        company: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        location: PropTypes.string,
+        summary: PropTypes.string.isRequired,
+        tags: PropTypes.arrayOf(PropTypes.string),
+      }),
+    ).isRequired,
+    iconMap: PropTypes.object.isRequired,
+  }).isRequired,
 };

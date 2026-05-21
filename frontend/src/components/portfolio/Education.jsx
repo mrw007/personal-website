@@ -321,10 +321,10 @@ const TimelineSection = ({ section }) => {
                         <span className="font-mono text-xs text-bone-500">
                           {item.location}
                         </span>
-                        <ArrowUpRight
+                        {/* <ArrowUpRight
                           className="text-bone-500 group-hover:text-rust group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
                           size={20}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>

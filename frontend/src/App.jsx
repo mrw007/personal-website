@@ -10,6 +10,7 @@ import { Projects } from "./components/portfolio/Projects";
 import { Blog } from "./components/portfolio/Blog";
 import { Contact } from "./components/portfolio/Contact";
 import { Footer } from "./components/portfolio/Footer";
+import { Community } from "./components/portfolio/Community";
 
 const SPOTLIGHT_BUFFER = 200;
 
@@ -125,6 +126,7 @@ const AppComponent = () => {
         <Toolkit theme={theme} />
         <Experience />
         <Education />
+        <Community />
         {/* <Projects /> */}
         <Blog />
         <Contact />
