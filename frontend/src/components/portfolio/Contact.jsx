@@ -4,6 +4,7 @@ import {
   ArrowUpRight,
   Mail,
   FileDown,
+  Phone,
 } from "lucide-react";
 
 const ICON = (slug, color) => {
@@ -63,6 +64,7 @@ export const Contact = () => {
   const [isLightTheme, setIsLightTheme] = useState(() =>
     document.documentElement.classList.contains("light"),
   );
+  const [hoveredContact, setHoveredContact] = useState(null);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -87,7 +89,7 @@ export const Contact = () => {
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         <Reveal>
-          <div className="overline text-rust mb-6">07 · Contact</div>
+          <div className="overline text-rust mb-6">08 · Contact</div>
           <h2
             className="font-display text-5xl sm:text-7xl lg:text-[9rem] font-black tracking-[-0.04em] leading-[0.86] text-bone-50"
             data-testid="contact-heading"
@@ -148,6 +150,13 @@ export const Contact = () => {
                 test: "contact-email",
               },
               {
+                icon: Phone,
+                label: "Phone",
+                value: "+353 83 881 6521",
+                href: "tel:+353838816521",
+                test: "contact-phone",
+              },
+              {
                 slug: "github",
                 label: "GitHub",
                 value: "github.com/mrw007",
@@ -193,6 +202,10 @@ export const Contact = () => {
                 data-testid={c.test}
                 className="group glass glass-interactive flex items-center justify-between px-5 py-5 w-full"
                 style={{ borderRadius: 24 }}
+                onMouseEnter={() => setHoveredContact(c.label)}
+                onMouseLeave={() => setHoveredContact(null)}
+                onFocus={() => setHoveredContact(c.label)}
+                onBlur={() => setHoveredContact(null)}
               >
                 <div className="flex items-center gap-4">
                   {c.icon ? (
@@ -202,7 +215,12 @@ export const Contact = () => {
                     />
                   ) : (
                     <img
-                      src={ICON(c.slug, getIconColor(c, isLightTheme))}
+                      src={ICON(
+                        c.slug,
+                        hoveredContact === c.label
+                          ? "E05D3A"
+                          : getIconColor(c, isLightTheme),
+                      )}
                       alt={c.label}
                       loading="lazy"
                       className="h-[18px] w-[18px] object-contain transition-opacity group-hover:opacity-80"

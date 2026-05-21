@@ -4,11 +4,9 @@ import { ArrowDownRight, FileDown } from "lucide-react";
 
 const BASE_URL = import.meta.env.BASE_URL;
 
-const HERO_IMG =
-  `${BASE_URL}assets/emergent/hero-texture.png`;
+const HERO_IMG = `${BASE_URL}assets/emergent/hero-texture.png`;
 
-const PORTRAIT =
-  `${BASE_URL}wahib-cutout.png`;
+const PORTRAIT = `${BASE_URL}wahib-cutout.png`;
 
 export const Hero = memo(() => {
   const portraitRef = useRef(null);
@@ -170,11 +168,12 @@ export const Hero = memo(() => {
           className="col-span-12 lg:col-span-7 mt-12 md:mt-14 flex flex-col gap-9"
         >
           <p className="text-lg md:text-xl text-bone-300 font-light leading-relaxed max-w-2xl text-justify">
-            I'm a senior frontend engineer who builds and modernizes large-scale
-            platforms — with deep expertise in{" "}
-            <span className="text-bone-50 font-semibold">Angular</span> and the
-            design systems that keep them consistent across teams. Over 7+
-            years, I've led migrations and design-system adoption at{" "}
+            I build and modernize frontend platforms that have to hold up under
+            scale, with deep experience in{" "}
+            <span className="text-bone-50 font-semibold">Angular</span> and the{" "}
+            <span className="text-bone-50 font-semibold">Design Systems</span>{" "}
+            that keep teams aligned as products grow. Over 7+ years, I've led
+            migrations and design-system adoption at{" "}
             <span className="text-bone-50 font-semibold">JCDecaux</span> and{" "}
             <span className="text-bone-50 font-semibold">SFR Business</span>,
             supporting 8 teams and 10+ enterprise applications.

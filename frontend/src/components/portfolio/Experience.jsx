@@ -45,7 +45,7 @@ const roles = [
     title: "Senior Frontend / Full-Stack Engineer",
     location: "Paris, France",
     summary:
-      "My current focus: building systems that scale and stick. At JCDecaux, I co-designed a shared Angular design system that now runs across 8 product teams and 10+ internal applications — cutting duplicated UI work by standardizing component behavior across the board. I've been running production upgrades from Angular 17 to 19 and Angular Material 2 to 3, tackling the tricky parts like change detection optimization and chart redesigns, all while keeping features shipping and hitting performance budgets.",
+      "I helped shape the frontend foundation behind a portfolio of internal platforms used across 8 teams and 10+ enterprise applications. I co-built a shared design system, drove Angular 17-19 migrations, and set engineering standards that made the stack easier to evolve without slowing delivery.",
     tags: [
       "angular 17–19",
       "design system",
@@ -62,7 +62,7 @@ const roles = [
     title: "Tech Lead / Angular Developer",
     location: "Paris, France",
     summary:
-      "My first taste of leading a frontend team came here. The MYPC platform served 1,000+ employees handling access rights and incident management — and the experience was slow and manual. We rebuilt it as a self-service PWA, cutting resolution time from 2 days down to about 12 hours. I ran the Angular 12 to 17 migration in slices so PHP-powered web views stayed alive throughout, and pushed test coverage from 60% to 70% with CI/CD and SonarQube in the loop. Along the way, I brought a couple of interns and junior devs up to speed through code reviews and pairing — some of the most rewarding parts of that role.",
+      "At SFR Business, I worked on MYPC, a platform used by 1,000+ users to manage access rights and incident workflows. I helped turn it into a faster self-service experience, cutting resolution time from around 2 days to about 12 hours while improving quality, accessibility, and the migration path from Angular 12 to 17.",
     tags: [
       "angular 12–17",
       "pwa",
@@ -80,7 +80,7 @@ const roles = [
     title: "Full-Stack Engineer",
     location: "Sfax, Tunisia",
     summary:
-      "This is where I went full-stack and learned to think in architectures, not just components. I delivered 5 enterprise HR and business modules in Angular 9–12, managing state with NGXS/NGRX and securing everything through OAuth2. The bigger story is what came after — I migrated the whole platform to a Single-SPA micro-frontend architecture, stitching Angular, react and Vue.js together so different teams could own their pieces independently. We containerized with Docker and deployed on Kubernetes — which meant every release was consistent, no matter the environment.",
+      "At SIFAST, I worked across several client-facing products in HR, business workflows, traceability, health and safety, and e-commerce UX. I built and modernized Angular-based platforms, helped move the architecture toward micro-frontends with Single-SPA, and supported delivery across a stack that was becoming more modular, portable, and easier to evolve. Client work included Alea-Prévention, CHO Group, and Cordon Electronics.",
     tags: [
       "angular",
       "single-spa",
@@ -99,7 +99,7 @@ const roles = [
     title: "Angular Developer",
     location: "Remote · Tunisia",
     summary:
-      "While at SIFAST, I took on this contract building consumer and partner traceability apps on IBM Trust Food's blockchain — tracking 100+ olive product batches across 5 languages. Mobile-first, multilingual, and a rare look at Angular in a supply chain context.",
+      "Client project delivered through SIFAST for an olive-product traceability platform. I helped build a mobile-first, multilingual experience around partner access and blockchain-backed traceability across 100+ batches.",
     tags: ["angular", "blockchain", "i18n", "rest apis"],
   },
   {
@@ -108,7 +108,7 @@ const roles = [
     title: "Angular Developer",
     location: "Remote · France",
     summary:
-      "A short contract I took on while still at SIFAST — I picked up a legacy Angular 5 health-and-safety platform, resolved production issues, and delivered new compliance features. Not flashy, but it sharpened my ability to jump into an existing codebase and make it mine fast.",
+      "Client project delivered through SIFAST for a French health and safety platform. I helped stabilize a legacy Angular 5 application, resolve production issues, and deliver improvements that made compliance workflows more reliable for end users.",
     tags: ["angular 5", "health and safety"],
   },
   {
@@ -117,7 +117,7 @@ const roles = [
     title: " UI/UX Design Engineer",
     location: "Remote · France",
     summary:
-      "Another contract during the SIFAST years — this time I stepped into design. I built responsive web, tablet, and mobile mockups in Adobe XD for an e-commerce platform, defining user flows and interface patterns that ended up being adopted as templates for a Django product.",
+      "Client project delivered through SIFAST for an e-commerce product. I designed responsive mockups and user flows in Adobe XD that gave the product a clearer interface structure and a stronger base for implementation.",
     tags: ["ui/ux design", "adobe xd", "responsive design"],
   },
 ];
@@ -252,7 +252,7 @@ export const Experience = () => {
         <SectionHeader
           index="04"
           label="Experience"
-          title="Seven years across enterprise advertising, telecom, and the studio years that started it all."
+          title="From client delivery to enterprise platforms, a progression shaped by scale, architecture, and frontend craft."
         />
         <div
           ref={timelineContainerRef}
