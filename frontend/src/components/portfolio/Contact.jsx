@@ -1,12 +1,22 @@
+import { useEffect, useState } from "react";
 import { Reveal } from "./shared";
 import {
   ArrowUpRight,
   Mail,
-  Github,
-  Linkedin,
-  Dribbble,
   FileDown,
 } from "lucide-react";
+
+const ICON = (slug, color) => {
+  const colorPart = color ? `/${color}` : "";
+  return `https://cdn.simpleicons.org/${slug}${colorPart}`;
+};
+
+const getIconColor = (item, isLightTheme) => {
+  if (item.colorByTheme) {
+    return isLightTheme ? item.colorByTheme.light : item.colorByTheme.dark;
+  }
+  return item.color;
+};
 
 const MediumIcon = ({ size = 18, className = "" }) => (
   <svg
@@ -18,6 +28,19 @@ const MediumIcon = ({ size = 18, className = "" }) => (
     aria-hidden="true"
   >
     <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+  </svg>
+);
+
+const LinkedInIcon = ({ size = 18, className = "" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M20.447 20.452H16.89V14.88c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.67H9.345V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.604 0 4.27 2.37 4.27 5.455v6.286zM5.337 7.433a2.063 2.063 0 11.001-4.127 2.063 2.063 0 01-.001 4.127zM7.119 20.452H3.556V9h3.563v11.452z" />
   </svg>
 );
 
@@ -37,6 +60,24 @@ const BehanceIcon = ({ size = 18, className = "" }) => (
 const BASE_URL = import.meta.env.BASE_URL;
 
 export const Contact = () => {
+  const [isLightTheme, setIsLightTheme] = useState(() =>
+    document.documentElement.classList.contains("light"),
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const syncTheme = () => {
+      setIsLightTheme(root.classList.contains("light"));
+    };
+
+    syncTheme();
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="contact"
@@ -107,17 +148,18 @@ export const Contact = () => {
                 test: "contact-email",
               },
               {
-                icon: Github,
+                slug: "github",
                 label: "GitHub",
                 value: "github.com/mrw007",
                 href: "https://github.com/mrw007",
                 test: "contact-github",
+                colorByTheme: { light: "000000", dark: "FFFFFF" },
               },
               {
-                icon: Linkedin,
+                icon: LinkedInIcon,
                 label: "LinkedIn",
                 value: "in/wahib-kerkeni",
-                href: "https://www.linkedin.com/in/wahib-kerkeni-a5a4a5a5/",
+                href: "https://www.linkedin.com/in/wahibkerkeni/",
                 test: "contact-linkedin",
               },
               {
@@ -128,11 +170,12 @@ export const Contact = () => {
                 test: "contact-medium",
               },
               {
-                icon: Dribbble,
+                slug: "dribbble",
                 label: "Dribbble",
                 value: "mrw007",
                 href: "https://dribbble.com/mrw007",
                 test: "contact-dribbble",
+                colorByTheme: { light: "000000", dark: "FFFFFF" },
               },
               {
                 icon: BehanceIcon,
@@ -152,10 +195,22 @@ export const Contact = () => {
                 style={{ borderRadius: 24 }}
               >
                 <div className="flex items-center gap-4">
-                  <c.icon
-                    size={18}
-                    className="text-bone-300 group-hover:text-rust transition-colors"
-                  />
+                  {c.icon ? (
+                    <c.icon
+                      size={18}
+                      className="text-bone-300 group-hover:text-rust transition-colors"
+                    />
+                  ) : (
+                    <img
+                      src={ICON(c.slug, getIconColor(c, isLightTheme))}
+                      alt={c.label}
+                      loading="lazy"
+                      className="h-[18px] w-[18px] object-contain transition-opacity group-hover:opacity-80"
+                      onError={(e) => {
+                        e.currentTarget.style.opacity = "0.4";
+                      }}
+                    />
+                  )}
                   <div>
                     <div className="overline mb-0.5">{c.label}</div>
                     <div className="font-mono text-sm text-bone-50">
