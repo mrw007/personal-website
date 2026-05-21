@@ -1,131 +1,48 @@
 import { SectionHeader } from "./shared";
 import PropTypes from "prop-types";
-import {
-  ArrowUpRight,
-  Building2,
-  Briefcase,
-  Landmark,
-} from "lucide-react";
+import { ArrowUpRight, GraduationCap } from "lucide-react";
 
 import React from "react";
 
 const withBaseUrl = (path) =>
   `${import.meta.env.BASE_URL || "/"}${path.replace(/^\//, "")}`;
 
-const companyIcons = {
-  JCDecaux: {
-    src: withBaseUrl("/assets/companies/jcdecaux.jpeg"),
-    alt: "JCDecaux logo",
-    fallback: <Landmark className="text-bone-500" size={20} />,
-  },
-  "SFR Business": {
-    src: withBaseUrl("/assets/companies/SFR.png"),
-    alt: "SFR logo",
-    fallback: <Briefcase className="text-bone-500" size={20} />,
-  },
-  SIFAST: {
-    src: withBaseUrl("/assets/companies/sifast.jpg"),
-    alt: "SIFAST logo",
-    fallback: <Building2 className="text-bone-500" size={20} />,
-  },
-  "CHO Group": {
-    src: withBaseUrl("/assets/companies/cho.png"),
-    alt: "CHO Group logo",
-    fallback: <Building2 className="text-bone-500" size={20} />,
-  },
-  "Alea-Prévention": {
-    src: withBaseUrl("/assets/companies/alea.jpg"),
-    alt: "Alea-Prévention logo",
-    fallback: <Building2 className="text-bone-500" size={20} />,
-  },
-  "Cordon Electronics": {
-    src: withBaseUrl("/assets/companies/cordon.jpg"),
-    alt: "Cordon Electronics logo",
-    fallback: <Building2 className="text-bone-500" size={20} />,
+const educationIcons = {
+  "Higher Institute of Computer Science and Multimedia of Sfax": {
+    src: withBaseUrl("/assets/companies/isims.jpg"),
+    alt: "ISIMS logo",
+    fallback: <GraduationCap className="text-bone-500" size={20} />,
   },
 };
 
-const workRoles = [
-  {
-    period: "2024 — Now",
-    company: "JCDecaux",
-    title: "Senior Frontend / Full-Stack Engineer",
-    location: "Paris, France",
-    summary:
-      "My current focus: building systems that scale and stick. At JCDecaux, I co-designed a shared Angular design system that now runs across 8 product teams and 10+ internal applications — cutting duplicated UI work by standardizing component behavior across the board. I've been running production upgrades from Angular 17 to 19 and Angular Material 2 to 3, tackling the tricky parts like change detection optimization and chart redesigns, all while keeping features shipping and hitting performance budgets.",
-    tags: [
-      "angular 17–19",
-      "design system",
-      "material 2 → 3",
-      "typescript",
-      "signals",
-      "java",
-      "performance",
-    ],
-  },
-  {
-    period: "2022 — 2024",
-    company: "SFR Business",
-    title: "Tech Lead / Angular Developer",
-    location: "Paris, France",
-    summary:
-      "My first taste of leading a frontend team came here. The MYPC platform served 1,000+ employees handling access rights and incident management — and the experience was slow and manual. We rebuilt it as a self-service PWA, cutting resolution time from 2 days down to about 12 hours. I ran the Angular 12 to 17 migration in slices so PHP-powered web views stayed alive throughout, and pushed test coverage from 60% to 70% with CI/CD and SonarQube in the loop. Along the way, I brought a couple of interns and junior devs up to speed through code reviews and pairing — some of the most rewarding parts of that role.",
-    tags: [
-      "angular 12–17",
-      "pwa",
-      "material 2 → 3",
-      "sonarqube",
-      "wcag 2.1",
-      "tech lead",
-      "karma",
-      "ngrx",
-    ],
-  },
-  {
-    period: "2019 — 2022",
-    company: "SIFAST",
-    title: "Full-Stack Engineer",
-    location: "Sfax, Tunisia",
-    summary:
-      "This is where I went full-stack and learned to think in architectures, not just components. I delivered 5 enterprise HR and business modules in Angular 9–12, managing state with NGXS/NGRX and securing everything through OAuth2. The bigger story is what came after — I migrated the whole platform to a Single-SPA micro-frontend architecture, stitching Angular, react and Vue.js together so different teams could own their pieces independently. We containerized with Docker and deployed on Kubernetes — which meant every release was consistent, no matter the environment.",
-    tags: [
-      "angular",
-      "single-spa",
-      "ngrx",
-      "react",
-      "vue.js",
-      "kubernetes",
-      "spring boot",
-      "oauth2",
-      "micro-frontends",
-    ],
-  },
-  {
-    period: "2019 — 2020",
-    company: "CHO Group",
-    title: "Angular Developer",
-    location: "Remote · Tunisia",
-    summary:
-      "While at SIFAST, I took on this contract building consumer and partner traceability apps on IBM Trust Food's blockchain — tracking 100+ olive product batches across 5 languages. Mobile-first, multilingual, and a rare look at Angular in a supply chain context.",
-    tags: ["angular", "blockchain", "i18n", "rest apis"],
-  },
-  {
-    period: "2020",
-    company: "Alea-Prévention",
-    title: "Angular Developer",
-    location: "Remote · France",
-    summary:
-      "A short contract I took on while still at SIFAST — I picked up a legacy Angular 5 health-and-safety platform, resolved production issues, and delivered new compliance features. Not flashy, but it sharpened my ability to jump into an existing codebase and make it mine fast.",
-    tags: ["angular 5", "health and safety"],
-  },
+const educationRoles = [
   {
     period: "2019",
-    company: "Cordon Electronics",
-    title: " UI/UX Design Engineer",
-    location: "Remote · France",
+    company: "Higher Institute of Computer Science and Multimedia of Sfax",
+    title: "Engineering Degree in Applied Sciences and Technologies",
+    location: "Sfax, Tunisia",
     summary:
-      "Another contract during the SIFAST years — this time I stepped into design. I built responsive web, tablet, and mobile mockups in Adobe XD for an e-commerce platform, defining user flows and interface patterns that ended up being adopted as templates for a Django product.",
-    tags: ["ui/ux design", "adobe xd", "responsive design"],
+      "Built a strong foundation in software engineering, computer science, and application development. This degree shaped the systems thinking behind my current work in frontend architecture, design systems, and scalable product engineering.",
+    tags: [
+      "software engineering",
+      "computer science",
+      "application development",
+      "systems thinking",
+    ],
+  },
+  {
+    period: "2016",
+    company: "Higher Institute of Computer Science and Multimedia of Sfax",
+    title: "Bachelor's Degree in Fundamental Sciences",
+    location: "Sfax, Tunisia",
+    summary:
+      "Developed core knowledge in mathematics, scientific reasoning, and analytical problem-solving, which continues to support how I approach engineering rigor, architecture decisions, and complex technical challenges.",
+    tags: [
+      "fundamental sciences",
+      "mathematics",
+      "analytical thinking",
+      "problem solving",
+    ],
   },
 ];
 
@@ -155,11 +72,14 @@ const TimelineSection = ({ section }) => {
       return;
     }
 
-    const containerTop = timelineContainerRef.current.getBoundingClientRect().top;
+    const containerTop =
+      timelineContainerRef.current.getBoundingClientRect().top;
 
     const tops = cardRefs.current.map((ref) =>
       ref
-        ? ref.getBoundingClientRect().top - containerTop + ref.offsetHeight * 0.1
+        ? ref.getBoundingClientRect().top -
+          containerTop +
+          ref.offsetHeight * 0.1
         : 0,
     );
 
@@ -229,7 +149,11 @@ const TimelineSection = ({ section }) => {
           label={section.header.label}
           title={section.header.title}
         />
-        <div ref={timelineContainerRef} className="relative" style={{ minHeight: 400 }}>
+        <div
+          ref={timelineContainerRef}
+          className="relative"
+          style={{ minHeight: 400 }}
+        >
           {dotTops.length === section.items.length && (
             <div
               className="hidden md:block absolute left-0 top-0 w-14"
@@ -349,10 +273,10 @@ const TimelineSection = ({ section }) => {
                           }ms`,
                     }}
                   >
-                    <div className="col-span-12 md:col-span-2 font-mono text-xs text-bone-500 tracking-wider pt-2">
+                    <div className="col-span-12 md:col-span-1 font-mono text-xs text-bone-500 tracking-wider pt-2">
                       {item.period}
                     </div>
-                    <div className="col-span-12 md:col-span-8">
+                    <div className="col-span-12 md:col-span-9">
                       <div className="flex items-center gap-3 flex-wrap">
                         <h3 className="font-display text-2xl md:text-3xl font-bold text-bone-50 tracking-tight flex items-center gap-2">
                           <span
@@ -368,7 +292,7 @@ const TimelineSection = ({ section }) => {
                               />
                             ) : (
                               icon?.fallback || (
-                                <Building2 className="text-bone-500" size={20} />
+                                <GraduationCap className="text-bone-500" size={20} />
                               )
                             )}
                           </span>
@@ -414,12 +338,15 @@ const TimelineSection = ({ section }) => {
   );
 };
 
-export const Experience = () => {
+export const Education = () => {
   React.useEffect(() => {
     const root = document.documentElement;
     const applyThemeVars = () => {
       const isLight = root.classList.contains("light");
-      root.style.setProperty("--timeline-color", isLight ? "#E85D2B" : "#E05D3A");
+      root.style.setProperty(
+        "--timeline-color",
+        isLight ? "#E85D2B" : "#E05D3A",
+      );
       root.style.setProperty(
         "--timeline-glow",
         isLight ? "rgba(232,93,43,0.25)" : "rgba(224,93,58,0.4)",
@@ -428,7 +355,10 @@ export const Experience = () => {
         "--experience-left-glow",
         isLight ? "rgba(232, 93, 43, 0.03)" : "rgba(232, 93, 43, 0.06)",
       );
-      root.style.setProperty("--timeline-dot-bg", isLight ? "#ffffff" : "#181818");
+      root.style.setProperty(
+        "--timeline-dot-bg",
+        isLight ? "#ffffff" : "#181818",
+      );
     };
 
     applyThemeVars();
@@ -442,16 +372,16 @@ export const Experience = () => {
   return (
     <TimelineSection
       section={{
-        id: "work",
-        testId: "experience-section",
+        id: "education",
+        testId: "education-section",
         header: {
-          index: "04",
-          label: "Experience",
+          index: "05",
+          label: "Education",
           title:
-            "Seven years across enterprise advertising, telecom, and the studio years that started it all.",
+            "Academic foundation that informs my engineering decisions in production work.",
         },
-        items: workRoles,
-        iconMap: companyIcons,
+        items: educationRoles,
+        iconMap: educationIcons,
       }}
     />
   );

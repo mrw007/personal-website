@@ -87,7 +87,7 @@ export const Contact = () => {
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         <Reveal>
-          <div className="overline text-rust mb-6">06 · Contact</div>
+          <div className="overline text-rust mb-6">07 · Contact</div>
           <h2
             className="font-display text-5xl sm:text-7xl lg:text-[9rem] font-black tracking-[-0.04em] leading-[0.86] text-bone-50"
             data-testid="contact-heading"

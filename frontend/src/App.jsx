@@ -5,6 +5,7 @@ import { About } from "./components/portfolio/About";
 import { Skills } from "./components/portfolio/Skills";
 import { Toolkit } from "./components/portfolio/Toolkit";
 import { Experience } from "./components/portfolio/Experience";
+import { Education } from "./components/portfolio/Education";
 import { Projects } from "./components/portfolio/Projects";
 import { Blog } from "./components/portfolio/Blog";
 import { Contact } from "./components/portfolio/Contact";
@@ -123,6 +124,7 @@ const AppComponent = () => {
         <Skills />
         <Toolkit theme={theme} />
         <Experience />
+        <Education />
         {/* <Projects /> */}
         <Blog />
         <Contact />
