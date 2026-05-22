@@ -81,8 +81,25 @@ function useTheme() {
   return [theme, setTheme];
 }
 
+function useMacDesktopClass() {
+  useEffect(() => {
+    if (typeof navigator === "undefined") return;
+
+    const ua = navigator.userAgent;
+    const isMac = /Macintosh/i.test(ua);
+    const isTouchDevice = navigator.maxTouchPoints > 1;
+
+    if (!isMac || isTouchDevice) return;
+
+    const root = document.documentElement;
+    root.classList.add("mac-desktop");
+    return () => root.classList.remove("mac-desktop");
+  }, []);
+}
+
 const AppComponent = () => {
   useSpotlight();
+  useMacDesktopClass();
   const [theme, setTheme] = useTheme();
   return (
     <div

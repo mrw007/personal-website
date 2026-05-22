@@ -135,6 +135,13 @@ body::before {
   background-size: 80px 80px;
 }
 
+/* Safari on macOS renders the fixed header visually closer to hero top copy. */
+@media (min-width: 1024px) {
+  html.mac-desktop .hero-section {
+    padding-top: 8.5rem;
+  }
+}
+
 /* ============================================
    Apple-style Liquid Glass system
    ============================================ */

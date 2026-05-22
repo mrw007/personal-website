@@ -43,7 +43,7 @@ export const Hero = memo(() => {
     <section
       id="top"
       data-testid="hero-section"
-      className="relative min-h-[calc(100vh-60px)] flex items-center pt-24 pb-16 overflow-hidden"
+      className="hero-section relative min-h-[calc(100vh-60px)] flex items-center pt-24 pb-16 overflow-hidden"
     >
       {/* Texture background */}
       <div
