@@ -123,9 +123,15 @@ const roles = [
 ];
 
 export const Experience = () => {
+  // On mobile viewports, skip reveal animation entirely — cards must be visible immediately.
+  // The IntersectionObserver threshold approach fails when the section is taller than the
+  // viewport (threshold: 0.25 can never be reached), causing all cards to stay at opacity:0.
+  const isMobile =
+    globalThis.window !== undefined && globalThis.window.innerWidth < 768;
+
   const [dotTops, setDotTops] = React.useState([]);
   const [lastCardBottom, setLastCardBottom] = React.useState(0);
-  const [hasAnimated, setHasAnimated] = React.useState(false);
+  const [hasAnimated, setHasAnimated] = React.useState(isMobile);
   const [useCssFallback, setUseCssFallback] = React.useState(false);
   const sectionRef = React.useRef(null);
   const timelineContainerRef = React.useRef(null);
@@ -208,11 +214,16 @@ export const Experience = () => {
   }, [measureDots]);
 
   React.useEffect(() => {
+    // Mobile already starts with hasAnimated=true; skip observer setup entirely.
+    if (isMobile) return;
+
     if (!("IntersectionObserver" in globalThis)) {
       setUseCssFallback(true);
       return;
     }
 
+    // Use a low threshold (5%) so the observer fires even when the section is
+    // taller than the viewport. rootMargin adds a small early-trigger buffer.
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
@@ -222,7 +233,8 @@ export const Experience = () => {
         }
       },
       {
-        threshold: 0.25,
+        threshold: 0.05,
+        rootMargin: "0px 0px -60px 0px",
       },
     );
 
@@ -230,8 +242,17 @@ export const Experience = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
-  }, []);
+    // Safety net: if the observer never fires within 2 s (e.g. element already
+    // in view on page load but intersection entry was missed), force reveal.
+    const fallbackTimer = setTimeout(() => {
+      setHasAnimated(true);
+    }, 2000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
+  }, [isMobile]);
 
   return (
     <section
