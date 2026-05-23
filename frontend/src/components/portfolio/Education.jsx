@@ -280,7 +280,7 @@ const TimelineSection = ({ section }) => {
                       <div className="flex items-center gap-3 flex-wrap">
                         <h3 className="font-display text-2xl md:text-3xl font-bold text-bone-50 tracking-tight flex items-center gap-2">
                           <span
-                            className="inline-flex items-center justify-center"
+                            className="inline-flex items-center justify-center shrink-0"
                             style={{ width: 20, height: 20 }}
                           >
                             {icon?.src ? (
@@ -298,8 +298,8 @@ const TimelineSection = ({ section }) => {
                           </span>
                           {item.title}
                         </h3>
-                        <span className="text-bone-500">/</span>
-                        <span className="font-display text-xl text-bone-300">
+                          <span className="hidden md:inline text-bone-500">/</span>
+                          <span className="font-display text-xl text-bone-300">
                           {item.company}
                         </span>
                       </div>

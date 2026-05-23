@@ -40,6 +40,10 @@
         margin-left: 0 !important;
         padding-left: 0 !important;
     }
+    /* Rust left-border on each card acts as the mobile timeline indicator */
+    .experience-card-fallback.card-surface {
+        border-left: 2px solid var(--timeline-color, #e05d3a);
+    }
 }
 .App-logo {
     height: 40vmin;

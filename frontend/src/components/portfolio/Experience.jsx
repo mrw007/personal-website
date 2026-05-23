@@ -393,15 +393,17 @@ export const Experience = () => {
                         : `opacity 0.5s ease-out ${i * 200}ms, transform 0.5s ease-out ${i * 200}ms`,
                     }}
                   >
-                    <div className="col-span-12 md:col-span-2 font-mono text-xs text-bone-500 tracking-wider pt-2">
-                      {r.period}
+                    {/* Period + Location grouped on mobile; period alone on desktop */}
+                    <div className="col-span-12 md:col-span-2 font-mono text-xs text-bone-500 tracking-wider pt-2 flex items-center justify-between md:block">
+                      <span>{r.period}</span>
+                      <span className="md:hidden">{r.location}</span>
                     </div>
                     <div className="col-span-12 md:col-span-8">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <h3 className="font-display text-2xl md:text-3xl font-bold text-bone-50 tracking-tight flex items-center gap-2">
+                        <h3 className="font-display text-xl md:text-3xl font-bold text-bone-50 tracking-tight flex items-center gap-2">
                           {/* Company icon/avatar */}
                           <span
-                            className="inline-flex items-center justify-center"
+                            className="inline-flex items-center justify-center shrink-0"
                             style={{ width: 20, height: 20 }}
                           >
                             {icon?.src ? (
@@ -426,12 +428,12 @@ export const Experience = () => {
                           </span>
                           {r.title}
                         </h3>
-                        <span className="text-bone-500">/</span>
-                        <span className="font-display text-xl text-bone-300">
+                          <span className="text-bone-500">/</span>
+                          <span className="font-display text-xl text-bone-300">
                           {r.company}
                         </span>
                       </div>
-                      <p className="mt-3 text-bone-300 font-light leading-relaxed max-w-2xl text-justify">
+                      <p className="mt-3 text-bone-300 font-light leading-relaxed max-w-2xl md:text-justify">
                         {r.summary}
                       </p>
                       <div className="mt-4 flex flex-wrap gap-2">
@@ -442,7 +444,8 @@ export const Experience = () => {
                         ))}
                       </div>
                     </div>
-                    <div className="col-span-12 md:col-span-2 flex items-start md:justify-end pt-1">
+                    {/* Location column: hidden on mobile (shown inline with period above) */}
+                    <div className="hidden md:flex md:col-span-2 items-start justify-end pt-1">
                       <div className="flex items-center gap-3">
                         <span className="font-mono text-xs text-bone-500">
                           {r.location}
