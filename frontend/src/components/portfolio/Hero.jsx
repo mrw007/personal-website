@@ -11,9 +11,31 @@ const PORTRAIT = `${BASE_URL}wahib-cutout.png`;
 export const Hero = memo(() => {
   const portraitRef = useRef(null);
   const textureRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (globalThis.window === undefined) return false;
+    return globalThis.matchMedia("(min-width: 1024px)").matches;
+  });
   const [isTextureReady, setIsTextureReady] = useState(false);
 
   useEffect(() => {
+    if (globalThis.window === undefined) return;
+
+    const mediaQuery = globalThis.matchMedia("(min-width: 1024px)");
+    const onChange = (event) => {
+      setIsDesktop(event.matches);
+    };
+
+    setIsDesktop(mediaQuery.matches);
+    mediaQuery.addEventListener("change", onChange);
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) {
+      setIsTextureReady(false);
+      return;
+    }
+
     let idleId;
     let timeoutId;
 
@@ -21,10 +43,7 @@ export const Hero = memo(() => {
       setIsTextureReady(true);
     };
 
-    if (
-      typeof globalThis.window !== "undefined" &&
-      "requestIdleCallback" in globalThis
-    ) {
+    if (globalThis.window !== undefined && "requestIdleCallback" in globalThis) {
       idleId = globalThis.requestIdleCallback(warmTexture, { timeout: 1400 });
     } else {
       timeoutId = globalThis.setTimeout(warmTexture, 700);
@@ -38,9 +57,11 @@ export const Hero = memo(() => {
         globalThis.clearTimeout(timeoutId);
       }
     };
-  }, []);
+  }, [isDesktop]);
 
   useEffect(() => {
+    if (!isDesktop) return;
+
     let raf = 0;
     let tx = 0,
       ty = 0;
@@ -65,7 +86,7 @@ export const Hero = memo(() => {
       globalThis.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isDesktop]);
 
   return (
     <section
@@ -78,7 +99,8 @@ export const Hero = memo(() => {
         ref={textureRef}
         className="absolute inset-0 opacity-40 pointer-events-none will-change-transform"
         style={{
-          backgroundImage: isTextureReady ? `url(${HERO_IMG})` : "none",
+          backgroundImage:
+            isDesktop && isTextureReady ? `url(${HERO_IMG})` : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
           maskImage:
@@ -90,57 +112,59 @@ export const Hero = memo(() => {
       />
       {/* Floating cutout portrait — anchored to the centered content
                 container (max-w-7xl) so it sits next to the text on wide screens */}
-      <div className="hidden lg:block absolute inset-0 z-[5] pointer-events-none">
-        <div className="relative max-w-[86rem] mx-auto h-full px-5 md:px-8 xl:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{
-              duration: 1.3,
-              delay: 0.4,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="absolute right-2 xl:right-0 top-[14%] xl:top-[12%] select-none"
-            data-testid="hero-portrait"
-          >
-            <div
-              ref={portraitRef}
-              className="will-change-transform"
-              style={{
-                transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+      {isDesktop ? (
+        <div className="hidden lg:block absolute inset-0 z-[5] pointer-events-none">
+          <div className="relative max-w-[86rem] mx-auto h-full px-5 md:px-8 xl:px-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 1.3,
+                delay: 0.4,
+                ease: [0.16, 1, 0.3, 1],
               }}
+              className="absolute right-2 xl:right-0 top-[14%] xl:top-[12%] select-none"
+              data-testid="hero-portrait"
             >
-              <div className="relative float-gentle">
-                {/* Soft rust glow halo behind */}
-                <div
-                  className="absolute inset-0 -z-10 blur-3xl opacity-60"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at 50% 50%, rgba(224,93,58,0.50) 0%, rgba(224,93,58,0.18) 35%, transparent 65%)",
-                    transform: "scale(1.18)",
-                  }}
-                />
-                <img
-                  src={PORTRAIT}
-                  alt="Wahib Kerkeni — Senior Frontend Engineer"
-                  loading="lazy"
-                  decoding="async"
-                  fetchPriority="low"
-                  width="1080"
-                  height="1350"
-                  className="block h-[420px] xl:h-[500px] 2xl:h-[540px] w-auto portrait-duotone"
-                  style={{
-                    WebkitMaskImage:
-                      "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
-                    maskImage:
-                      "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
-                  }}
-                />
+              <div
+                ref={portraitRef}
+                className="will-change-transform"
+                style={{
+                  transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+                }}
+              >
+                <div className="relative float-gentle">
+                  {/* Soft rust glow halo behind */}
+                  <div
+                    className="absolute inset-0 -z-10 blur-3xl opacity-60"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse at 50% 50%, rgba(224,93,58,0.50) 0%, rgba(224,93,58,0.18) 35%, transparent 65%)",
+                      transform: "scale(1.18)",
+                    }}
+                  />
+                  <img
+                    src={PORTRAIT}
+                    alt="Wahib Kerkeni — Senior Frontend Engineer"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    width="1080"
+                    height="1350"
+                    className="block h-[420px] xl:h-[500px] 2xl:h-[540px] w-auto portrait-duotone"
+                    style={{
+                      WebkitMaskImage:
+                        "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
+                      maskImage:
+                        "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.6) 80%, transparent 100%)",
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
-      </div>
+      ) : null}
 
       <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink-900 pointer-events-none" />
