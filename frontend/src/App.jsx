@@ -1,65 +1,167 @@
-import { useEffect, useState, useEffectEvent, memo } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useState,
+  useEffectEvent,
+  memo,
+} from "react";
 import { Header } from "./components/portfolio/Header";
 import { Hero, TechStrip } from "./components/portfolio/Hero";
-import { About } from "./components/portfolio/About";
-import { Skills } from "./components/portfolio/Skills";
-import { Toolkit } from "./components/portfolio/Toolkit";
-import { Experience } from "./components/portfolio/Experience";
-import { Education } from "./components/portfolio/Education";
-import { Projects } from "./components/portfolio/Projects";
-import { Blog } from "./components/portfolio/Blog";
-import { Contact } from "./components/portfolio/Contact";
-import { Footer } from "./components/portfolio/Footer";
-import { Community } from "./components/portfolio/Community";
+const About = lazy(() =>
+  import("./components/portfolio/About").then((module) => ({
+    default: module.About,
+  })),
+);
+const Skills = lazy(() =>
+  import("./components/portfolio/Skills").then((module) => ({
+    default: module.Skills,
+  })),
+);
+const Toolkit = lazy(() =>
+  import("./components/portfolio/Toolkit").then((module) => ({
+    default: module.Toolkit,
+  })),
+);
+const Experience = lazy(() =>
+  import("./components/portfolio/Experience").then((module) => ({
+    default: module.Experience,
+  })),
+);
+const Education = lazy(() =>
+  import("./components/portfolio/Education").then((module) => ({
+    default: module.Education,
+  })),
+);
+const Community = lazy(() =>
+  import("./components/portfolio/Community").then((module) => ({
+    default: module.Community,
+  })),
+);
+const Blog = lazy(() =>
+  import("./components/portfolio/Blog").then((module) => ({
+    default: module.Blog,
+  })),
+);
+const Contact = lazy(() =>
+  import("./components/portfolio/Contact").then((module) => ({
+    default: module.Contact,
+  })),
+);
+const Footer = lazy(() =>
+  import("./components/portfolio/Footer").then((module) => ({
+    default: module.Footer,
+  })),
+);
 
-const SPOTLIGHT_BUFFER = 200;
-
-// Spotlight glow — track mouse and feed CSS vars to every .card-surface in view.
+// Spotlight glow — global mouse tracking with cached geometry and visible-card updates.
 function useSpotlight() {
   useEffect(() => {
-    let ticking = false;
-    let lastX = 0;
-    let lastY = 0;
-    let rafId = 0;
+    const reduceMotion = globalThis.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    const coarsePointer = globalThis.matchMedia("(pointer: coarse)");
+    if (reduceMotion.matches || coarsePointer.matches) return;
 
-    const update = () => {
-      ticking = false;
-      const els = document.querySelectorAll(".card-surface");
-      for (let i = 0; i < els.length; i++) {
-        const el = els[i];
-        const r = el.getBoundingClientRect();
-        if (
-          r.bottom < -SPOTLIGHT_BUFFER ||
-          r.top > window.innerHeight + SPOTLIGHT_BUFFER ||
-          r.right < 0 ||
-          r.left > window.innerWidth
-        )
-          continue;
-        el.style.setProperty("--mx", `${lastX - r.left}px`);
-        el.style.setProperty("--my", `${lastY - r.top}px`);
+    const cards = new Set();
+    const visibleCards = new Set();
+
+    let paintRafId = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+
+    const updateCardPosition = (card) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${mouseX - rect.left}px`);
+      card.style.setProperty("--my", `${mouseY - rect.top}px`);
+    };
+
+    const schedulePaint = () => {
+      if (!paintRafId) {
+        paintRafId = requestAnimationFrame(() => {
+          paintRafId = 0;
+          for (const card of visibleCards) {
+            updateCardPosition(card);
+          }
+        });
       }
     };
 
-    const onMove = (e) => {
-      lastX = e.clientX;
-      lastY = e.clientY;
-      if (!ticking) {
-        ticking = true;
-        rafId = requestAnimationFrame(update);
+    const onMove = (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      schedulePaint();
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const card = entry.target;
+          if (entry.isIntersecting) {
+            visibleCards.add(card);
+          } else {
+            visibleCards.delete(card);
+          }
+        }
+      },
+      { root: null, rootMargin: "200px 0px" },
+    );
+
+    const registerCard = (card) => {
+      if (!(card instanceof HTMLElement) || cards.has(card)) return;
+      cards.add(card);
+      observer.observe(card);
+    };
+
+    const unregisterCard = (card) => {
+      if (!(card instanceof HTMLElement) || !cards.has(card)) return;
+      cards.delete(card);
+      visibleCards.delete(card);
+      observer.unobserve(card);
+    };
+
+    document.querySelectorAll(".card-surface").forEach((card) => {
+      registerCard(card);
+    });
+
+    const handleMutationNodes = (nodes, mode) => {
+      for (const node of nodes) {
+        if (!(node instanceof HTMLElement)) continue;
+
+        if (node.matches(".card-surface")) {
+          mode(node);
+        }
+
+        const nestedCards = node.querySelectorAll?.(".card-surface") || [];
+        for (const card of nestedCards) {
+          mode(card);
+        }
       }
     };
 
-    window.addEventListener("mousemove", onMove, { passive: true });
+    const mutationObserver = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        handleMutationNodes(mutation.addedNodes, registerCard);
+        handleMutationNodes(mutation.removedNodes, unregisterCard);
+      }
+    });
+
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    globalThis.addEventListener("pointermove", onMove, { passive: true });
+
     return () => {
-      window.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(rafId);
+      mutationObserver.disconnect();
+      observer.disconnect();
+      globalThis.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(paintRafId);
     };
   }, []);
 }
 
 function useTheme() {
   const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "dark";
+    if (globalThis.window === undefined) return "dark";
     return localStorage.getItem("theme") || "dark";
   });
 
@@ -138,17 +240,21 @@ const AppComponent = () => {
       <main>
         <Hero />
         <TechStrip />
-        <About />
-        <Skills />
-        <Toolkit theme={theme} />
-        <Experience />
-        <Education />
-        <Community />
-        {/* <Projects /> */}
-        <Blog />
-        <Contact />
+        <Suspense fallback={<div aria-hidden="true" className="h-24" />}>
+          <About />
+          <Skills />
+          <Toolkit theme={theme} />
+          <Experience />
+          <Education />
+          <Community />
+          {/* <Projects /> */}
+          <Blog />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

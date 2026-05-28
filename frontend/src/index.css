@@ -301,12 +301,13 @@ body::before {
     rgba(224, 93, 58, 0.07) 18%,
     transparent 45%
   );
-  opacity: 0;
+  opacity: var(--spotlight-opacity, 0);
   transition: opacity 0.45s ease;
   z-index: 0;
 }
 
-.card-surface:hover::before {
+.card-surface:hover::before,
+.card-surface:focus-within::before {
   opacity: 1;
 }
 

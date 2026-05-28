@@ -287,6 +287,11 @@ const TimelineSection = ({ section }) => {
                               <img
                                 src={icon.src}
                                 alt={icon.alt || item.company}
+                                width="20"
+                                height="20"
+                                loading="lazy"
+                                decoding="async"
+                                fetchPriority="low"
                                 className="h-5 w-5 rounded bg-white/10 object-contain"
                                 style={{ borderRadius: 6, background: '#fff', padding: 2 }}
                               />

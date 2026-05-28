@@ -410,6 +410,11 @@ export const Experience = () => {
                               <img
                                 src={icon.src}
                                 alt={icon.alt || r.company}
+                                width="20"
+                                height="20"
+                                loading="lazy"
+                                decoding="async"
+                                fetchPriority="low"
                                 className="h-5 w-5 rounded bg-white/10 object-contain"
                                 style={{
                                   borderRadius: 6,

@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownRight, FileDown } from "lucide-react";
 
@@ -11,6 +11,34 @@ const PORTRAIT = `${BASE_URL}wahib-cutout.png`;
 export const Hero = memo(() => {
   const portraitRef = useRef(null);
   const textureRef = useRef(null);
+  const [isTextureReady, setIsTextureReady] = useState(false);
+
+  useEffect(() => {
+    let idleId;
+    let timeoutId;
+
+    const warmTexture = () => {
+      setIsTextureReady(true);
+    };
+
+    if (
+      typeof globalThis.window !== "undefined" &&
+      "requestIdleCallback" in globalThis
+    ) {
+      idleId = globalThis.requestIdleCallback(warmTexture, { timeout: 1400 });
+    } else {
+      timeoutId = globalThis.setTimeout(warmTexture, 700);
+    }
+
+    return () => {
+      if (idleId && "cancelIdleCallback" in globalThis) {
+        globalThis.cancelIdleCallback(idleId);
+      }
+      if (timeoutId) {
+        globalThis.clearTimeout(timeoutId);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     let raf = 0;
@@ -32,9 +60,9 @@ export const Hero = memo(() => {
       if (textureRef.current)
         textureRef.current.style.transform = `translate3d(${tx * 14}px, ${ty * 10}px, 0)`;
     };
-    window.addEventListener("mousemove", onMove, { passive: true });
+    globalThis.addEventListener("mousemove", onMove, { passive: true });
     return () => {
-      window.removeEventListener("mousemove", onMove);
+      globalThis.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -50,7 +78,7 @@ export const Hero = memo(() => {
         ref={textureRef}
         className="absolute inset-0 opacity-40 pointer-events-none will-change-transform"
         style={{
-          backgroundImage: `url(${HERO_IMG})`,
+          backgroundImage: isTextureReady ? `url(${HERO_IMG})` : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
           maskImage:
@@ -97,6 +125,9 @@ export const Hero = memo(() => {
                   alt="Wahib Kerkeni — Senior Frontend Engineer"
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
+                  width="1080"
+                  height="1350"
                   className="block h-[420px] xl:h-[500px] 2xl:h-[540px] w-auto portrait-duotone"
                   style={{
                     WebkitMaskImage:
@@ -224,9 +255,9 @@ export const TechStrip = () => (
     }}
   >
     <div className="flex marquee-track gap-10 whitespace-nowrap will-change-transform">
-      {[...Array(2)].map((_, copy) => (
+      {["primary", "mirror"].map((copyLabel, copy) => (
         <div
-          key={copy}
+          key={copyLabel}
           aria-hidden={copy === 1}
           className="flex shrink-0 items-center gap-10 pr-10 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-bone-300"
         >

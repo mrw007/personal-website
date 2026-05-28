@@ -338,6 +338,10 @@ export const Toolkit = (props) => {
                                 src={icon}
                                 alt={t.name}
                                 loading="lazy"
+                                decoding="async"
+                                fetchPriority="low"
+                                width="60"
+                                height="60"
                                 className="h-10 w-10 md:h-15 md:w-15 object-contain"
                                 onError={(e) => {
                                   e.currentTarget.style.opacity = "0.4";

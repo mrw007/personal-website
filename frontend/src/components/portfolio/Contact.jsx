@@ -223,6 +223,10 @@ export const Contact = () => {
                       )}
                       alt={c.label}
                       loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                      width="18"
+                      height="18"
                       className="h-[18px] w-[18px] object-contain transition-opacity group-hover:opacity-80"
                       onError={(e) => {
                         e.currentTarget.style.opacity = "0.4";
